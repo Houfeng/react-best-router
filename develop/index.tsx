@@ -7,12 +7,11 @@ import {
   useNavigator,
   useNavigatorRef,
 } from "../src";
+import "./index.css";
 
 function Page() {
   const { params } = useNavigator<{ id: string }>();
-  return <div>
-    Page {params.id}
-  </div>;
+  return <div>Page {params.id}</div>;
 }
 
 function App() {
