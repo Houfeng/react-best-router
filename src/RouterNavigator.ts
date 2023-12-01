@@ -1,10 +1,19 @@
-import { useMemo } from "react";
+import {
+  Fragment,
+  createElement,
+  createRef,
+  forwardRef,
+  useImperativeHandle,
+  useMemo,
+  useRef,
+  RefObject,
+} from "react";
 import { useRouterContext } from "./RouterContext";
 import { resolve } from "path-browserify";
 import { MatchResult } from "path-to-regexp";
 
 export type RouterNavigator<P extends object> = {
-  path: string;
+  pathname: string;
   params: MatchResult<P>["params"];
   push: (path: string) => void;
   back: () => void;
@@ -14,19 +23,17 @@ export type RouterNavigator<P extends object> = {
 };
 
 export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
-  const { stack, state, driver } = useRouterContext();
+  const { state, matcher, stack, driver } = useRouterContext();
   return useMemo<RouterNavigator<P>>(() => {
-    const { path, result = {} } = state;
-    const { params = {} } = (result || {}) as MatchResult<any>;
-    const push = (path: string) => {
-      path = resolve(state.path, path);
-      const historyState = { path };
+    const push = (pathname: string) => {
+      pathname = resolve(state.pathname, pathname);
+      const historyState = { pathname };
       driver.push(historyState);
       stack.push(historyState);
     };
-    const replace = (path: string) => {
-      path = resolve(state.path, path);
-      const historyState = { path };
+    const replace = (pathname: string) => {
+      pathname = resolve(state.pathname, pathname);
+      const historyState = { pathname };
       driver.replace(historyState);
       stack.replace(historyState);
     };
@@ -39,6 +46,31 @@ export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
       if (state) driver.push(state);
     };
     const go = (step: number) => driver.push(stack.go(step));
-    return { path, params, push, back, forward, go, replace };
-  }, [driver, state, stack]);
+    const { pathname } = state;
+    const { params } = matcher.result || {};
+    return { pathname, params, push, back, forward, go, replace };
+  }, [state, matcher, stack, driver]);
+}
+
+/**
+ * @internal
+ */
+export const RouterNavigatorForwarder = forwardRef<
+  RouterNavigator<any> | undefined
+>((_, ref) => {
+  const navigator = useNavigator();
+  useImperativeHandle(ref, () => navigator);
+  return createElement(Fragment);
+});
+
+export type RouterNavigatorRef<P extends object = object> = RefObject<
+  RouterNavigator<P> | undefined
+>;
+
+export function useNavigatorRef<P extends object = object>() {
+  return useRef<RouterNavigator<P>>();
+}
+
+export function createNavigatorRef<P extends object = object>() {
+  return createRef<RouterNavigator<P>>();
 }

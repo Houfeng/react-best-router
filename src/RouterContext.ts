@@ -1,24 +1,12 @@
 import { createContext, useContext } from "react";
 import { RouterDriver } from "./RouterDriver";
-import { RouterStack } from "./RouterStack";
-import { MatchFunction, MatchResult } from "path-to-regexp";
-
-export type RouterPattern = string & {};
-
-export type RouterState = {
-  path: string;
-  prefix: RouterPattern;
-  fullPrefix: RouterPattern;
-  pattern: RouterPattern;
-  match: MatchFunction<object>;
-  result?: MatchResult;
-};
-
-export type RouterDispatch = (state: RouterState) => void;
+import { RouterHistoryState, RouterStack } from "./RouterStack";
+import { RouterMatcher } from "./RouterMatcher";
 
 export type RouterContextValue = {
+  state: RouterHistoryState;
   driver: RouterDriver;
-  state: RouterState;
+  matcher: RouterMatcher;
   stack: RouterStack;
 };
 

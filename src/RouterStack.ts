@@ -1,4 +1,4 @@
-export type RouterHistoryState = { path: string };
+export type RouterHistoryState = { pathname: string };
 
 export type RouterStack = {
   stack: () => Readonly<RouterHistoryState[]>;

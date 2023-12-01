@@ -1,21 +1,22 @@
 import React, {
+  ReactNode,
   useState,
-  type ReactNode,
   useMemo,
   useLayoutEffect,
   Fragment,
-  useCallback,
 } from "react";
 import { RouterDriver } from "./RouterDriver";
+import { RouterContext, RouterContextValue } from "./RouterContext";
 import {
-  RouterContext,
-  RouterContextValue,
+  RouterMatcher,
   RouterPattern,
-  RouterState,
-} from "./RouterContext";
+  createRouterMatcher,
+} from "./RouterMatcher";
 import { createRouterStack } from "./RouterStack";
-import { match as compileToMatcher } from "path-to-regexp";
-import { patternToPrefix } from "./RouterUtil";
+import {
+  RouterNavigatorForwarder,
+  RouterNavigatorRef,
+} from "./RouterNavigator";
 
 export type RouterProps = {
   pattern?: RouterPattern;
@@ -23,39 +24,36 @@ export type RouterProps = {
   children?: ReactNode;
   driver: RouterDriver;
   render?: (children: ReactNode) => ReactNode;
+  navigator?: RouterNavigatorRef<any>;
 };
 
 export function Router(props: RouterProps) {
-  const { children, driver, render } = props;
-  const { pattern = "/", prefix = patternToPrefix(pattern) } = props;
-  // create state function
-  const createState = useCallback(
-    (path: string): RouterState => {
-      const match = compileToMatcher(pattern);
-      return { path, prefix, fullPrefix: prefix, pattern, match };
-    },
-    [prefix, pattern],
-  );
+  const { children, driver, render, navigator } = props;
+  const { pattern = "/(.*)", prefix } = props;
   // initial state
-  const [state, dispatch] = useState(() =>
-    createState(driver?.state()?.path || "/"),
-  );
-  // initial stack
+  const [state, setState] = useState(() => driver?.state());
+  // create stack
   const stack = useMemo(() => createRouterStack(), []);
-  // router context
-  const context = useMemo<RouterContextValue>(() => {
-    return { state, driver, stack };
-  }, [state, driver, stack]);
+  // create matcher
+  const matcher = useMemo<RouterMatcher>(
+    () => createRouterMatcher(pattern, prefix),
+    [pattern, prefix],
+  );
+  // create context
+  const context = useMemo<RouterContextValue>(
+    () => ({ state, driver, stack, matcher }),
+    [state, driver, stack, matcher],
+  );
   // bind to driver
-  useLayoutEffect(() => {
-    return driver?.subscribe(({ path }) => dispatch(createState(path)));
-  }, [driver, dispatch, createState]);
-  // match current url
-  const matchResult = state.match(state.path);
-  if (!matchResult) return <Fragment />;
-  state.result = matchResult;
+  useLayoutEffect(
+    () => driver?.subscribe((state) => setState(state)),
+    [driver, state],
+  );
+  // match current pathname
+  if (!matcher.match(state.pathname)) return <Fragment />;
   return (
     <RouterContext.Provider value={context}>
+      {navigator && <RouterNavigatorForwarder ref={navigator} />}
       {render ? render(children) : children}
     </RouterContext.Provider>
   );

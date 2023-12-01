@@ -18,6 +18,7 @@
     "noUnusedParameters": true,
     "importHelpers": true,
     "esModuleInterop": true,
+    "stripInternal": true,
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "lib": [
@@ -26,6 +27,7 @@
     ]
   },
   "include": [
-    "./src/**/*.ts"
-, "src/develop.tsx"  ]
+    "./src/**/*.ts",
+    "src/develop.tsx"
+  ]
 }

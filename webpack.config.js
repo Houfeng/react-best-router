@@ -34,7 +34,7 @@ module.exports = {
         use: {
           loader: 'ts-loader',
           options: {
-            configFile: require.resolve('./tsconfig.json'),
+            configFile: require.resolve('./tsconfig.dev.json'),
           },
         },
         exclude: /node_modules/,
@@ -51,7 +51,8 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: require.resolve('./assets/index.html')
+      template: require.resolve('./assets/index.html'),
+      publicPath: '/'
     })
   ],
 };
