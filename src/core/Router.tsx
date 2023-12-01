@@ -12,10 +12,7 @@ import {
   RouterPattern,
   createRouterMatcher,
 } from "./RouterMatcher";
-import {
-  RouterNavigatorForwarder,
-  RouterNavigatorRef,
-} from "./RouterNavigator";
+import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
 
 export type RouterProps = {
   pattern?: RouterPattern;
@@ -50,7 +47,7 @@ export function Router(props: RouterProps) {
   if (!matcher.match(state.pathname)) return <Fragment />;
   return (
     <RouterContext.Provider value={context}>
-      {navigator && <RouterNavigatorForwarder ref={navigator} />}
+      {navigator && <NavigatorForwarder ref={navigator} />}
       {render ? render(children) : children}
     </RouterContext.Provider>
   );

@@ -41,13 +41,13 @@ export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
 /**
  * @internal
  */
-export const RouterNavigatorForwarder = forwardRef<
-  RouterNavigator<any> | undefined
->((_, ref) => {
-  const navigator = useNavigator();
-  useImperativeHandle(ref, () => navigator);
-  return createElement(Fragment);
-});
+export const NavigatorForwarder = forwardRef<RouterNavigator<any> | undefined>(
+  function NavigatorForwarder(_, ref) {
+    const navigator = useNavigator();
+    useImperativeHandle(ref, () => navigator);
+    return createElement(Fragment);
+  },
+);
 
 export type RouterNavigatorRef<P extends object = object> = RefObject<
   RouterNavigator<P> | undefined
