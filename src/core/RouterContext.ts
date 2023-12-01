@@ -4,6 +4,7 @@ import { RouterMatcher } from "./RouterMatcher";
 import { RouterState } from "./RouterState";
 
 export type RouterContextValue = {
+  base: string;
   state: RouterState;
   driver: RouterDriver;
   matcher: RouterMatcher;

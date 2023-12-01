@@ -13,15 +13,15 @@ import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
 
 export type RouteProps = {
   pattern: RouterPattern;
+  children?: ReactNode;
   render?: (children: ReactNode) => ReactNode;
   prefix?: RouterPattern;
-  children?: ReactNode;
   navigator?: RouterNavigatorRef<any>;
 };
 
 export function Route(props: RouteProps) {
   const { pattern = "/", prefix, render, children, navigator } = props;
-  const { state, driver, matcher: parentMatcher } = useRouterContext();
+  const { base, state, driver, matcher: parentMatcher } = useRouterContext();
   // create matcher
   const matcher = useMemo<RouterMatcher>(
     () => createRouterMatcher(pattern, prefix, parentMatcher),
@@ -29,8 +29,8 @@ export function Route(props: RouteProps) {
   );
   // create context
   const context = useMemo<RouterContextValue>(
-    () => ({ state, driver, matcher }),
-    [state, driver, matcher],
+    () => ({ base, state, driver, matcher }),
+    [base, state, driver, matcher],
   );
   // match current pathname
   if (!matcher.match(state.pathname)) return <Fragment />;

@@ -11,6 +11,7 @@ import {
 import { useRouterContext } from "./RouterContext";
 import { resolve } from "path-browserify";
 import { MatchResult } from "path-to-regexp";
+import { RouterState } from "./RouterState";
 
 export type RouterNavigator<P extends object> = {
   pathname: string;
@@ -22,13 +23,19 @@ export type RouterNavigator<P extends object> = {
   replace: (path: string) => void;
 };
 
+function resolvePath(base: string, state: RouterState, pathname: string) {
+  return pathname.startsWith("/")
+    ? resolve(base, pathname)
+    : resolve(state.pathname, pathname);
+}
+
 export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
-  const { state, matcher, driver } = useRouterContext();
+  const { base, state, matcher, driver } = useRouterContext();
   return useMemo<RouterNavigator<P>>(() => {
     const push = (pathname: string) =>
-      driver.push({ pathname: resolve(state.pathname, pathname) });
+      driver.push({ pathname: resolvePath(base, state, pathname) });
     const replace = (pathname: string) =>
-      driver.replace({ pathname: resolve(state.pathname, pathname) });
+      driver.replace({ pathname: resolvePath(base, state, pathname) });
     const back = () => driver.back();
     const forward = () => driver.forward();
     const go = (step: number) => driver.go(step);

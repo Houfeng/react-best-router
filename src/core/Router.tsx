@@ -7,36 +7,30 @@ import React, {
 } from "react";
 import { RouterDriver } from "./RouterDriver";
 import { RouterContext, RouterContextValue } from "./RouterContext";
-import {
-  RouterMatcher,
-  RouterPattern,
-  createRouterMatcher,
-} from "./RouterMatcher";
+import { RouterMatcher, createRouterMatcher } from "./RouterMatcher";
 import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
 
 export type RouterProps = {
-  pattern?: RouterPattern;
-  prefix?: RouterPattern;
+  base?: string;
   children?: ReactNode;
-  driver: RouterDriver;
   render?: (children: ReactNode) => ReactNode;
   navigator?: RouterNavigatorRef<any>;
+  driver: RouterDriver;
 };
 
 export function Router(props: RouterProps) {
-  const { children, driver, render, navigator } = props;
-  const { pattern = "/(.*)", prefix } = props;
+  const { children, driver, render, navigator, base = "/" } = props;
   // initial state
   const [state, setState] = useState(() => driver?.current());
   // create matcher
   const matcher = useMemo<RouterMatcher>(
-    () => createRouterMatcher(pattern, prefix),
-    [pattern, prefix],
+    () => createRouterMatcher(`${base}/(.*)`, base),
+    [base],
   );
   // create context
   const context = useMemo<RouterContextValue>(
-    () => ({ state, driver, matcher }),
-    [state, driver, matcher],
+    () => ({ base, state, driver, matcher }),
+    [base, state, driver, matcher],
   );
   // bind to driver
   useLayoutEffect(
