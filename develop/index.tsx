@@ -10,11 +10,9 @@ import {
 
 function Page() {
   const { params } = useNavigator<{ id: string }>();
-  return <div>Page {params.id}</div>;
-}
-
-function NotFound() {
-  return <div>404</div>;
+  return <div>
+    Page {params.id}
+  </div>;
 }
 
 function App() {
@@ -31,11 +29,8 @@ function App() {
             <button onClick={() => nav.current?.push("/page/2")}>page2</button>
           </li>
         </ul>
-        <Route pattern="/page/:id">
+        <Route pattern="/page/:id/(.*)">
           <Page />
-        </Route>
-        <Route pattern="/(.*)">
-          <NotFound />
         </Route>
       </Router>
     </div>
