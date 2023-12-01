@@ -2,7 +2,7 @@ import React from "react";
 import { createRoot } from "react-dom/client";
 import {
   Router,
-  useMemoryDriver,
+  useHashDriver,
   Route,
   useNavigator,
   useNavigatorRef,
@@ -18,7 +18,7 @@ function NotFound() {
 }
 
 function App() {
-  const driver = useMemoryDriver();
+  const driver = useHashDriver();
   const nav = useNavigatorRef();
   return (
     <div>

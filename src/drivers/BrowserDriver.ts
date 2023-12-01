@@ -3,8 +3,7 @@ import { RouterDriver, RouterState } from "../core";
 
 export function createBrowserDriver(): RouterDriver {
   const current = (): RouterState => {
-    const { pathname } = location;
-    return { pathname };
+    return { pathname: location.pathname };
   };
   const push = (state: RouterState) => {
     history.pushState(state, state.pathname, state.pathname);
