@@ -23,33 +23,19 @@ export type RouterNavigator<P extends object> = {
 };
 
 export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
-  const { state, matcher, stack, driver } = useRouterContext();
+  const { state, matcher, driver } = useRouterContext();
   return useMemo<RouterNavigator<P>>(() => {
-    const push = (pathname: string) => {
-      pathname = resolve(state.pathname, pathname);
-      const historyState = { pathname };
-      driver.push(historyState);
-      stack.push(historyState);
-    };
-    const replace = (pathname: string) => {
-      pathname = resolve(state.pathname, pathname);
-      const historyState = { pathname };
-      driver.replace(historyState);
-      stack.replace(historyState);
-    };
-    const back = () => {
-      const state = stack.back();
-      if (state) driver.push(state);
-    };
-    const forward = () => {
-      const state = stack.forward();
-      if (state) driver.push(state);
-    };
-    const go = (step: number) => driver.push(stack.go(step));
+    const push = (pathname: string) =>
+      driver.push({ pathname: resolve(state.pathname, pathname) });
+    const replace = (pathname: string) =>
+      driver.replace({ pathname: resolve(state.pathname, pathname) });
+    const back = () => driver.back();
+    const forward = () => driver.forward();
+    const go = (step: number) => driver.go(step);
     const { pathname } = state;
     const { params } = matcher.result || {};
     return { pathname, params, push, back, forward, go, replace };
-  }, [state, matcher, stack, driver]);
+  }, [state, matcher, driver]);
 }
 
 /**

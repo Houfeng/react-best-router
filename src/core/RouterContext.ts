@@ -1,13 +1,12 @@
 import { createContext, useContext } from "react";
 import { RouterDriver } from "./RouterDriver";
-import { RouterHistoryState, RouterStack } from "./RouterStack";
 import { RouterMatcher } from "./RouterMatcher";
+import { RouterState } from "./RouterState";
 
 export type RouterContextValue = {
-  state: RouterHistoryState;
+  state: RouterState;
   driver: RouterDriver;
   matcher: RouterMatcher;
-  stack: RouterStack;
 };
 
 export const RouterContext = createContext<RouterContextValue>(null!);

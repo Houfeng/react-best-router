@@ -5,7 +5,7 @@ const { NODE_ENV } = process.env;
 
 module.exports = {
   mode: NODE_ENV || 'development',
-  entry: './src/develop.tsx',
+  entry: './develop/index.tsx',
   output: {
     path: resolve(__dirname, './assets/app'),
     filename: '[name]-[hash].bundle.js',
@@ -46,7 +46,7 @@ module.exports = {
     port: 8081,
     liveReload: true,
     headers: { 'Access-Control-Allow-Origin': '*' },
-    watchFiles: ["src/**/*"],
+    watchFiles: ["src/**/*", "develop/**/*"],
     historyApiFallback: true,
   },
   plugins: [

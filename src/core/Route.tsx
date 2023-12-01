@@ -24,7 +24,7 @@ export type RouteProps = {
 
 export function Route(props: RouteProps) {
   const { pattern = "/", prefix, render, children, navigator } = props;
-  const { stack, state, driver, matcher: parentMatcher } = useRouterContext();
+  const { state, driver, matcher: parentMatcher } = useRouterContext();
   // create matcher
   const matcher = useMemo<RouterMatcher>(
     () => createRouterMatcher(pattern, prefix, parentMatcher),
@@ -32,8 +32,8 @@ export function Route(props: RouteProps) {
   );
   // create context
   const context = useMemo<RouterContextValue>(
-    () => ({ stack, state, driver, matcher }),
-    [state, driver, stack, matcher],
+    () => ({ state, driver, matcher }),
+    [state, driver, matcher],
   );
   // match current pathname
   if (!matcher.match(state.pathname)) return <Fragment />;

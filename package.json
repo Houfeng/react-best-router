@@ -6,7 +6,7 @@
   "module": "./dist/react-best-router-es.js",
   "types": "./types/index.d.ts",
   "scripts": {
-    "lint": "eslint --fix --ext .ts,.tsx ./src/",
+    "lint": "eslint --fix --ext .ts,.tsx ./{src,develop}/",
     "clean": "rm -rf ./dist && rm -rf ./types",
     "dev": "NODE_ENV=development webpack serve",
     "build": "pnpm clean && pnpm lint && rollup -c rollup.config.js && rollup -c rollup.cdn.config.js"

@@ -1,33 +1,42 @@
 {
   "compilerOptions": {
+    "baseUrl": "./",
     "outDir": "./dist/",
     "declarationDir": "./types/",
-    "sourceMap": false,
+    "sourceMap": true,
     "allowJs": false,
     "declaration": true,
-    "noImplicitAny": true,
+    "declarationMap": true,
+    "noEmitOnError": true,
     "module": "ESNext",
-    "target": "es5",
+    "target": "ES5",
+    "downlevelIteration": true,
     "removeComments": true,
-    "jsx": "react",
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": false,
-    "strictNullChecks": true,
-    "moduleResolution": "node",
-    "noUnusedLocals": true,
-    "noUnusedParameters": true,
+    "emitDecoratorMetadata": true,
+    "moduleResolution": "Node",
     "importHelpers": true,
     "esModuleInterop": true,
-    "stripInternal": true,
-    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "noImplicitThis": true,
+    "noUnusedLocals": false,
+    "noUnusedParameters": true,
+    "noImplicitReturns": false,
+    "noFallthroughCasesInSwitch": true,
     "skipDefaultLibCheck": true,
+    "skipLibCheck": true,
+    "stripInternal": true,
+    "jsx": "react",
     "lib": [
       "dom",
-      "ES2022"
+      "ESNext"
     ]
   },
   "include": [
     "./src/**/*.ts",
-    "src/develop.tsx"
+    "./src/**/*.tsx",
   ]
 }

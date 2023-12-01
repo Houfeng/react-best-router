@@ -12,7 +12,6 @@ import {
   RouterPattern,
   createRouterMatcher,
 } from "./RouterMatcher";
-import { createRouterStack } from "./RouterStack";
 import {
   RouterNavigatorForwarder,
   RouterNavigatorRef,
@@ -31,9 +30,7 @@ export function Router(props: RouterProps) {
   const { children, driver, render, navigator } = props;
   const { pattern = "/(.*)", prefix } = props;
   // initial state
-  const [state, setState] = useState(() => driver?.state());
-  // create stack
-  const stack = useMemo(() => createRouterStack(), []);
+  const [state, setState] = useState(() => driver?.current());
   // create matcher
   const matcher = useMemo<RouterMatcher>(
     () => createRouterMatcher(pattern, prefix),
@@ -41,8 +38,8 @@ export function Router(props: RouterProps) {
   );
   // create context
   const context = useMemo<RouterContextValue>(
-    () => ({ state, driver, stack, matcher }),
-    [state, driver, stack, matcher],
+    () => ({ state, driver, matcher }),
+    [state, driver, matcher],
   );
   // bind to driver
   useLayoutEffect(

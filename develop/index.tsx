@@ -1,9 +1,12 @@
 import React from "react";
 import { createRoot } from "react-dom/client";
-import { Router } from "./Router";
-import { useBrowserDriver } from "./BrowserDriver";
-import { Route } from "./Route";
-import { useNavigator, useNavigatorRef } from "./RouterNavigator";
+import {
+  Router,
+  useMemoryDriver,
+  Route,
+  useNavigator,
+  useNavigatorRef,
+} from "../src";
 
 function Page() {
   const { params } = useNavigator<{ id: string }>();
@@ -15,17 +18,17 @@ function NotFound() {
 }
 
 function App() {
-  const driver = useBrowserDriver();
+  const driver = useMemoryDriver();
   const nav = useNavigatorRef();
   return (
     <div>
       <Router driver={driver} navigator={nav}>
         <ul>
           <li>
-            <a onClick={() => nav.current?.push("/page/1")}>page1</a>
+            <button onClick={() => nav.current?.push("/page/1")}>page1</button>
           </li>
           <li>
-            <a onClick={() => nav.current?.push("/page/2")}>page2</a>
+            <button onClick={() => nav.current?.push("/page/2")}>page2</button>
           </li>
         </ul>
         <Route pattern="/page/:id">

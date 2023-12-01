@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "../tsconfig"
+  ],
+  "compilerOptions": {
+    "baseUrl": "./",
+    "outDir": "./docs/",
+    "declarationDir": "./types/develop/",
+    "sourceMap": true
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+  ]
+}
