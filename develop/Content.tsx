@@ -3,9 +3,18 @@ import MarkdownView from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Highlight, themes } from "prism-react-renderer";
 import { useNavigator } from "../src";
-import index_zh from "./docs/index.zh.md?raw";
-import router_en from "./docs/router.zh.md?raw";
- 
+import index_zh from "./docs/zh/index.md?raw";
+import api_zh from "./docs/zh/api.md?raw";
+import pattern_zh from "./docs/zh/pattern.md?raw";
+import examples_zh from "./docs/zh/examples.md?raw";
+
+const contents = {
+  index: index_zh,
+  api: api_zh,
+  pattern: pattern_zh,
+  examples: examples_zh,
+};
+
 function renderCodeBlock(code: string, language?: string) {
   return (
     <Highlight
@@ -28,16 +37,11 @@ function renderCodeBlock(code: string, language?: string) {
   );
 }
 
-const contents = {
-  index: index_zh,
-  router: router_en,
-};
-
 export function Content() {
   const nav = useNavigator<{ name: keyof typeof contents }>();
   const content = contents[nav.params.name || "index"];
   return (
-    <article className="prose stone p-6">
+    <article className="prose p-6">
       <MarkdownView
         remarkPlugins={[remarkGfm]}
         components={{
