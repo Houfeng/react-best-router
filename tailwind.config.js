@@ -1,7 +1,15 @@
 module.exports = {
   content: ["./develop/**/*.{html,js,ts,tsx}"],
-  plugins: [require("daisyui")],
+  plugins: [
+    require("daisyui"),
+    require('@tailwindcss/typography'),
+  ],
   daisyui: {
-    themes: ["light", "dark", "retro"],
+    themes: [
+      "retro",
+      "coffee",
+      "dark",
+      "aqua",
+    ],
   },
 }

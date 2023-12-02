@@ -53,12 +53,12 @@ module.exports = {
     ],
     "max-lines-per-function": [
       "error",
-      80
+      120
     ],
     "max-len": [
       "error",
       {
-        "code": 80,
+        "code": 120,
         "tabWidth": 2,
         "ignoreUrls": true,
         "ignoreStrings": true,

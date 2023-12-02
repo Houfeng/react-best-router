@@ -1,56 +1,25 @@
-import React, { Fragment } from "react";
-import { createRoot } from "react-dom/client";
-import {
-  Router,
-  useBrowserDriver,
-  Route,
-  useNavigator,
-  useNavigatorRef,
-} from "../src";
 import "./index.css";
+import React from "react";
+import { createRoot } from "react-dom/client";
+import { Route, Router, useBrowserDriver } from "../src";
+import { Layout } from "./Layout";
+import { SideBar } from "./SideBar";
+import { Header } from "./Header";
+import { Footer } from "./Footer";
+import { Content } from "./Content";
 
-function Page() {
-  const nav = useNavigator();
-  const { params } = useNavigator<{ id: string }>();
-  return (
-    <div>
-      <h2>Page {params.id}</h2>
-      <p>{JSON.stringify(nav, null, '  ')}</p>
-    </div>
-  );
-}
-
-function App() {
+function RBRDocsAPP() {
   const driver = useBrowserDriver();
-  const nav = useNavigatorRef();
   return (
-    <Fragment>
-      <Router base="/dev" driver={driver} navigator={nav}>
-        <ul>
-          <li>
-            <button
-              className="btn"
-              onClick={() => nav.current?.push("/page/1")}
-            >
-              page1
-            </button>
-          </li>
-          <li>
-            <button
-              className="btn"
-              onClick={() => nav.current?.push("/page/2")}
-            >
-              page2
-            </button>
-          </li>
-        </ul>
-        <Route pattern="/page/:id/(.*)?">
-          <Page />
+    <Router driver={driver}>
+      <Layout header={<Header />} footer={<Footer />} sideBar={<SideBar />}>
+        <Route pattern="/:name">
+          <Content />
         </Route>
-      </Router>
-    </Fragment>
+      </Layout>
+    </Router>
   );
 }
 
 const root = createRoot(document.getElementById("root")!);
-root.render(<App />);
+root.render(<RBRDocsAPP />);
