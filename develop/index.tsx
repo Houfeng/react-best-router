@@ -10,8 +10,14 @@ import {
 import "./index.css";
 
 function Page() {
+  const nav = useNavigator();
   const { params } = useNavigator<{ id: string }>();
-  return <div>Page {params.id}</div>;
+  return (
+    <div>
+      <h2>Page {params.id}</h2>
+      <p>{JSON.stringify(nav, null, '  ')}</p>
+    </div>
+  );
 }
 
 function App() {
@@ -19,7 +25,7 @@ function App() {
   const nav = useNavigatorRef();
   return (
     <Fragment>
-      <Router driver={driver} navigator={nav}>
+      <Router base="/dev" driver={driver} navigator={nav}>
         <ul>
           <li>
             <button
