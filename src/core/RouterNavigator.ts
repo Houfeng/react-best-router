@@ -9,9 +9,8 @@ import {
   RefObject,
 } from "react";
 import { useRouterContext } from "./RouterContext";
-import { resolve } from "path-browserify";
+import { resolve, normalize } from "path-browserify";
 import { MatchResult } from "path-to-regexp";
-import { RouterState } from "./RouterState";
 
 export type RouterNavigator<P extends object> = {
   pathname: string;
@@ -23,23 +22,31 @@ export type RouterNavigator<P extends object> = {
   replace: (path: string) => void;
 };
 
-function resolvePath(base: string, state: RouterState, pathname: string) {
-  return pathname.startsWith("/")
-    ? resolve(base, pathname)
-    : resolve(state.pathname, pathname);
+function resolvePath(base: string, from: string, to: string) {
+  return to.startsWith("/") ? normalize(`${base}/${to}`) : resolve(from, to);
+}
+
+function toScopedPath(base: string, pathname: string) {
+  return normalize(`/${pathname.slice(base.length)}`);
 }
 
 export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
   const { base, state, matcher, driver } = useRouterContext();
   return useMemo<RouterNavigator<P>>(() => {
-    const push = (pathname: string) =>
-      driver.push({ pathname: resolvePath(base, state, pathname) });
-    const replace = (pathname: string) =>
-      driver.replace({ pathname: resolvePath(base, state, pathname) });
+    // Go to the specified pathname
+    const push = (to: string) =>
+      driver.push({ pathname: resolvePath(base, state.pathname, to) });
+    // Go to the specified pathname，But it doesn't affect history
+    const replace = (to: string) =>
+      driver.replace({ pathname: resolvePath(base, state.pathname, to) });
+    // Back to the prev pathname
     const back = () => driver.back();
+    // Forward to the next pathname
     const forward = () => driver.forward();
+    // Forward or backward specified number of steps
     const go = (step: number) => driver.go(step);
-    const { pathname } = state;
+    // Generate some parameters
+    const pathname = toScopedPath(base, state.pathname);
     const { params } = matcher.result || {};
     return { pathname, params, push, back, forward, go, replace };
   }, [state, matcher, driver]);

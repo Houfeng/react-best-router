@@ -38,7 +38,7 @@ function App() {
             </button>
           </li>
         </ul>
-        <Route pattern="/page/:id/(.*)">
+        <Route pattern="/page/:id/(.*)?">
           <Page />
         </Route>
       </Router>
