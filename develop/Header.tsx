@@ -2,7 +2,7 @@ import React from "react";
 
 export function Header() {
   return (
-    <div className="navbar bg-base-100 shadow sticky top-0">
+    <div className="navbar bg-base-100 bg-opacity-75 shadow sticky top-0 backdrop-blur">
       <div className="flex-none">
         <label
           htmlFor="drawer-switch"
@@ -63,15 +63,6 @@ export function Header() {
                 className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
                 aria-label="Dark"
                 value="dark"
-              />
-            </li>
-            <li>
-              <input
-                type="radio"
-                name="theme-dropdown"
-                className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                aria-label="Retro"
-                value="retro"
               />
             </li>
             <li>
