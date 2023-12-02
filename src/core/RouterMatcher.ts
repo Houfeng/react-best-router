@@ -23,6 +23,14 @@ function getMatcherFullPrefix(matcher: RouterMatcher | undefined) {
   return fullPrefix;
 }
 
+function normalizePattern(pattern: string) {
+  return normalize(
+    pattern.length > 1 && pattern.at(-1) === "/"
+      ? pattern.slice(0, -1)
+      : pattern,
+  );
+}
+
 export function createRouterMatcher(
   pattern: RouterPattern,
   prefix?: RouterPattern,
@@ -30,7 +38,7 @@ export function createRouterMatcher(
 ): RouterMatcher {
   prefix = prefix || patternToPrefix(pattern);
   const fullPattern = `/${getMatcherFullPrefix(parent)}/${pattern}`;
-  const match = compileToMatcher(normalize(fullPattern));
+  const match = compileToMatcher(normalizePattern(fullPattern));
   const matcher: RouterMatcher = { parent, pattern, prefix, match };
   matcher.match = (pathname: string) => {
     matcher.result = match(pathname);

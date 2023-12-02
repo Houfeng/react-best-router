@@ -12,7 +12,7 @@ import { useRouterContext } from "./RouterContext";
 import { resolve, normalize } from "path-browserify";
 import { MatchResult } from "path-to-regexp";
 
-export type RouterNavigator<P extends object> = {
+type RouterNavigator<P extends object> = {
   pathname: string;
   params: MatchResult<P>["params"];
   push: (path: string) => void;

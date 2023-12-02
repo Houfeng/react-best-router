@@ -1,6 +1,4 @@
-import { RouterState } from "./RouterState";
-
-export type RouterStateChangeHandler = (state: RouterState) => void;
+import { RouterState, RouterStateChangeHandler } from "./RouterState";
 
 export type RouterDriver = {
   subscribe: (handler: RouterStateChangeHandler) => () => void;
