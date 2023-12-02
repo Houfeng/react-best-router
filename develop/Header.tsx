@@ -24,7 +24,7 @@ export function Header() {
         </label>
       </div>
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl">React Best Router</a>
+        <a className="btn btn-ghost text-xl font-bold">RBR</a>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
@@ -52,17 +52,8 @@ export function Header() {
                 type="radio"
                 name="theme-dropdown"
                 className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                aria-label="Aqua"
-                value="aqua"
-              />
-            </li>
-            <li>
-              <input
-                type="radio"
-                name="theme-dropdown"
-                className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
                 aria-label="Dark"
-                value="dark"
+                value="night"
               />
             </li>
             <li>
@@ -70,8 +61,8 @@ export function Header() {
                 type="radio"
                 name="theme-dropdown"
                 className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
-                aria-label="Coffee"
-                value="coffee"
+                aria-label="Light"
+                value="winter"
               />
             </li>
           </ul>

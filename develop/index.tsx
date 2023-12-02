@@ -13,7 +13,7 @@ function RBRDocsAPP() {
   return (
     <Router driver={driver}>
       <Layout header={<Header />} footer={<Footer />} sideBar={<SideBar />}>
-        <Route pattern="/:name">
+        <Route pattern="/:name?">
           <Content />
         </Route>
       </Layout>

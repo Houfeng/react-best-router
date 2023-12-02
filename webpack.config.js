@@ -47,6 +47,10 @@ module.exports = {
           'postcss-loader',
         ],
       },
+      {
+        resourceQuery: /raw/,
+        type: 'asset/source'
+      }
     ]
   },
   devtool: NODE_ENV === 'development' ? 'inline-source-map' : false,

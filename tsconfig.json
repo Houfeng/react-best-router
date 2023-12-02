@@ -33,6 +33,9 @@
     "lib": [
       "dom",
       "ESNext"
+    ],
+    "types": [
+      "./@types/raw.d.ts"
     ]
   },
   "include": [
