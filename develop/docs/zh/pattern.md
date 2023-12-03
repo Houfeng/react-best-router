@@ -69,6 +69,7 @@ function YourComponent(){
 ✅ /foo/123
 ✅ /foo/abc 
 ✅ /foo
+❌ /foo/bar/123
 ❌ /abc/123
 ```
 
@@ -91,20 +92,67 @@ function YourComponent(){
 
 ✅ /foo/123
 ✅ /foo/abc 
-✅ /foot/abc/123
 ❌ /foo
+✅ /foo/abc/123
+❌ /abc/123
 ```
 
 ## 4. 匿名参数
 
+可只声明参数约束，但不为参数命名，此时参数名将会以参数出现的次序为名（也就是 index）
 
-## 5. 嵌套路由
+```zsh
+# 定义了一个「仅匹配数字」的匿名参数，因为只有一个参数,自动命名为 0
+👉 /foo/(\d+)
 
-Route 的 pattern 总是完整匹配，并没有 exact 之类的选项，
-如果你想只前缀匹配，需要通过 pattern 来声明，通常父路由为「前缀匹配」时，才有「添加子路由」的意义，
-因为，如果父路由是严格匹配，虽然也能添加子路由，但是子路由并没不有极会被匹配到。
+✅ /foo/123
+❌ /foo/abc 
+❌ /foot/abc/123
+❌ /bar
+```
 
-下方量个父级嵌套路由的示例，这个示例比较简单，只有两层路径
+```zsh
+# 定义了一个「匹配所有字符」的参数，因为只有一个参数,自动命名为 0
+👉 /foo/(.*)
+
+✅ /foo/123
+✅ /foo/abc 
+✅ /foot/abc/123
+❌ /bar
+```
+
+## 5. RBR 路由特点
+
+Route 的 pattern 总是完整匹配，并没有 exact 之类的选项，在整个组件树中与当前 URL 匹配的
+路由组件都会被渲染，**平级的 Route 出现的位置并不会影响路由的匹配**，而只影响组件的渲染位置，
+你不必为了匹配而花心思想应该放在哪，**需要显示在哪儿就放在哪儿**。
+
+```tsx
+function YourApp(){
+  return (
+    <Router driver={deriver}>
+      ...
+      <header>
+        <Route pattern="/(.*)"><NavBar/></Route>
+      </header>
+      <main>
+        <Route pattern="/(.*)"><SideBar/></Route>
+        <Route pattern="/posts/:id"><Content/></Route>
+      </main>
+      ...
+    </Router>
+  )
+}
+```
+
+在上述的示例中，当访问 **/** 时，NavBar 和 SideBar 都将渲染，而 Content 不会渲染。
+当访问 **/posts/1** 时 NavBar、SideBar、Content 都会被渲染。
+
+## 6. 嵌套路由
+
+通常父路由为「前缀匹配」时，才有「添加子路由」的意义，因为，如果父路由是严格匹配，虽然也能添加子路由，但是子路由并没有极会被匹配到。
+
+下方是父子级嵌套路由的示例，这个示例比较简单，只有两层路径
 
 ```tsx
 <Route pattern="/foo/:bar">
@@ -113,11 +161,12 @@ Route 的 pattern 总是完整匹配，并没有 exact 之类的选项，
   <Route pattern="/:child_bar">
   ...
    {/* 可直接通过 children 来指定渲染的目标组件 */}
-  <Content />
+   {/* Content 组件定义在 Content.tsx 中 */}
+  <Content />  
 </Route>
 ```
 
-除了在 Route 的直接 children 中添加子路由，也可可在深层子组件中添加子路由
+除了在 Route 的直接 children 中添加子路由，也可在**任意层级**的子组件中添加子路由
 
 ```tsx
 // Content.tsx，也可在子组件中添加 Route
@@ -132,13 +181,26 @@ function Content() {
 }
 ```
 
-怎么确定**子路由的完整 pattern**？
+**怎么确定子路由的完整 pattern**？
 
-**重要提示** ：由「父路由 pattern 最长的确切部分作为前缀」，
-加上「子路由自身的 pattern」， 最终组合成子路由的「完整 pattern」。
+> 由「父路由 pattern 最长的确切部分作为前缀」，加上「子路由自身的 pattern」， 最终组合成子路由的「完整 pattern」。
 
-以上边的示例为例
+以上文示例中定义的 pattern 为示例
 
-1. 父路由的 pattern 为：**/foo/:bar**，最长的确切部分为：**/foo/**
-2. 子路由的 pattern 为：**/:child_bar**
-3. 那么，子路由的完整 pattern 为：**/foo/:child_bar**
+```zsh
+👉 父路由，如果 pattern 为 /foo/:bar
+    那么，最长的确切部分为 /foo/
+
+👉 子路由，如果 pattern 为：/:child_bar
+    那么，子路由的完整 pattern 为：/foo/:child_bar
+```
+
+一个有多个变量，更复杂一些的示例
+
+```zsh
+👉 父路由，如果 pattern 为 /foo/:bar/abc/(.*)
+    那么，最长的确切部分为 /foo/:bar/abc/
+
+👉 子路由，如果 pattern 为：/posts/:id
+    那么，子路由的完整 pattern 为：/foo/:bar/abc/posts/:id
+```
