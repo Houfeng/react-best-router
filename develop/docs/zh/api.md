@@ -27,7 +27,7 @@ type RouterProps = {
 Router 使用示例
 
 ```tsx
-function App() {
+function YourApp() {
   const driver = useBrowserDriver(); 
   return (
     <Router driver={driver} navigator={navRef}>
@@ -110,7 +110,7 @@ function YourComponent() {
 }
 
 // 使用方式二
-function YourComponent() {
+function YourApp() {
   const navRef = useNavigatorRef();
   return (
     <Router driver={driver} navigator={navRef}>
@@ -121,7 +121,7 @@ function YourComponent() {
 
 // 使用方式三
 const navRef = createNavigatorRef();
-function YourComponent() {
+function YourApp() {
   return (
     <Router driver={driver} navigator={navRef}>
       {...}

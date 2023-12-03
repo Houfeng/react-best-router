@@ -18,7 +18,7 @@ $ npm install react-best-router
 import { Router, useBrowserDriver } from "react-best-router";
 
 // 示例应用入口组件
-function App() {
+function YourApp() {
   // 需要指定一个 driver （先不用太关心它，后续的文档中会介绍什么是 driver）
   const driver = useBrowserDriver(); 
   return (
@@ -56,7 +56,7 @@ function NavMenus(){
 }
 
 // 示例应用入口组件
-function App() {
+function YourApp() {
   const driver = useBrowserDriver(); 
   return (
     <Router driver={driver}>
