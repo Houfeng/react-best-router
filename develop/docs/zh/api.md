@@ -4,7 +4,7 @@ RBR 专注于解决「React 应用路由处理」这一个问题，它是一个�
 
 ## 1. Router
 
-Router 以一个 React 组件的形式提供，通过一个应用只需要一个 Router 作为容器在最外层，
+Router 以一个 React 组件的形式提供，通常一个应用只需要一个 Router 作为容器在最外层，
 当然，根据你的需求也可以使用多个 Router。
 
 ```tsx
