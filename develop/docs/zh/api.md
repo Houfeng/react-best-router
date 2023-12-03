@@ -133,8 +133,8 @@ function YourApp() {
 
 ## 4. Driver
 
-在不同的场景下，我们需要有不同的 Driver 来和运行环境关联并区动整个 Router 运行，
-比如，在浏览器中我们需要的 URL 关联，也可能仅和 Hash 关联，也可能仅是运行于内存中的逻辑。
+在不同的场景下，需要有不同的 Driver 来和运行环境关联并区动整个 Router 运行，
+比如，在浏览器中通常和 URL 关联，也可能仅和 Hash 关联，也可能仅是运行于内存中的逻辑。
 
 ### BrowserDriver
 
@@ -163,7 +163,7 @@ const driver = createHashDriver();
 
 ### MemoryDriver
 
-当你在非浏览器环境使用 RBR 时，或不想在 URL 中反映你的页面路径，可以使用 MemoryDriver
+当在非浏览器环境使用 RBR 时，或不想在 URL 中反映你的页面路径，可以使用 MemoryDriver
 
 ```ts
 // 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook
