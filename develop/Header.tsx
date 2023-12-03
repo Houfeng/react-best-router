@@ -1,6 +1,8 @@
 import React from "react";
+import { useNavigator } from "../src";
 
 export function Header() {
+  const nav = useNavigator();
   return (
     <div className="navbar bg-base-100 bg-opacity-75 shadow sticky top-0 backdrop-blur">
       <div className="flex-none">
@@ -24,7 +26,12 @@ export function Header() {
         </label>
       </div>
       <div className="flex-1">
-        <a className="btn btn-ghost text-xl font-bold">RBR</a>
+        <a
+          className="btn btn-ghost text-xl font-bold"
+          onClick={() => nav.push("/")}
+        >
+          RBR
+        </a>
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">

@@ -1,18 +1,18 @@
 # 🚀 快速上手 RBR
 
-## 简述
+## 1. 简述
 
-长期以来，我总在使用 react-router，但它有一些不太好用的地方，比如「嵌套路由」等。它不够简洁，包含了一些和路由无关的功能。同时，新版本常常无法兼容。
+长期以来，我总在使用 react-router，但它有一些不太好用的地方，比如「嵌套路由」等，它也不够简洁，包含了一些和路由无关的功能，同时它新版本常常无法兼容。
 
-一个周末，我决定写一个更简单易用的包，专注于处理 react 项目中的 router 工作。 我给这个包命名为 **react-best-router**，也可简称为 **RBR**。
+一个周末，我决定写一个更简单易用的包，专注于处理 React 项目中的 Router 工作。 我给这个包命名为 **react-best-router**，也可简称为 **RBR**。
 
-## 安装
+## 2. 安装
 
 ```zsh
-npm install react-best-router --save
+$ npm install react-best-router 
 ```
 
-## 使用
+## 3. 使用
 
 ```tsx
 import { Router, useBrowserDriver } from "react-best-router";
@@ -30,12 +30,12 @@ function App() {
 }
 ```
 
-以本地开发服务 *http://localhost:8080* 为例，那么现在就可浏览器中访问到 **index** 页面了，
+以本地开发服务 *http://localhost:8080* 为例，现在就可浏览器中访问到 **index** 页面了，
 也可以通过 *http://localhost:8080/posts* 访问 **Posts** 页面，**RBR** 已经在工作了。
   
 
-接下来，我们进一步完善一下这个示例，增加一个「导航菜单」，我们通过 **useNavigator** 拿到
-「Router navigator 实例」，并用来在不同页面间导航。
+接下来，我们为这个示例增加一个「导航菜单」，我们通过 **useNavigator**  Hook 可以获得
+「Router navigator 实例」，用它在不同页面间导航。
 
 ```tsx
 import { 
@@ -70,4 +70,4 @@ function App() {
 }
 ```
 
-现在，你已经会 RBR 的基本使用了，后边还将会介绍一些其他内容，但同样都是非常简单的。
+现在，你已经学会 RBR 的基本使用了，后边还将会介绍一些其他内容，但同样都是非常简单的。

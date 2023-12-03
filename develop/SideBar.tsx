@@ -9,7 +9,7 @@ export function SideBar() {
         <a onClick={() => nav.push("/index")}>🚀 快速上手 RBR</a>
       </li>
       <li className="text-sm">
-        <a onClick={() => nav.push("/api")}>🗼 仅有几个 API</a>
+        <a onClick={() => nav.push("/api")}>🗼 仅有 4 个 API</a>
       </li>
       <li className="text-sm">
         <a onClick={() => nav.push("/pattern")}>🚏 详解路径匹配</a>

@@ -48,6 +48,7 @@ export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
     // Generate some parameters
     const pathname = toScopedPath(base, state.pathname);
     const { params } = matcher.result || {};
+    // return the instance
     return { pathname, params, push, back, forward, go, replace };
   }, [state, matcher, driver]);
 }
