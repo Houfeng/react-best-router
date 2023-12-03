@@ -4,7 +4,10 @@ import { useNavigator } from "../src";
 export function SideBar() {
   const nav = useNavigator();
   return (
-    <ul className="menu p-3 w-60 bg-base-200 bg-opacity-75 glass h-full pt-16 text-base-content">
+    <ul
+      onClick={() => document.getElementById("drawer-switch")?.click()}
+      className="menu p-3 w-60 bg-base-200 bg-opacity-75 glass h-full pt-16 text-base-content"
+    >
       <li className="text-sm">
         <a onClick={() => nav.push("/index")}>🚀 快速上手 RBR</a>
       </li>

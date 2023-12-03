@@ -35,7 +35,11 @@ export function Header() {
       </div>
       <div className="flex-none">
         <div className="dropdown dropdown-end">
-          <button tabIndex={0} className="btn btn-square btn-ghost">
+          <button
+            id="theme-button"
+            tabIndex={0}
+            className="btn btn-square btn-ghost"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -51,7 +55,7 @@ export function Header() {
             </svg>
           </button>
           <ul
-            tabIndex={0}
+            onClick={() => (document.activeElement as HTMLElement)?.blur?.()}
             className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52"
           >
             <li>
