@@ -14,7 +14,7 @@ module.exports = {
   },
   theme: {
     fontFamily: {
-      serif: ['STFangsong', 'Fangsong', 'ui-serif'],
+      serif: ['STFangsong', 'Fangsong', 'KaiTi', '"Droid\\ Sans\\ Fallback"', 'ui-serif', 'serif'],
     }
   }
 }
