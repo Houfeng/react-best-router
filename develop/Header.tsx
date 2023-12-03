@@ -58,7 +58,7 @@ export function Header() {
             onClick={() => (document.activeElement as HTMLElement)?.blur?.()}
             className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52"
           >
-            <li>
+            <li className="my-[2px]">
               <input
                 type="radio"
                 name="theme-dropdown"
@@ -67,7 +67,7 @@ export function Header() {
                 value="night"
               />
             </li>
-            <li>
+            <li className="my-[2px]">
               <input
                 type="radio"
                 name="theme-dropdown"
@@ -76,7 +76,7 @@ export function Header() {
                 value="winter"
               />
             </li>
-            <li>
+            <li className="my-[2px]">
               <input
                 type="radio"
                 name="theme-dropdown"
@@ -85,7 +85,7 @@ export function Header() {
                 value="coffee"
               />
             </li>
-            <li>
+            <li className="my-[2px]">
               <input
                 type="radio"
                 name="theme-dropdown"
