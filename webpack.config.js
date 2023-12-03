@@ -64,7 +64,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: require.resolve('./assets/index.html'),
-      publicPath: '/'
+      publicPath: NODE_ENV === 'development' ? './' : '/',
     })
   ],
 };
