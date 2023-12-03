@@ -41,7 +41,7 @@ export function Content() {
   const nav = useNavigator<{ name: keyof typeof contents }>();
   const content = contents[nav.params.name || "index"];
   return (
-    <article className="prose p-6">
+    <article className="prose p-6 w-screen">
       <MarkdownView
         remarkPlugins={[remarkGfm]}
         components={{
