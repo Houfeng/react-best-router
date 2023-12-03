@@ -15,7 +15,7 @@ export function SideBar() {
         <a onClick={() => nav.push("/pattern")}>🚏 详解路径匹配</a>
       </li>
       <li className="text-sm">
-        <a onClick={() => nav.push("/examples")}>🛣 常见用法示例</a>
+        <a onClick={() => nav.push("/examples")}>💡 常见用法示例</a>
       </li>
     </ul>
   );
