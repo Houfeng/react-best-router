@@ -56,7 +56,7 @@ export function Header() {
           </button>
           <ul
             onClick={() => (document.activeElement as HTMLElement)?.blur?.()}
-            className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52"
+            className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 border border-gray-300 rounded-box w-52"
           >
             <li>
               <input
