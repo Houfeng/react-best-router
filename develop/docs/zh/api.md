@@ -149,7 +149,8 @@ const driver = createBrowserDriver();
 
 ### HashDriver
 
-在一些旧浏览器，或者你的服务器程序无法面向前端命名用 HistoryFallback 时，可以用 HashDriver
+在一些旧浏览器，或者你的服务器程序无法面向前端启用 History fallback 时，可以用 HashDriver
+> 启用 History fallback，指的是配置服务端路由 /your_app_path/* 指向你的前端页面
 
 ```ts
 // 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook

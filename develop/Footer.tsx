@@ -47,7 +47,7 @@ export function Footer() {
         </div>
       </nav>
       <aside>
-        <p>Copyright © 2023 - All right reserved by ACME Industries Ltd</p>
+        <p>Copyleft © 2023 - RBR - Powered by Houfeng</p>
       </aside>
     </footer>
   );
