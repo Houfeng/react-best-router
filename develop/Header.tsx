@@ -4,7 +4,7 @@ import { useNavigator } from "../src";
 export function Header() {
   const nav = useNavigator();
   return (
-    <div className="navbar bg-base-100 bg-opacity-75 shadow sticky top-0 backdrop-blur">
+    <div className="navbar bg-base-100 bg-opacity-75 shadow-sm sticky top-0 backdrop-blur">
       <div className="flex-none">
         <label
           htmlFor="drawer-switch"
@@ -56,13 +56,13 @@ export function Header() {
           </button>
           <ul
             onClick={() => (document.activeElement as HTMLElement)?.blur?.()}
-            className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 border border-gray-300 rounded-box w-52"
+            className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52"
           >
             <li>
               <input
                 type="radio"
                 name="theme-dropdown"
-                className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                className="theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
                 aria-label="Dark"
                 value="night"
               />
@@ -71,9 +71,27 @@ export function Header() {
               <input
                 type="radio"
                 name="theme-dropdown"
-                className="theme-controller btn btn-sm btn-block btn-ghost justify-start"
+                className="theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
                 aria-label="Light"
                 value="winter"
+              />
+            </li>
+            <li>
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
+                aria-label="Coffee"
+                value="coffee"
+              />
+            </li>
+            <li>
+              <input
+                type="radio"
+                name="theme-dropdown"
+                className="theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
+                aria-label="Retro"
+                value="retro"
               />
             </li>
           </ul>

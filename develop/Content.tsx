@@ -46,9 +46,9 @@ export function Content() {
         remarkPlugins={[remarkGfm]}
         components={{
           pre(props) {
-            const { children, style } = props;
+            const { className = "", children } = props;
             return (
-              <pre className={"[&>.code]:block"} style={style}>
+              <pre className={`[&>.code]:block ${className} font-mono`}>
                 {children}
               </pre>
             );
@@ -58,6 +58,14 @@ export function Content() {
             const match = /language-(\w+)/.exec(className || "");
             const code = String(children || "").replace(/\n$/, "");
             return renderCodeBlock(code, match?.[1]);
+          },
+          p(props) {
+            const { children, className = "", ...others } = props;
+            return (
+              <p className={`font-serif ${className}`} {...others}>
+                {children}
+              </p>
+            );
           },
         }}
       >

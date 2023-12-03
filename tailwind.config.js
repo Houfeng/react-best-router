@@ -8,6 +8,13 @@ module.exports = {
     themes: [
       "night",
       "winter",
+      "retro",
+      "coffee"
     ],
   },
+  theme: {
+    fontFamily: {
+      serif: ['STFangsong', 'Fangsong', 'ui-serif'],
+    }
+  }
 }
