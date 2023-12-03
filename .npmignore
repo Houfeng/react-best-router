@@ -2,7 +2,7 @@
 *.d.ts
 *.db
 *.map
-.D_Store
+.DS_Store
 .travis.yml
 .husky/
 .eslintrc.js
