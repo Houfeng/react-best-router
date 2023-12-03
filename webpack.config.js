@@ -2,6 +2,7 @@ const { resolve } = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const { NODE_ENV } = process.env;
+const publicPath = NODE_ENV === 'development' ? '/' : './';
 
 module.exports = {
   mode: NODE_ENV || 'development',
@@ -9,6 +10,7 @@ module.exports = {
   output: {
     path: resolve(__dirname, './docs'),
     filename: '[name]-[hash].bundle.js',
+    publicPath: publicPath,
   },
   optimization: {
     splitChunks: {
@@ -64,7 +66,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: require.resolve('./assets/index.html'),
-      publicPath: NODE_ENV === 'development' ? './' : '/',
+      publicPath: publicPath,
     })
   ],
 };
