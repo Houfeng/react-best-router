@@ -9,7 +9,7 @@
     "lint": "eslint --fix --ext .ts,.tsx ./{src,develop}/",
     "clean": "rm -rf ./dist && rm -rf ./types && rm -rf ./docs",
     "dev": "NODE_ENV=development webpack serve",
-    "build": "pnpm clean && pnpm lint && rollup -c rollup.config.js && rollup -c rollup.cdn.config.js && NODE_ENV=production webpack"
+    "build": "pnpm clean && pnpm lint && rollup -c rollup.config.js && rollup -c rollup.cdn.config.js && NODE_ENV=production webpack && cp ./CNAME ./docs/CNAME"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
