@@ -7,7 +7,7 @@ module.exports = {
   mode: NODE_ENV || 'development',
   entry: './develop/index.tsx',
   output: {
-    path: resolve(__dirname, './assets/app'),
+    path: resolve(__dirname, './docs'),
     filename: '[name]-[hash].bundle.js',
   },
   optimization: {
