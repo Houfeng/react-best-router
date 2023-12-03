@@ -6,4 +6,4 @@ Over the weekend, I decided to write a simpler and more user-friendly routing pa
 
 RBR focuses on solving the problem of routing processing in React applications. It is a minimalist routing library with four core APIs.
 
-**Docs** : [https://rbr.houfeng.net](https://rbr.houfeng.net)
+**RBR Docs** : [https://rbr.houfeng.net](https://rbr.houfeng.net)
