@@ -17,10 +17,12 @@ export type RouteProps = {
   render?: (children: ReactNode) => ReactNode;
   prefix?: RouterPattern;
   navigator?: RouterNavigatorRef<any>;
+  fallback?: ReactNode;
 };
 
 export function Route(props: RouteProps) {
-  const { pattern = "/", prefix, render, children, navigator } = props;
+  const { pattern = "/", prefix, navigator } = props;
+  const { render, children, fallback } = props;
   const { base, state, driver, matcher: parentMatcher } = useRouterContext();
   // create matcher
   const matcher = useMemo<RouterMatcher>(
@@ -33,7 +35,7 @@ export function Route(props: RouteProps) {
     [base, state, driver, matcher],
   );
   // match current pathname
-  if (!matcher.match(state.pathname).state) return <Fragment />;
+  if (!matcher.match(state.pathname).state) return fallback || <Fragment />;
   return (
     <RouterContext.Provider value={context}>
       {navigator && <NavigatorForwarder ref={navigator} />}

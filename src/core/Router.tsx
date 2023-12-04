@@ -13,13 +13,14 @@ import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
 export type RouterProps = {
   base?: string;
   children?: ReactNode;
+  fallback?: ReactNode;
   render?: (children: ReactNode) => ReactNode;
   navigator?: RouterNavigatorRef<any>;
   driver: RouterDriver;
 };
 
 export function Router(props: RouterProps) {
-  const { children, driver, render, navigator, base = "/" } = props;
+  const { children, driver, render, navigator, base = "/", fallback } = props;
   // initial state
   const [state, setState] = useState(() => driver?.current());
   // create matcher
@@ -38,7 +39,7 @@ export function Router(props: RouterProps) {
     [driver, state],
   );
   // match current pathname
-  if (!matcher.match(state.pathname).state) return <Fragment />;
+  if (!matcher.match(state.pathname).state) return fallback || <Fragment />;
   return (
     <RouterContext.Provider value={context}>
       {navigator && <NavigatorForwarder ref={navigator} />}

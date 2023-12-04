@@ -2864,12 +2864,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Route(props) {
-    const { pattern = "/", prefix, render, children, navigator } = props;
+    const { pattern = "/", prefix, navigator } = props;
+    const { render, children, fallback } = props;
     const { base, state, driver, matcher: parentMatcher } = (0,_RouterContext__WEBPACK_IMPORTED_MODULE_1__.useRouterContext)();
     const matcher = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.createRouterMatcher)(pattern, prefix, parentMatcher), [pattern, prefix, parentMatcher]);
     const context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({ base, state, driver, matcher }), [base, state, driver, matcher]);
     if (!matcher.match(state.pathname).state)
-        return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+        return fallback || react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RouterContext__WEBPACK_IMPORTED_MODULE_1__.RouterContext.Provider, { value: context },
         navigator && react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
         render ? render(children) : children));
@@ -2898,13 +2899,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Router(props) {
-    const { children, driver, render, navigator, base = "/" } = props;
+    const { children, driver, render, navigator, base = "/", fallback } = props;
     const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => driver === null || driver === void 0 ? void 0 : driver.current());
     const matcher = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.createRouterMatcher)(`${base}/(.*)`, base), [base]);
     const context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({ base, state, driver, matcher }), [base, state, driver, matcher]);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => driver === null || driver === void 0 ? void 0 : driver.subscribe((state) => setState(state)), [driver, state]);
     if (!matcher.match(state.pathname).state)
-        return react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+        return fallback || react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
     return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RouterContext__WEBPACK_IMPORTED_MODULE_1__.RouterContext.Provider, { value: context },
         navigator && react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
         render ? render(children) : children));
