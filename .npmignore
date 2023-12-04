@@ -1,5 +1,4 @@
 *.log
-*.d.ts
 *.db
 *.map
 .DS_Store
