@@ -41,6 +41,6 @@ const createConf = ({
 };
 
 export default [
-  createConf({ name: 'rbr' }),
-  createConf({ name: 'rbr', min: true }),
+  createConf({}),
+  createConf({ min: true }),
 ];
