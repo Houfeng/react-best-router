@@ -68,7 +68,7 @@ Route 使用示例
   {/* 可直接通过 children 来指定渲染的目标组件 */}
   <Content />
   {/* 也可在 children 中直接指定子路由 */}
-  <Route pattern="/:child_bar">
+  <Route pattern="/:child_bar">...</Route>
 </Route>
 ```
 

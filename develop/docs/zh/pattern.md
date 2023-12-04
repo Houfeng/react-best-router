@@ -174,7 +174,7 @@ function Content() {
   return (
     <div>
     ...
-     <Route pattern="/:child_bar">
+     <Route pattern="/:child_bar">...</Route>
     ...
     </div>
   );
@@ -204,3 +204,4 @@ function Content() {
 👉 子路由，如果 pattern 为：/posts/:id
     那么，子路由的完整 pattern 为：/foo/:bar/abc/posts/:id
 ```
+
