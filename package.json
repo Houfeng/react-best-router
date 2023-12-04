@@ -1,6 +1,6 @@
 {
   "name": "react-best-router",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "",
   "main": "./dist/rbr-cjs.js",
   "module": "./dist/rbr-es.js",
