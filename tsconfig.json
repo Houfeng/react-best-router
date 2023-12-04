@@ -20,7 +20,7 @@
     "resolveJsonModule": true,
     "strict": true,
     "noImplicitAny": true,
-    "noEmitHelpers": true,
+    "noEmitHelpers": false,
     "strictNullChecks": true,
     "noImplicitThis": true,
     "noUnusedLocals": false,

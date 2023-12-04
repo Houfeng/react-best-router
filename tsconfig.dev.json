@@ -4,6 +4,6 @@
   ],
   "compilerOptions": {
     "sourceMap": true,
-    "declaration": false
+    "declaration": true
   }
 }
