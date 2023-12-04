@@ -1,14 +1,18 @@
-import { MatchFunction, MatchResult } from "path-to-regexp";
-import { match as compileToMatcher } from "path-to-regexp";
-import { normalizePath, patternToPrefix } from "./RouterUtil";
+import {
+  MatchResult,
+  MathFunction,
+  normalizePath,
+  patternToMatch,
+  patternToPrefix,
+} from "./RouterUtil";
 
 export type RouterPattern = string & {};
 
-export type RouterMatcher = {
+export type RouterMatcher<P extends object = object> = {
   pattern: RouterPattern;
   prefix: RouterPattern;
-  match: MatchFunction<any>;
-  result?: MatchResult<any> | false;
+  match: MathFunction<P>;
+  result?: MatchResult<P>;
   parent?: RouterMatcher;
 };
 
@@ -37,7 +41,7 @@ export function createRouterMatcher(
 ): RouterMatcher {
   prefix = prefix || patternToPrefix(pattern);
   const fullPattern = `/${getMatcherFullPrefix(parent)}/${pattern}`;
-  const match = compileToMatcher(normalizePattern(fullPattern));
+  const match = patternToMatch(normalizePattern(fullPattern));
   const matcher: RouterMatcher = { parent, pattern, prefix, match };
   matcher.match = (pathname: string) => {
     matcher.result = match(pathname);

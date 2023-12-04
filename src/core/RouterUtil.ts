@@ -1,14 +1,12 @@
 import { RouterPattern } from "./RouterMatcher";
 
-// eslint-disable-next-line
-const MatchmakerExpr = /[\.\*\(\)\[\]\:]/;
-
 export function patternToPrefix(pattern: RouterPattern) {
+  const expr = /[.*()[\]:]/;
   const segments = pattern.split("/");
   const lastIndex = segments
     .slice(0)
     .reverse()
-    .findIndex((it) => !MatchmakerExpr.test(it));
+    .findIndex((it) => !expr.test(it));
   return (lastIndex > 0 ? segments.slice(0, -lastIndex) : segments).join("/");
 }
 
@@ -25,4 +23,53 @@ export function normalizePath(path: string) {
 
 export function resolvePath(from: string, to: string) {
   return normalizePath(`${from}/${to}`);
+}
+
+export function patternToRegExp(pattern: string) {
+  const table: Array<[string, string]> = [];
+  let id = 0;
+  let text = pattern;
+  // named
+  const named = /(?<S>\/)?:(?<N>[a-z0-9_]+)(?<R>\(.+?\))?(?<M>[*?+])?/gi;
+  text = text.replace(named, function (_, S = "", N = "", R = "", M = "") {
+    const value =
+      M === "*" || M === "+"
+        ? `(?<${N}>${R || `(${S}[a-z0-9_-]+)`}${M})`
+        : `${S}${M}(?<${N}>${R || "([a-z0-9_-]+)"}${M})`;
+    const key = `{{${id++}}}`;
+    table.push([key, value]);
+    return key;
+  });
+  // anonymous
+  const anonymous = /(?<S>\/)?(?<R>\(.+?\))(?<M>[*?+])?/gi;
+  let index = 0;
+  text = text.replace(anonymous, function (_, S = "", R = "", M = "") {
+    const value =
+      M === "*" || M === "+"
+        ? `(?<$${index++}>${R || `(${S}[a-z0-9_-]+)`}${M})`
+        : `${S}${M}(?<$${index++}>${R || "([a-z0-9_-]+)"}${M})`;
+    const key = `{{${id++}}}`;
+    table.push([key, value]);
+    return key;
+  });
+  table.forEach(([key, value]) => (text = text.replace(key, value)));
+  text = text.replace(/\//g, "\\/");
+  return new RegExp(`^${text}$`, "i");
+}
+
+export type MatchResult<P extends object> = {
+  state: boolean;
+  params: P | undefined;
+};
+
+export type MathFunction<P extends object> = (
+  pathname: string,
+) => MatchResult<P>;
+
+export function patternToMatch<P extends object = object>(pattern: string) {
+  const regexp = patternToRegExp(pattern);
+  return (pathname: string) => {
+    const info = regexp.exec(pathname);
+    return { state: !!info, params: info?.groups || {} } as MatchResult<P>;
+  };
 }

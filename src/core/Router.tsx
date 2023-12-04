@@ -38,7 +38,7 @@ export function Router(props: RouterProps) {
     [driver, state],
   );
   // match current pathname
-  if (!matcher.match(state.pathname)) return <Fragment />;
+  if (!matcher.match(state.pathname).state) return <Fragment />;
   return (
     <RouterContext.Provider value={context}>
       {navigator && <NavigatorForwarder ref={navigator} />}

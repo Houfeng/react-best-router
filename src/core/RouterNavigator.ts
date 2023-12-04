@@ -9,12 +9,11 @@ import {
   RefObject,
 } from "react";
 import { useRouterContext } from "./RouterContext";
-import { MatchResult } from "path-to-regexp";
 import { normalizePath, resolvePath } from "./RouterUtil";
 
 type RouterNavigator<P extends object> = {
   pathname: string;
-  params: MatchResult<P>["params"];
+  params: P;
   push: (path: string) => void;
   back: () => void;
   forward: () => void;
@@ -34,7 +33,7 @@ function toScopedPath(base: string, pathname: string) {
 
 export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
   const { base, state, matcher, driver } = useRouterContext();
-  return useMemo<RouterNavigator<P>>(() => {
+  return useMemo<RouterNavigator<any>>(() => {
     // Go to the specified pathname
     const push = (to: string) =>
       driver.push({ pathname: toFullPath(base, state.pathname, to) });
@@ -49,7 +48,7 @@ export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
     const go = (step: number) => driver.go(step);
     // Generate some parameters
     const pathname = toScopedPath(base, state.pathname);
-    const { params } = matcher.result || {};
+    const { params = {} } = matcher.result || {};
     // return the instance
     return { pathname, params, push, back, forward, go, replace };
   }, [state, matcher, driver]);

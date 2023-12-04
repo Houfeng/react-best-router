@@ -45,7 +45,7 @@ module.exports = {
     ],
     "max-params": [
       "error",
-      4
+      5
     ],
     "max-nested-callbacks": [
       "error",
