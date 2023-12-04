@@ -7,11 +7,11 @@
 .eslintrc.js
 .prettierrc
 .vscode/
-tscofnig.json
+tsconfig.json
 tsconfig.dev.json
 rollup.config.js
-roolup.cdn.config.js
-postcss.cofnig.js
+rollup.cdn.config.js
+postcss.config.js
 tailwind.config.js
 webpack.config.js
 @types/
