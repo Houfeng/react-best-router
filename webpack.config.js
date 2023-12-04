@@ -36,7 +36,9 @@ module.exports = {
         use: {
           loader: 'ts-loader',
           options: {
-            configFile: require.resolve('./tsconfig.dev.json'),
+            configFile: NODE_ENV === 'development'
+              ? require.resolve('./tsconfig.dev.json')
+              : require.resolve('./tsconfig.json'),
           },
         },
         exclude: /node_modules/,

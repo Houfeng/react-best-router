@@ -3,6 +3,7 @@
     "./tsconfig"
   ],
   "compilerOptions": {
-    "sourceMap": true
+    "sourceMap": true,
+    "declaration": false
   }
 }
