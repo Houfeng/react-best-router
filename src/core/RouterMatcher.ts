@@ -1,7 +1,6 @@
 import { MatchFunction, MatchResult } from "path-to-regexp";
 import { match as compileToMatcher } from "path-to-regexp";
-import { normalize } from "path-browserify";
-import { patternToPrefix } from "./RouterUtil";
+import { normalizePath, patternToPrefix } from "./RouterUtil";
 
 export type RouterPattern = string & {};
 
@@ -24,7 +23,7 @@ function getMatcherFullPrefix(matcher: RouterMatcher | undefined) {
 }
 
 function normalizePattern(pattern: string) {
-  return normalize(
+  return normalizePath(
     pattern.length > 1 && pattern.at(-1) === "/"
       ? pattern.slice(0, -1)
       : pattern,

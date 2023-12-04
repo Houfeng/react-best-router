@@ -9,8 +9,8 @@ import {
   RefObject,
 } from "react";
 import { useRouterContext } from "./RouterContext";
-import { resolve, normalize } from "path-browserify";
 import { MatchResult } from "path-to-regexp";
+import { normalizePath, resolvePath } from "./RouterUtil";
 
 type RouterNavigator<P extends object> = {
   pathname: string;
@@ -22,12 +22,14 @@ type RouterNavigator<P extends object> = {
   replace: (path: string) => void;
 };
 
-function resolvePath(base: string, from: string, to: string) {
-  return to.startsWith("/") ? normalize(`${base}/${to}`) : resolve(from, to);
+function toFullPath(base: string, from: string, to: string) {
+  return to.startsWith("/")
+    ? normalizePath(`${base}/${to}`)
+    : resolvePath(from, to);
 }
 
 function toScopedPath(base: string, pathname: string) {
-  return normalize(`/${pathname.slice(base.length)}`);
+  return normalizePath(`/${pathname.slice(base.length)}`);
 }
 
 export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
@@ -35,10 +37,10 @@ export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
   return useMemo<RouterNavigator<P>>(() => {
     // Go to the specified pathname
     const push = (to: string) =>
-      driver.push({ pathname: resolvePath(base, state.pathname, to) });
+      driver.push({ pathname: toFullPath(base, state.pathname, to) });
     // Go to the specified pathname，But it doesn't affect history
     const replace = (to: string) =>
-      driver.replace({ pathname: resolvePath(base, state.pathname, to) });
+      driver.replace({ pathname: toFullPath(base, state.pathname, to) });
     // Back to the prev pathname
     const back = () => driver.back();
     // Forward to the next pathname

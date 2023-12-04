@@ -9,7 +9,7 @@
     "declarationMap": true,
     "noEmitOnError": true,
     "module": "ESNext",
-    "target": "ES5",
+    "target": "ES6",
     "downlevelIteration": true,
     "removeComments": true,
     "experimentalDecorators": true,
