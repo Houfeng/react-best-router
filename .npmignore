@@ -16,6 +16,7 @@
 .vscode/
 webpack.config.js
 @types/
+scripts/
 assets/
 develop/
 docs/
