@@ -2510,6 +2510,10 @@ html {
 
 .\\[\\&\\>\\.code\\]\\:block>.code {
   display: block;
+}
+
+.\\[\\&\\>a\\>img\\]\\:inline>a>img {
+  display: inline;
 }`, ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
@@ -2591,17 +2595,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _docs_zh_api_md_raw__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./docs/zh/api.md?raw */ "./develop/docs/zh/api.md?raw");
 /* harmony import */ var _docs_zh_pattern_md_raw__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./docs/zh/pattern.md?raw */ "./develop/docs/zh/pattern.md?raw");
 /* harmony import */ var _docs_zh_examples_md_raw__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./docs/zh/examples.md?raw */ "./develop/docs/zh/examples.md?raw");
-var __rest = (undefined && undefined.__rest) || function (s, e) {
-    var t = {};
-    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
-        t[p] = s[p];
-    if (s != null && typeof Object.getOwnPropertySymbols === "function")
-        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
-            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
-                t[p[i]] = s[p[i]];
-        }
-    return t;
-};
 
 
 
@@ -2636,8 +2629,8 @@ function Content() {
                     return renderCodeBlock(code, match === null || match === void 0 ? void 0 : match[1]);
                 },
                 p(props) {
-                    const { children, className = "" } = props, others = __rest(props, ["children", "className"]);
-                    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", Object.assign({ className: `font-serif ${className} [& a>img]:inline` }, others), children));
+                    const { children, className = "" } = props;
+                    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", { className: `font-serif ${className} [&>a>img]:inline` }, children));
                 },
             } }, content)));
 }

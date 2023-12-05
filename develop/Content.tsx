@@ -60,12 +60,9 @@ export function Content() {
             return renderCodeBlock(code, match?.[1]);
           },
           p(props) {
-            const { children, className = "", ...others } = props;
+            const { children, className = "" } = props;
             return (
-              <p
-                className={`font-serif ${className} [& a>img]:inline`}
-                {...others}
-              >
+              <p className={`font-serif ${className} [&>a>img]:inline`}>
                 {children}
               </p>
             );
