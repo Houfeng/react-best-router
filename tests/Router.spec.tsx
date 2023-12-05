@@ -1,17 +1,19 @@
-import "./MockBrowser";
+import "./env/MockBrowser";
 import { createElement } from "react";
 import { strictEqual } from "assert";
-import { before, describe, it } from "node:test";
-import { Route, Router, createBrowserDriver } from "../src";
+import { beforeEach, describe, it } from "node:test";
+import { Route, Router, useMemoryDriver, createNavigatorRef } from "../src";
 import { createRoot } from "react-dom/client";
 import { useEffect } from "react";
+import { sleep } from "./env/TestHelper";
 
-const driver = createBrowserDriver();
+const nav = createNavigatorRef();
 
 function TestApp({ onReady }: { onReady: () => void }) {
+  const driver = useMemoryDriver();
   useEffect(() => onReady(), [onReady]);
   return (
-    <Router driver={driver}>
+    <Router driver={driver} navigator={nav}>
       <Route pattern="/a">
         <span>a</span>
       </Route>
@@ -24,16 +26,31 @@ function TestApp({ onReady }: { onReady: () => void }) {
 
 describe("Router", () => {
   const mountNode = document.getElementById("root")!;
+  const root = createRoot(mountNode);
 
-  before(() => {
-    location.href = "/a";
+  beforeEach(() => {
+    mountNode.innerHTML = "";
     return new Promise<void>((resolve) => {
-      const root = createRoot(mountNode);
       root.render(<TestApp onReady={resolve} />);
     });
   });
 
   it("render", async () => {
+    strictEqual(mountNode.textContent?.trim(), "");
+  });
+
+  it("push & back & forward", async () => {
+    nav.current?.push("/a");
+    await sleep(300);
     strictEqual(mountNode.textContent?.trim(), "a");
+    nav.current?.push("/b");
+    await sleep(300);
+    strictEqual(mountNode.textContent?.trim(), "b");
+    nav.current?.back();
+    await sleep(300);
+    strictEqual(mountNode.textContent?.trim(), "a");
+    nav.current?.forward();
+    await sleep(300);
+    strictEqual(mountNode.textContent?.trim(), "b");
   });
 });
