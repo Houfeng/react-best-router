@@ -8,10 +8,32 @@
 
 在一个周末，我尝试写了这个更简单易用的路由包，专注于 React 应用的路由处理，我给这个包命名为 **react-best-router**，并简称为 **RBR**。
 
+RBR 体积很小，Minify **4.6kb**，Gzip **2kb**。RBR 的 API 也很简洁只有 **4** 个核心 API。
+
+<div align="center">
+
+[![npm](https://img.shields.io/npm/l/react-best-router.svg)](LICENSE.md)
+[![NPM Version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
+[![npm](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
+<!-- [![Coverage Status](https://coveralls.io/repos/github/houfeng/react-best-router/badge.svg?branch=master)](https://coveralls.io/github/houfeng/react-best-router?branch=master) -->
+<!-- [![Build Status](https://www.travis-ci.org/houfeng/react-best-router.svg?branch=master)](https://www.travis-ci.org/houfeng/react-best-router) -->
+
+</div>
+
 ## 2. 安装
+
+NPM Package
 
 ```zsh
 $ npm install react-best-router 
+```
+
+CDN
+
+```html
+<script 
+src="https://cdn.jsdelivr.net/npm/react-best-router@0.2.0/dist/react-best-router-iife.min.js">
+</script>
 ```
 
 ## 3. 使用
