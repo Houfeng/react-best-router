@@ -3,6 +3,7 @@
     "compat",
     "daisyui",
     "Fangsong",
+    "globstar",
     "tailwindcss"
   ]
 }
