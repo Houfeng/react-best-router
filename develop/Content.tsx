@@ -62,7 +62,9 @@ export function Content() {
           p(props) {
             const { children, className = "" } = props;
             return (
-              <p className={`font-serif ${className} [&>a>img]:inline`}>
+              <p
+                className={`font-serif ${className} [&>a>img]:inline [&>a>img]:m-0`}
+              >
                 {children}
               </p>
             );

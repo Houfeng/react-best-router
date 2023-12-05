@@ -2512,6 +2512,10 @@ html {
   display: block;
 }
 
+.\\[\\&\\>a\\>img\\]\\:m-0>a>img {
+  margin: 0px;
+}
+
 .\\[\\&\\>a\\>img\\]\\:inline>a>img {
   display: inline;
 }`, ""]);
@@ -2630,7 +2634,7 @@ function Content() {
                 },
                 p(props) {
                     const { children, className = "" } = props;
-                    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", { className: `font-serif ${className} [&>a>img]:inline` }, children));
+                    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", { className: `font-serif ${className} [&>a>img]:inline [&>a>img]:m-0` }, children));
                 },
             } }, content)));
 }
