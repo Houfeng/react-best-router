@@ -9,7 +9,7 @@
     "lint": "eslint --fix --ext .ts,.tsx ./{src,tests,develop}/",
     "clean": "rm -rf ./dist && rm -rf ./types && rm -rf ./docs",
     "dev": "NODE_ENV=development webpack serve",
-    "test": "find ./tests -name '*.spec.ts' -o -name '*.spec.tsx' -exec node --require tsx/cjs --test {} \\;",
+    "test": "find ./tests -name '*.spec.ts' -o -name '*.spec.tsx' -exec node --require tsx/cjs --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info {} \\;",
     "build": "bash ./scripts/build.sh"
   },
   "publishConfig": {
