@@ -2637,7 +2637,7 @@ function Content() {
                 },
                 p(props) {
                     const { children, className = "" } = props, others = __rest(props, ["children", "className"]);
-                    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", Object.assign({ className: `font-serif ${className}` }, others), children));
+                    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", Object.assign({ className: `font-serif ${className} [& a>img]:inline` }, others), children));
                 },
             } }, content)));
 }
