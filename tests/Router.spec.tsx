@@ -1,7 +1,7 @@
 import "./MockBrowser";
 import { createElement } from "react";
 import { strictEqual } from "assert";
-import { describe, it } from "node:test";
+import { before, describe, it } from "node:test";
 import { Route, Router, createBrowserDriver } from "../src";
 import { createRoot } from "react-dom/client";
 import { useEffect } from "react";
@@ -23,12 +23,17 @@ function TestApp({ onReady }: { onReady: () => void }) {
 }
 
 describe("Router", () => {
-  it('render', async () => {
+  const mountNode = document.getElementById("root")!;
+
+  before(() => {
     location.href = "/a";
-    await new Promise<void>((resolve) => {
-      const root = createRoot(document.getElementById("root")!);
+    return new Promise<void>((resolve) => {
+      const root = createRoot(mountNode);
       root.render(<TestApp onReady={resolve} />);
     });
-    strictEqual(document.body.textContent?.trim(), "a");
-  })
+  });
+
+  it("render", async () => {
+    strictEqual(mountNode.textContent?.trim(), "a");
+  });
 });

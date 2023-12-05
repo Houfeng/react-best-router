@@ -5,7 +5,7 @@ import { createMemoryDriver } from "../src";
 
 const driver = createMemoryDriver();
 
-describe('MemoryDriver', () => {
+describe("MemoryDriver", () => {
   it("push & back & forward", () => {
     strictEqual(driver.current().pathname, "/");
     driver.push({ pathname: "/foo" });
@@ -22,5 +22,4 @@ describe('MemoryDriver', () => {
     driver.back();
     strictEqual(driver.current().pathname, "/bar");
   });
-})
-
+});
