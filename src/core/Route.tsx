@@ -10,19 +10,27 @@ import {
   createRouterMatcher,
 } from "./RouterMatcher";
 import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
+import { isValidElements } from "./RouterUtil";
 
 export type RouteProps = {
-  pattern: RouterPattern;
   children?: ReactNode;
   render?: (children: ReactNode) => ReactNode;
   prefix?: RouterPattern;
   navigator?: RouterNavigatorRef<any>;
-  fallback?: ReactNode;
-};
+} & (
+  | {
+      pattern: RouterPattern;
+      fallback?: ReactNode;
+    }
+  | {
+      pattern?: RouterPattern;
+      fallback: ReactNode;
+    }
+);
 
 export function Route(props: RouteProps) {
-  const { pattern = "/", prefix, navigator } = props;
-  const { render, children, fallback } = props;
+  const { pattern = "/(.*)", prefix, navigator } = props;
+  const { render, children, fallback = <Fragment /> } = props;
   const { base, state, driver, matcher: parentMatcher } = useRouterContext();
   // create matcher
   const matcher = useMemo<RouterMatcher>(
@@ -35,11 +43,14 @@ export function Route(props: RouteProps) {
     [base, state, driver, matcher],
   );
   // match current pathname
-  if (!matcher.match(state.pathname).state) return fallback || <Fragment />;
+  if (!matcher.match(state.pathname).state) return fallback;
+  // check children
+  const elements = render ? render(children) : children;
+  if (!isValidElements(elements)) return fallback;
   return (
     <RouterContext.Provider value={context}>
       {navigator && <NavigatorForwarder ref={navigator} />}
-      {render ? render(children) : children}
+      {elements}
     </RouterContext.Provider>
   );
 }

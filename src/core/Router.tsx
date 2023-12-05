@@ -10,6 +10,7 @@ import { RouterDriver } from "./RouterDriver";
 import { RouterContext, RouterContextValue } from "./RouterContext";
 import { RouterMatcher, createRouterMatcher } from "./RouterMatcher";
 import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
+import { isValidElements } from "./RouterUtil";
 
 export type RouterProps = {
   base?: string;
@@ -21,7 +22,8 @@ export type RouterProps = {
 };
 
 export function Router(props: RouterProps) {
-  const { children, driver, render, navigator, base = "/", fallback } = props;
+  const { driver, navigator, base = "/" } = props;
+  const { children, render, fallback = <Fragment /> } = props;
   // initial state
   const [state, setState] = useState(() => driver?.current());
   // create matcher
@@ -40,7 +42,10 @@ export function Router(props: RouterProps) {
     [driver, state],
   );
   // match current pathname
-  if (!matcher.match(state.pathname).state) return fallback || <Fragment />;
+  if (!matcher.match(state.pathname).state) return fallback;
+  // check children
+  const elements = render ? render(children) : children;
+  if (!isValidElements(elements)) return fallback;
   return (
     <RouterContext.Provider value={context}>
       {navigator && <NavigatorForwarder ref={navigator} />}

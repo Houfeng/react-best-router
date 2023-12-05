@@ -2859,21 +2859,26 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RouterContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RouterContext */ "./src/core/RouterContext.ts");
 /* harmony import */ var _RouterMatcher__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RouterMatcher */ "./src/core/RouterMatcher.ts");
 /* harmony import */ var _RouterNavigator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RouterNavigator */ "./src/core/RouterNavigator.ts");
+/* harmony import */ var _RouterUtil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RouterUtil */ "./src/core/RouterUtil.ts");
+
 
 
 
 
 function Route(props) {
-    const { pattern = "/", prefix, navigator } = props;
-    const { render, children, fallback } = props;
+    const { pattern = "/(.*)", prefix, navigator } = props;
+    const { render, children, fallback = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null) } = props;
     const { base, state, driver, matcher: parentMatcher } = (0,_RouterContext__WEBPACK_IMPORTED_MODULE_1__.useRouterContext)();
     const matcher = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.createRouterMatcher)(pattern, prefix, parentMatcher), [pattern, prefix, parentMatcher]);
     const context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({ base, state, driver, matcher }), [base, state, driver, matcher]);
     if (!matcher.match(state.pathname).state)
-        return fallback || (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+        return fallback;
+    const elements = render ? render(children) : children;
+    if (!(0,_RouterUtil__WEBPACK_IMPORTED_MODULE_4__.isValidElements)(elements))
+        return fallback;
     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterContext__WEBPACK_IMPORTED_MODULE_1__.RouterContext.Provider, { value: context },
         navigator && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
-        render ? render(children) : children));
+        elements));
 }
 
 
@@ -2894,18 +2899,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _RouterContext__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RouterContext */ "./src/core/RouterContext.ts");
 /* harmony import */ var _RouterMatcher__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RouterMatcher */ "./src/core/RouterMatcher.ts");
 /* harmony import */ var _RouterNavigator__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./RouterNavigator */ "./src/core/RouterNavigator.ts");
+/* harmony import */ var _RouterUtil__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./RouterUtil */ "./src/core/RouterUtil.ts");
+
 
 
 
 
 function Router(props) {
-    const { children, driver, render, navigator, base = "/", fallback } = props;
+    const { driver, navigator, base = "/" } = props;
+    const { children, render, fallback = (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null) } = props;
     const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => driver === null || driver === void 0 ? void 0 : driver.current());
     const matcher = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.createRouterMatcher)(`${base}/(.*)`, base), [base]);
     const context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({ base, state, driver, matcher }), [base, state, driver, matcher]);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => driver === null || driver === void 0 ? void 0 : driver.subscribe((state) => setState(state)), [driver, state]);
     if (!matcher.match(state.pathname).state)
-        return fallback || (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+        return fallback;
+    const elements = render ? render(children) : children;
+    if (!(0,_RouterUtil__WEBPACK_IMPORTED_MODULE_4__.isValidElements)(elements))
+        return fallback;
     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterContext__WEBPACK_IMPORTED_MODULE_1__.RouterContext.Provider, { value: context },
         navigator && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
         render ? render(children) : children));
@@ -3065,11 +3076,15 @@ __webpack_require__.r(__webpack_exports__);
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   isValidElements: () => (/* binding */ isValidElements),
 /* harmony export */   normalizePath: () => (/* binding */ normalizePath),
 /* harmony export */   patternToMatch: () => (/* binding */ patternToMatch),
 /* harmony export */   patternToPrefix: () => (/* binding */ patternToPrefix),
 /* harmony export */   resolvePath: () => (/* binding */ resolvePath)
 /* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.2.0/node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
 function patternToPrefix(pattern) {
     const expr = /[.*()[\]:]/;
     const segments = pattern.split("/");
@@ -3131,6 +3146,9 @@ function patternToMatch(pattern) {
         const info = regexp === null || regexp === void 0 ? void 0 : regexp.exec(pathname);
         return { state: !!info, params: (info === null || info === void 0 ? void 0 : info.groups) || {} };
     };
+}
+function isValidElements(elements) {
+    return react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(elements).some((it) => it && it.type !== react__WEBPACK_IMPORTED_MODULE_0__.Fragment);
 }
 
 
