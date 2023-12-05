@@ -8,9 +8,9 @@ export function createMemoryDriver(
   let stack: RouterState[] = [initialState];
   let cursor = 0;
   const setCursor = (index: number, force = false) => {
-    if (index === cursor && !force) return;
     if (index < 0) index = 0;
-    if (index > stack.length - 1) index = stack.length;
+    if (index > stack.length - 1) index = stack.length - 1;
+    if (index === cursor && !force) return;
     cursor = index;
     handler?.(stack[cursor] || initialState);
   };
@@ -31,8 +31,8 @@ export function createMemoryDriver(
       setCursor(stack.length - 1);
     },
     go: (step: number) => setCursor(cursor + step),
-    back: () => cursor > 0 && setCursor(cursor - 1),
-    forward: () => cursor < stack.length - 1 && setCursor(cursor + 1),
+    back: () => setCursor(cursor - 1),
+    forward: () => setCursor(cursor + 1),
   };
 }
 

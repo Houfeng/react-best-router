@@ -41,16 +41,22 @@ describe("Router", () => {
 
   it("push & back & forward", async () => {
     nav.current?.push("/a");
-    await sleep(300);
+    await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "a");
     nav.current?.push("/b");
-    await sleep(300);
+    await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "b");
     nav.current?.back();
-    await sleep(300);
+    await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "a");
     nav.current?.forward();
-    await sleep(300);
+    await sleep(100);
+    strictEqual(mountNode.textContent?.trim(), "b");
+    nav.current?.go(-1);
+    await sleep(100);
+    strictEqual(mountNode.textContent?.trim(), "a");
+    nav.current?.replace("../b");
+    await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "b");
   });
 });
