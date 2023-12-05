@@ -7,6 +7,7 @@ Over the weekend, I attempted to write a simpler and more user-friendly routing 
 RBR is very small, Mini **4.6kb**, Gzip **2kb**.
 The API of RBR is also very simple, with only **4** core APIs.
 
+[![github](https://img.shields.io/badge/Github-RBR%20Repo-blue)](https://github.com/houfeng/react-best-router)
 [![npm](https://img.shields.io/npm/l/react-best-router.svg)](LICENSE.md)
 [![NPM Version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
 [![npm](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)

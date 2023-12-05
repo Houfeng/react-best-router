@@ -12,6 +12,7 @@ RBR 体积很小，Minify **4.6kb**，Gzip **2kb**。RBR 的 API 也很简洁只
 
 <div align="center">
 
+[![github](https://img.shields.io/badge/Github-RBR%20Repo-blue)](https://github.com/houfeng/react-best-router)
 [![npm](https://img.shields.io/npm/l/react-best-router.svg)](LICENSE.md)
 [![NPM Version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
 [![npm](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
