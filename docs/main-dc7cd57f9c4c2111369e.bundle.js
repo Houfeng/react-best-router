@@ -3272,6 +3272,7 @@ function useHashDriver() {
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createMemoryDriver: () => (/* binding */ createMemoryDriver),
 /* harmony export */   useMemoryDriver: () => (/* binding */ useMemoryDriver)
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.2.0/node_modules/react/index.js");
@@ -3308,8 +3309,8 @@ function createMemoryDriver(initialState = { pathname: "/" }) {
             setCursor(stack.length - 1);
         },
         go: (step) => setCursor(cursor + step),
-        back: () => cursor > 0 && setCursor(cursor--),
-        forward: () => cursor < stack.length - 1 && setCursor(cursor++),
+        back: () => cursor > 0 && setCursor(cursor - 1),
+        forward: () => cursor < stack.length - 1 && setCursor(cursor + 1),
     };
 }
 function useMemoryDriver(initialState = { pathname: "/" }) {
@@ -3329,6 +3330,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   createBrowserDriver: () => (/* reexport safe */ _BrowserDriver__WEBPACK_IMPORTED_MODULE_0__.createBrowserDriver),
 /* harmony export */   createHashDriver: () => (/* reexport safe */ _HashDriver__WEBPACK_IMPORTED_MODULE_1__.createHashDriver),
+/* harmony export */   createMemoryDriver: () => (/* reexport safe */ _MemoryDriver__WEBPACK_IMPORTED_MODULE_2__.createMemoryDriver),
 /* harmony export */   useBrowserDriver: () => (/* reexport safe */ _BrowserDriver__WEBPACK_IMPORTED_MODULE_0__.useBrowserDriver),
 /* harmony export */   useHashDriver: () => (/* reexport safe */ _HashDriver__WEBPACK_IMPORTED_MODULE_1__.useHashDriver),
 /* harmony export */   useMemoryDriver: () => (/* reexport safe */ _MemoryDriver__WEBPACK_IMPORTED_MODULE_2__.useMemoryDriver)
@@ -3356,6 +3358,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   Router: () => (/* reexport safe */ _core__WEBPACK_IMPORTED_MODULE_0__.Router),
 /* harmony export */   createBrowserDriver: () => (/* reexport safe */ _drivers__WEBPACK_IMPORTED_MODULE_1__.createBrowserDriver),
 /* harmony export */   createHashDriver: () => (/* reexport safe */ _drivers__WEBPACK_IMPORTED_MODULE_1__.createHashDriver),
+/* harmony export */   createMemoryDriver: () => (/* reexport safe */ _drivers__WEBPACK_IMPORTED_MODULE_1__.createMemoryDriver),
 /* harmony export */   createNavigatorRef: () => (/* reexport safe */ _core__WEBPACK_IMPORTED_MODULE_0__.createNavigatorRef),
 /* harmony export */   useBrowserDriver: () => (/* reexport safe */ _drivers__WEBPACK_IMPORTED_MODULE_1__.useBrowserDriver),
 /* harmony export */   useHashDriver: () => (/* reexport safe */ _drivers__WEBPACK_IMPORTED_MODULE_1__.useHashDriver),

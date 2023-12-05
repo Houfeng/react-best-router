@@ -9,7 +9,7 @@
     "lint": "eslint --fix --ext .ts,.tsx ./{src,tests,develop}/",
     "clean": "rm -rf ./dist && rm -rf ./types && rm -rf ./docs",
     "dev": "NODE_ENV=development webpack serve",
-    "test": "find ./tests -name '*.spec.ts' -o -name '*.spec.tsx' -exec node --require tsx/cjs --test --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info {} \\;",
+    "test": "find ./tests -name '*.spec.ts' -o -name '*.spec.tsx' -exec c8 node --require tsx/cjs --test {} \\;",
     "build": "bash ./scripts/build.sh"
   },
   "publishConfig": {
@@ -33,6 +33,7 @@
     "@typescript-eslint/eslint-plugin": "6.9.0",
     "@typescript-eslint/parser": "6.9.0",
     "autoprefixer": "^10.4.16",
+    "c8": "^8.0.1",
     "css-loader": "^6.7.0",
     "daisyui": "^4.4.17",
     "eslint": "8.52.0",

@@ -1,9 +1,9 @@
-import { Window } from 'happy-dom';
+import { Window } from "happy-dom";
 
 const window = new Window({
-  url: 'https://localhost:8080',
+  url: "https://localhost:8080",
   width: 1024,
-  height: 768
+  height: 768,
 });
 
 const document = window.document;
@@ -18,3 +18,7 @@ Object.assign(global, {
   location,
   history,
 });
+
+const root = document.createElement("div");
+root.id = "root";
+document.body.append(root);

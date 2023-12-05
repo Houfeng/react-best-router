@@ -7,6 +7,7 @@
 .eslintrc.js
 .prettierrc
 .vscode/
+.c8rc.json
 tsconfig.json
 tsconfig.dev.json
 rollup.config.js
