@@ -9,6 +9,12 @@ module.exports = {
     "browser": true,
     "node": true
   },
+  "parserOptions": {
+    "jsxPragma": "createElement",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "globals": {
     "Set": "readonly",
     "Map": "readonly",

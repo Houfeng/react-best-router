@@ -1,4 +1,4 @@
-import React, { Fragment } from "react";
+import { createElement, Fragment } from "react";
 import MarkdownView from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Highlight, themes } from "prism-react-renderer";

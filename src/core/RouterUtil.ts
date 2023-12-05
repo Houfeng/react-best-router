@@ -25,7 +25,7 @@ export function resolvePath(from: string, to: string) {
   return normalizePath(`${from}/${to}`);
 }
 
-export function patternToRegExp(pattern: string) {
+function patternToRegExp(pattern: string) {
   const table: Array<[string, string]> = [];
   let id = 0;
   let text = pattern;
@@ -54,7 +54,12 @@ export function patternToRegExp(pattern: string) {
   });
   table.forEach(([key, value]) => (text = text.replace(key, value)));
   text = text.replace(/\//g, "\\/");
-  return new RegExp(`^${text}$`, "i");
+  try {
+    return new RegExp(`^${text}$`, "i");
+  } catch {
+    // eslint-disable-next-line
+    console.error("Invalid pattern:", pattern);
+  }
 }
 
 export type MatchResult<P extends object> = {
@@ -69,7 +74,7 @@ export type MathFunction<P extends object> = (
 export function patternToMatch<P extends object = object>(pattern: string) {
   const regexp = patternToRegExp(pattern);
   return (pathname: string) => {
-    const info = regexp.exec(pathname);
+    const info = regexp?.exec(pathname);
     return { state: !!info, params: info?.groups || {} } as MatchResult<P>;
   };
 }

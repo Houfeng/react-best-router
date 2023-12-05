@@ -1,5 +1,5 @@
 import "./index.css";
-import React from "react";
+import { createElement } from "react";
 import { createRoot } from "react-dom/client";
 import { Route, Router, useHashDriver } from "../src";
 import { Layout } from "./Layout";

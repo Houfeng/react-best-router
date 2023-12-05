@@ -2618,16 +2618,16 @@ const contents = {
     examples: _docs_zh_examples_md_raw__WEBPACK_IMPORTED_MODULE_6__,
 };
 function renderCodeBlock(code, language) {
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(prism_react_renderer__WEBPACK_IMPORTED_MODULE_1__.Highlight, { theme: prism_react_renderer__WEBPACK_IMPORTED_MODULE_1__.themes.nightOwl, code: code, language: language || "bash" }, ({ tokens, getLineProps, getTokenProps }) => (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, tokens.map((line, i) => (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", Object.assign({ key: i }, getLineProps({ line }), { className: "code inline" }), line.map((token, key) => (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", Object.assign({ key: key }, getTokenProps({ token }))))))))))));
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(prism_react_renderer__WEBPACK_IMPORTED_MODULE_1__.Highlight, { theme: prism_react_renderer__WEBPACK_IMPORTED_MODULE_1__.themes.nightOwl, code: code, language: language || "bash" }, ({ tokens, getLineProps, getTokenProps }) => ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, tokens.map((line, i) => ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", Object.assign({ key: i }, getLineProps({ line }), { className: "code inline" }), line.map((token, key) => ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", Object.assign({ key: key }, getTokenProps({ token }))))))))))));
 }
 function Content() {
     const nav = (0,_src__WEBPACK_IMPORTED_MODULE_2__.useNavigator)();
     const content = contents[nav.params.name || "index"];
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("article", { className: "prose p-6 w-screen" },
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react_markdown__WEBPACK_IMPORTED_MODULE_7__.Markdown, { remarkPlugins: [remark_gfm__WEBPACK_IMPORTED_MODULE_8__["default"]], components: {
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", { className: "prose p-6 w-screen" },
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_markdown__WEBPACK_IMPORTED_MODULE_7__.Markdown, { remarkPlugins: [remark_gfm__WEBPACK_IMPORTED_MODULE_8__["default"]], components: {
                 pre(props) {
                     const { className = "", children } = props;
-                    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("pre", { className: `[&>.code]:block ${className} font-mono` }, children));
+                    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("pre", { className: `[&>.code]:block ${className} font-mono` }, children));
                 },
                 code(props) {
                     const { children, className } = props;
@@ -2637,7 +2637,7 @@ function Content() {
                 },
                 p(props) {
                     const { children, className = "" } = props, others = __rest(props, ["children", "className"]);
-                    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", Object.assign({ className: `font-serif ${className}` }, others), children));
+                    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", Object.assign({ className: `font-serif ${className}` }, others), children));
                 },
             } }, content)));
 }
@@ -2659,7 +2659,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Examples() {
-    return react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", null, "Examples");
+    return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", null, "Examples");
 }
 
 
@@ -2679,20 +2679,20 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Footer() {
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("footer", { className: "footer footer-center p-10 bg-base-100 text-base-content" },
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("nav", null,
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "grid grid-flow-col gap-4" },
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", null,
-                    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", className: "fill-current" },
-                        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", { d: "M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" }))),
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", null,
-                    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", className: "fill-current" },
-                        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", { d: "M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" }))),
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", null,
-                    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", className: "fill-current" },
-                        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", { d: "M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" }))))),
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("aside", null,
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("p", null, "Copyleft \u00A9 2023 - RBR - Powered by Houfeng"))));
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("footer", { className: "footer footer-center p-10 bg-base-100 text-base-content" },
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("nav", null,
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "grid grid-flow-col gap-4" },
+                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null,
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", className: "fill-current" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", { d: "M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" }))),
+                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null,
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", className: "fill-current" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", { d: "M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" }))),
+                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null,
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", className: "fill-current" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", { d: "M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" }))))),
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("aside", null,
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Copyleft \u00A9 2023 - RBR - Powered by Houfeng"))));
 }
 
 
@@ -2715,27 +2715,27 @@ __webpack_require__.r(__webpack_exports__);
 
 function Header() {
     const nav = (0,_src__WEBPACK_IMPORTED_MODULE_1__.useNavigator)();
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "navbar bg-base-100 bg-opacity-75 shadow-sm sticky top-0 backdrop-blur" },
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "flex-none" },
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", { htmlFor: "drawer-switch", className: "btn btn-square btn-ghost lg:hidden" },
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", className: "inline-block w-5 h-5 stroke-current" },
-                    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M4 6h16M4 12h16M4 18h16" })))),
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "flex-1" },
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", { className: "btn btn-ghost text-xl font-bold", onClick: () => nav.push("/") }, "RBR")),
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "flex-none" },
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "dropdown dropdown-end" },
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", { id: "theme-button", tabIndex: 0, className: "btn btn-square btn-ghost" },
-                    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", className: "inline-block w-5 h-5 stroke-current" },
-                        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" }))),
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", { onClick: () => { var _a, _b; return (_b = (_a = document.activeElement) === null || _a === void 0 ? void 0 : _a.blur) === null || _b === void 0 ? void 0 : _b.call(_a); }, className: "dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52" },
-                    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", { className: "my-[2px]" },
-                        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Dark", value: "night" })),
-                    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", { className: "my-[2px]" },
-                        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Light", value: "winter" })),
-                    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", { className: "my-[2px]" },
-                        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Coffee", value: "coffee" })),
-                    react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", { className: "my-[2px]" },
-                        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Retro", value: "retro" })))))));
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "navbar bg-base-100 bg-opacity-75 shadow-sm sticky top-0 backdrop-blur" },
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "flex-none" },
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", { htmlFor: "drawer-switch", className: "btn btn-square btn-ghost lg:hidden" },
+                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", className: "inline-block w-5 h-5 stroke-current" },
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M4 6h16M4 12h16M4 18h16" })))),
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "flex-1" },
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "btn btn-ghost text-xl font-bold", onClick: () => nav.push("/") }, "RBR")),
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "flex-none" },
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "dropdown dropdown-end" },
+                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", { id: "theme-button", tabIndex: 0, className: "btn btn-square btn-ghost" },
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", className: "inline-block w-5 h-5 stroke-current" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" }))),
+                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", { onClick: () => { var _a, _b; return (_b = (_a = document.activeElement) === null || _a === void 0 ? void 0 : _a.blur) === null || _b === void 0 ? void 0 : _b.call(_a); }, className: "dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52" },
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Dark", value: "night" })),
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Light", value: "winter" })),
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Coffee", value: "coffee" })),
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Retro", value: "retro" })))))));
 }
 
 
@@ -2755,15 +2755,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 
 function Layout({ children, sideBar, header, footer }) {
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "drawer lg:drawer-open" },
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("input", { id: "drawer-switch", type: "checkbox", className: "drawer-toggle" }),
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "drawer-side z-20" },
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("label", { htmlFor: "drawer-switch", className: "drawer-overlay" }),
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null,
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "drawer lg:drawer-open" },
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { id: "drawer-switch", type: "checkbox", className: "drawer-toggle" }),
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "drawer-side z-20" },
+                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("label", { htmlFor: "drawer-switch", className: "drawer-overlay" }),
                 sideBar),
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", { className: "drawer-content flex flex-col items-center justify-center" },
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "drawer-content flex flex-col items-center justify-center" },
                 header,
-                react__WEBPACK_IMPORTED_MODULE_0___default().createElement("main", { className: "min-h-screen" }, children),
+                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("main", { className: "min-h-screen" }, children),
                 footer))));
 }
 
@@ -2787,15 +2787,15 @@ __webpack_require__.r(__webpack_exports__);
 
 function SideBar() {
     const nav = (0,_src__WEBPACK_IMPORTED_MODULE_1__.useNavigator)();
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement("ul", { onClick: () => { var _a; return (_a = document.getElementById("drawer-switch")) === null || _a === void 0 ? void 0 : _a.click(); }, className: "menu p-3 w-60 bg-base-200 bg-opacity-75 glass h-full pt-16 text-base-content" },
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", { className: "text-sm" },
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", { className: "p-3", onClick: () => nav.push("/index") }, "\uD83D\uDE80 \u5FEB\u901F\u4E0A\u624B RBR")),
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", { className: "text-sm" },
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", { className: "p-3", onClick: () => nav.push("/api") }, "\uD83D\uDDFC \u4EC5\u6709 4 \u4E2A API")),
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", { className: "text-sm" },
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", { className: "p-3", onClick: () => nav.push("/pattern") }, "\uD83D\uDE8F \u8BE6\u89E3\u8DEF\u5F84\u5339\u914D")),
-        react__WEBPACK_IMPORTED_MODULE_0___default().createElement("li", { className: "text-sm" },
-            react__WEBPACK_IMPORTED_MODULE_0___default().createElement("a", { className: "p-3", onClick: () => nav.push("/examples") }, "\uD83D\uDCA1 \u5E38\u89C1\u7528\u6CD5\u793A\u4F8B"))));
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", { onClick: () => { var _a; return (_a = document.getElementById("drawer-switch")) === null || _a === void 0 ? void 0 : _a.click(); }, className: "menu p-3 w-60 bg-base-200 bg-opacity-75 glass h-full pt-16 text-base-content" },
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => nav.push("/index") }, "\uD83D\uDE80 \u5FEB\u901F\u4E0A\u624B RBR")),
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => nav.push("/api") }, "\uD83D\uDDFC \u4EC5\u6709 4 \u4E2A API")),
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => nav.push("/pattern") }, "\uD83D\uDE8F \u8BE6\u89E3\u8DEF\u5F84\u5339\u914D")),
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => nav.push("/examples") }, "\uD83D\uDCA1 \u5E38\u89C1\u7528\u6CD5\u793A\u4F8B"))));
 }
 
 
@@ -2831,15 +2831,15 @@ __webpack_require__.r(__webpack_exports__);
 
 function RBRDocsAPP() {
     const driver = (0,_src__WEBPACK_IMPORTED_MODULE_3__.useHashDriver)();
-    return (react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_src__WEBPACK_IMPORTED_MODULE_3__.Router, { driver: driver },
-        react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_Layout__WEBPACK_IMPORTED_MODULE_4__.Layout, { header: react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_Header__WEBPACK_IMPORTED_MODULE_6__.Header, null), footer: react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_Footer__WEBPACK_IMPORTED_MODULE_7__.Footer, null), sideBar: react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_SideBar__WEBPACK_IMPORTED_MODULE_5__.SideBar, null) },
-            react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_src__WEBPACK_IMPORTED_MODULE_3__.Route, { pattern: "/:name?" },
-                react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_Content__WEBPACK_IMPORTED_MODULE_8__.Content, null)),
-            react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_src__WEBPACK_IMPORTED_MODULE_3__.Route, { pattern: "/examples/(.*)" },
-                react__WEBPACK_IMPORTED_MODULE_1___default().createElement(_Examples__WEBPACK_IMPORTED_MODULE_9__.Examples, null)))));
+    return ((0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_src__WEBPACK_IMPORTED_MODULE_3__.Router, { driver: driver },
+        (0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_Layout__WEBPACK_IMPORTED_MODULE_4__.Layout, { header: (0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_Header__WEBPACK_IMPORTED_MODULE_6__.Header, null), footer: (0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_Footer__WEBPACK_IMPORTED_MODULE_7__.Footer, null), sideBar: (0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_SideBar__WEBPACK_IMPORTED_MODULE_5__.SideBar, null) },
+            (0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_src__WEBPACK_IMPORTED_MODULE_3__.Route, { pattern: "/:name?" },
+                (0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_Content__WEBPACK_IMPORTED_MODULE_8__.Content, null)),
+            (0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_src__WEBPACK_IMPORTED_MODULE_3__.Route, { pattern: "/examples/(.*)" },
+                (0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_Examples__WEBPACK_IMPORTED_MODULE_9__.Examples, null)))));
 }
 const root = (0,react_dom_client__WEBPACK_IMPORTED_MODULE_2__.createRoot)(document.getElementById("root"));
-root.render(react__WEBPACK_IMPORTED_MODULE_1___default().createElement(RBRDocsAPP, null));
+root.render((0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(RBRDocsAPP, null));
 
 
 /***/ }),
@@ -2870,9 +2870,9 @@ function Route(props) {
     const matcher = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.createRouterMatcher)(pattern, prefix, parentMatcher), [pattern, prefix, parentMatcher]);
     const context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({ base, state, driver, matcher }), [base, state, driver, matcher]);
     if (!matcher.match(state.pathname).state)
-        return fallback || react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RouterContext__WEBPACK_IMPORTED_MODULE_1__.RouterContext.Provider, { value: context },
-        navigator && react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
+        return fallback || (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterContext__WEBPACK_IMPORTED_MODULE_1__.RouterContext.Provider, { value: context },
+        navigator && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
         render ? render(children) : children));
 }
 
@@ -2905,9 +2905,9 @@ function Router(props) {
     const context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({ base, state, driver, matcher }), [base, state, driver, matcher]);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => driver === null || driver === void 0 ? void 0 : driver.subscribe((state) => setState(state)), [driver, state]);
     if (!matcher.match(state.pathname).state)
-        return fallback || react__WEBPACK_IMPORTED_MODULE_0___default().createElement(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
-    return (react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RouterContext__WEBPACK_IMPORTED_MODULE_1__.RouterContext.Provider, { value: context },
-        navigator && react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
+        return fallback || (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterContext__WEBPACK_IMPORTED_MODULE_1__.RouterContext.Provider, { value: context },
+        navigator && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
         render ? render(children) : children));
 }
 
@@ -3068,7 +3068,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   normalizePath: () => (/* binding */ normalizePath),
 /* harmony export */   patternToMatch: () => (/* binding */ patternToMatch),
 /* harmony export */   patternToPrefix: () => (/* binding */ patternToPrefix),
-/* harmony export */   patternToRegExp: () => (/* binding */ patternToRegExp),
 /* harmony export */   resolvePath: () => (/* binding */ resolvePath)
 /* harmony export */ });
 function patternToPrefix(pattern) {
@@ -3119,12 +3118,17 @@ function patternToRegExp(pattern) {
     });
     table.forEach(([key, value]) => (text = text.replace(key, value)));
     text = text.replace(/\//g, "\\/");
-    return new RegExp(`^${text}$`, "i");
+    try {
+        return new RegExp(`^${text}$`, "i");
+    }
+    catch (_a) {
+        console.error("Invalid pattern:", pattern);
+    }
 }
 function patternToMatch(pattern) {
     const regexp = patternToRegExp(pattern);
     return (pathname) => {
-        const info = regexp.exec(pathname);
+        const info = regexp === null || regexp === void 0 ? void 0 : regexp.exec(pathname);
         return { state: !!info, params: (info === null || info === void 0 ? void 0 : info.groups) || {} };
     };
 }
