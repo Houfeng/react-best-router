@@ -1,7 +1,7 @@
 import { useMemo } from "react";
 import { RouterDriver, RouterStateChangeHandler, RouterState } from "../core";
 
-function createMemoryDriver(
+export function createMemoryDriver(
   initialState: RouterState = { pathname: "/" },
 ): RouterDriver {
   let handler: RouterStateChangeHandler | undefined;
@@ -31,8 +31,8 @@ function createMemoryDriver(
       setCursor(stack.length - 1);
     },
     go: (step: number) => setCursor(cursor + step),
-    back: () => cursor > 0 && setCursor(cursor--),
-    forward: () => cursor < stack.length - 1 && setCursor(cursor++),
+    back: () => cursor > 0 && setCursor(cursor - 1),
+    forward: () => cursor < stack.length - 1 && setCursor(cursor + 1),
   };
 }
 
