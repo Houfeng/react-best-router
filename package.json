@@ -9,7 +9,7 @@
     "lint": "eslint --fix --ext .ts,.tsx ./{src,tests,develop}/",
     "clean": "rm -rf ./dist && rm -rf ./types && rm -rf ./docs",
     "dev": "NODE_ENV=development webpack serve",
-    "test": "find ./tests -name '*.spec.ts' -o -name '*.spec.tsx' -exec c8 node --require ts-node/register --test {} \\;",
+    "test": "find ./tests -name '*.spec.tsx' -exec c8 node --require ts-node/register --test {} \\;",
     "build": "bash ./scripts/build.sh"
   },
   "publishConfig": {
