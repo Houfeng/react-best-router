@@ -10,6 +10,7 @@ import {
 } from "react";
 import { useRouterContext } from "./RouterContext";
 import { normalizePath, resolvePath } from "./RouterUtil";
+import { useParentMatcher } from "./RouterMatcher";
 
 type RouterNavigator<P extends object> = {
   pathname: string;
@@ -32,7 +33,8 @@ function toScopedPath(base: string, pathname: string) {
 }
 
 export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
-  const { base, state, matcher, driver } = useRouterContext();
+  const { base, state, driver } = useRouterContext();
+  const matcher = useParentMatcher();
   return useMemo<RouterNavigator<any>>(() => {
     // Go to the specified pathname
     const push = (to: string) =>

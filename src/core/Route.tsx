@@ -1,56 +1,47 @@
-import { createElement, ReactNode, useMemo, Fragment } from "react";
+import { createElement, useMemo, Fragment, ReactNode, Children } from "react";
+import { useRouterContext } from "./RouterContext";
 import {
-  RouterContext,
-  RouterContextValue,
-  useRouterContext,
-} from "./RouterContext";
-import {
+  MatcherContext,
   RouterMatcher,
-  RouterPattern,
   createRouterMatcher,
+  useParentMatcher,
 } from "./RouterMatcher";
-import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
-import { isValidElements } from "./RouterUtil";
+import { NavigatorForwarder } from "./RouterNavigator";
+import { RouteFallback } from "./RouteFallback";
+import { RouteProps } from "./RouteProps";
 
-export type RouteProps = {
-  children?: ReactNode;
-  render?: (children: ReactNode) => ReactNode;
-  prefix?: RouterPattern;
-  navigator?: RouterNavigatorRef<any>;
-} & (
-  | {
-      pattern: RouterPattern;
-      fallback?: ReactNode;
-    }
-  | {
-      pattern?: RouterPattern;
-      fallback: ReactNode;
-    }
-);
+function takeFallbackProps(elements: ReactNode) {
+  return Children.toArray(elements)
+    .map((it: any) => it.type === Route && it.props)
+    .filter((it) => !!it);
+}
 
 export function Route(props: RouteProps) {
-  const { pattern = "/(.*)", prefix, navigator } = props;
-  const { render, children, fallback = <Fragment /> } = props;
-  const { base, state, driver, matcher: parentMatcher } = useRouterContext();
+  const { pattern, prefix, navigator, render, children, fallback } = props;
+  const { state } = useRouterContext();
+  const parentMatcher = useParentMatcher();
   // create matcher
   const matcher = useMemo<RouterMatcher>(
     () => createRouterMatcher(pattern, prefix, parentMatcher),
     [pattern, prefix, parentMatcher],
   );
-  // create context
-  const context = useMemo<RouterContextValue>(
-    () => ({ base, state, driver, matcher }),
-    [base, state, driver, matcher],
-  );
   // match current pathname
-  if (!matcher.match(state.pathname).state) return fallback;
-  // check children
+  if (!matcher.match(state.pathname).state) return <Fragment />;
+  // normalize children
   const elements = render ? render(children) : children;
-  if (!isValidElements(elements)) return fallback;
   return (
-    <RouterContext.Provider value={context}>
+    <MatcherContext.Provider value={matcher}>
       {navigator && <NavigatorForwarder ref={navigator} />}
       {elements}
-    </RouterContext.Provider>
+      {fallback && (
+        <RouteFallback
+          pathname={state.pathname}
+          parentMatcher={parentMatcher}
+          targets={takeFallbackProps(elements)}
+        >
+          {fallback}
+        </RouteFallback>
+      )}
+    </MatcherContext.Provider>
   );
 }

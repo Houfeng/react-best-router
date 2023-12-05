@@ -1,55 +1,38 @@
-import {
-  createElement,
-  ReactNode,
-  useState,
-  useMemo,
-  useLayoutEffect,
-  Fragment,
-} from "react";
+import { createElement, useState, useMemo, useLayoutEffect } from "react";
 import { RouterDriver } from "./RouterDriver";
 import { RouterContext, RouterContextValue } from "./RouterContext";
-import { RouterMatcher, createRouterMatcher } from "./RouterMatcher";
-import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
-import { isValidElements } from "./RouterUtil";
+import { Route } from "./Route";
+import { RouteProps } from "./RouteProps";
 
 export type RouterProps = {
   base?: string;
-  children?: ReactNode;
-  fallback?: ReactNode;
-  render?: (children: ReactNode) => ReactNode;
-  navigator?: RouterNavigatorRef<any>;
   driver: RouterDriver;
-};
+} & Omit<RouteProps, "pattern" | "prefix">;
 
 export function Router(props: RouterProps) {
-  const { driver, navigator, base = "/" } = props;
-  const { children, render, fallback = <Fragment /> } = props;
+  const { driver, base = "/", navigator, children, render } = props;
   // initial state
-  const [state, setState] = useState(() => driver?.current());
-  // create matcher
-  const matcher = useMemo<RouterMatcher>(
-    () => createRouterMatcher(`${base}/(.*)`, base),
-    [base],
-  );
+  const [state, setState] = useState(() => driver.current());
   // create context
   const context = useMemo<RouterContextValue>(
-    () => ({ base, state, driver, matcher }),
-    [base, state, driver, matcher],
+    () => ({ base, state, driver }),
+    [base, state, driver],
   );
   // bind to driver
   useLayoutEffect(
-    () => driver?.subscribe((state) => setState(state)),
+    () => driver.subscribe((state) => setState(state)),
     [driver, state],
   );
-  // match current pathname
-  if (!matcher.match(state.pathname).state) return fallback;
-  // check children
-  const elements = render ? render(children) : children;
-  if (!isValidElements(elements)) return fallback;
   return (
     <RouterContext.Provider value={context}>
-      {navigator && <NavigatorForwarder ref={navigator} />}
-      {render ? render(children) : children}
+      <Route
+        pattern={`${base}/(.*)`}
+        prefix={base}
+        render={render}
+        navigator={navigator}
+      >
+        {children}
+      </Route>
     </RouterContext.Provider>
   );
 }

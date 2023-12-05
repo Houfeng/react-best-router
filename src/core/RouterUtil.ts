@@ -1,4 +1,3 @@
-import { Children, Fragment, ReactNode } from "react";
 import { RouterPattern } from "./RouterMatcher";
 
 export function patternToPrefix(pattern: RouterPattern) {
@@ -78,10 +77,4 @@ export function patternToMatch<P extends object = object>(pattern: string) {
     const info = regexp?.exec(pathname);
     return { state: !!info, params: info?.groups || {} } as MatchResult<P>;
   };
-}
-
-export function isValidElements(elements: ReactNode) {
-  return Children.toArray(elements).some(
-    (it) => it && (it as any).type !== Fragment,
-  );
 }

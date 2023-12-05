@@ -1,3 +1,4 @@
+import { createContext, useContext } from "react";
 import {
   MatchResult,
   MathFunction,
@@ -48,4 +49,9 @@ export function createRouterMatcher(
     return matcher.result;
   };
   return matcher;
+}
+
+export const MatcherContext = createContext<RouterMatcher>(null!);
+export function useParentMatcher() {
+  return useContext(MatcherContext);
 }
