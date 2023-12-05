@@ -3,8 +3,9 @@ import { strictEqual } from "assert";
 import { test } from "node:test";
 import { createMemoryDriver } from '../src';
 
+const driver = createMemoryDriver()
+
 test("MemoryDriver", () => {
-  const driver = createMemoryDriver()
   strictEqual(driver.current().pathname, '/');
   driver.push({ pathname: '/foo' });
   strictEqual(driver.current().pathname, '/foo');
