@@ -1,5 +1,5 @@
 import "./MockBrowser";
-import * as React from "react";
+import { createElement } from "react";
 import { strictEqual } from "assert";
 import { test } from "node:test";
 import { Route, Router, createBrowserDriver } from "../src";
@@ -25,7 +25,7 @@ function TestApp({ onReady }: { onReady: () => void }) {
 test("Router", async () => {
   location.href = "/a";
   await new Promise<void>((resolve) => {
-    const root = createRoot(document.getElementById("root"));
+    const root = createRoot(document.getElementById("root")!);
     root.render(<TestApp onReady={resolve} />);
   });
   strictEqual(document.body.textContent?.trim(), "a");

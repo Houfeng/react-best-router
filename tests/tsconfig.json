@@ -1,0 +1,15 @@
+{
+  "extends": [
+    "../tsconfig"
+  ],
+  "compilerOptions": {
+    "sourceMap": true,
+    "types": [
+      "../@types/raw.d.ts"
+    ]
+  },
+  "include": [
+    "./**/*.ts",
+    "./**/*.tsx",
+  ]
+}

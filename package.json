@@ -9,13 +9,21 @@
     "lint": "eslint --fix --ext .ts,.tsx ./{src,tests,develop}/",
     "clean": "rm -rf ./dist && rm -rf ./types && rm -rf ./docs",
     "dev": "NODE_ENV=development webpack serve",
-    "test": "find ./tests -name '*.spec.ts' -o -name '*.spec.tsx' -exec c8 node --require tsx/cjs --test {} \\;",
+    "test": "find ./tests -name '*.spec.ts' -o -name '*.spec.tsx' -exec c8 node --require ts-node/register --test {} \\;",
     "build": "bash ./scripts/build.sh"
   },
   "publishConfig": {
     "registry": "https://registry.npmjs.org"
   },
-  "keywords": [],
+  "keywords": [
+    "router",
+    "react-router",
+    "react-router-dom",
+    "react-router-native",
+    "react-best-router",
+    "react-better-router",
+    "rbr"
+  ],
   "author": "",
   "license": "MIT",
   "peerDependencies": {
@@ -70,6 +78,7 @@
     "style-loader": "^3.3.1",
     "tailwindcss": "^3.3.5",
     "ts-loader": "9.5.0",
+    "ts-node": "^10.9.1",
     "tsx": "^4.6.2",
     "typescript": "^5.3.2",
     "webpack": "5.89.0",
