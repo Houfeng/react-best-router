@@ -20,15 +20,19 @@ RBR 体积很小，Minify **~5kb**，GZip **~2kb**。Ta 的 API 也很简洁只�
 
 ## 2. 安装
 
+方式一：NPM Package
+
 ```zsh
 # NPM Package
 $ npm install react-best-router 
 ```
 
+方式二：通过 CDN，注意版本号
+
 ```html
 <!-- CDN -->
 <script 
-src="https://cdn.jsdelivr.net/npm/react-best-router@0.2.0/dist/react-best-router-iife.min.js">
+src="https://cdn.jsdelivr.net/npm/react-best-router@latest/dist/react-best-router-iife.min.js">
 </script>
 ```
 
