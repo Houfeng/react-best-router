@@ -7,11 +7,12 @@ Over the weekend, I attempted to write a simpler and more user-friendly routing 
 RBR is very small, Mini **4.6kb**, Gzip **2kb**.
 The API of RBR is also very simple, with only **4** core APIs.
 
-[![github](https://img.shields.io/badge/Github-RBR%20Repo-blue)](https://github.com/houfeng/react-best-router)
-[![npm](https://img.shields.io/npm/l/react-best-router.svg)](LICENSE.md)
-[![NPM Version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
-[![npm](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
-<!-- [![Coverage Status](https://coveralls.io/repos/github/houfeng/react-best-router/badge.svg?branch=master)](https://coveralls.io/github/houfeng/react-best-router?branch=master) -->
-<!-- [![Build Status](https://www.travis-ci.org/houfeng/react-best-router.svg?branch=master)](https://www.travis-ci.org/houfeng/react-best-router) -->
+[![github](https://img.shields.io/badge/Repo-Github-blue)](https://github.com/houfeng/react-best-router)
+[![npm](https://img.shields.io/npm/l/react-best-router.svg)](https://github.com/houfeng/react-best-router)
+[![npm version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
+[![npm download](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
+[![minify](https://img.shields.io/badge/Minify-5kb-green)](https://github.com/houfeng/react-best-router)
+[![minify](https://img.shields.io/badge/GZip-2kb-green)](https://github.com/houfeng/react-best-router)
+[![unit](https://img.shields.io/badge/Tests-87%-green)](https://github.com/houfeng/react-best-router)
 
 **RBR Docs** : [https://rbr.houfeng.net](https://rbr.houfeng.net)
