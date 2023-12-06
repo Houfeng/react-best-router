@@ -2,8 +2,8 @@
   "name": "react-best-router",
   "version": "0.2.2",
   "description": "",
-  "main": "./dist/rbr-cjs.js",
-  "module": "./dist/rbr-es.js",
+  "main": "./dist/react-best-router-cjs.js",
+  "module": "./dist/react-best-router-es.js",
   "types": "./types/index.d.ts",
   "scripts": {
     "lint": "eslint --fix --ext .ts,.tsx ./{src,tests,develop}/",
