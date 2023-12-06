@@ -5,6 +5,10 @@ import { Highlight, themes } from "prism-react-renderer";
 import { useNavigator } from "../src";
 import { contents } from "./docs";
 
+function scrollToTop() {
+  setTimeout(() => (document.documentElement.scrollTop = 0), 0);
+}
+
 function renderCodeBlock(code: string, language?: string) {
   return (
     <Highlight
@@ -68,15 +72,25 @@ export function Content() {
         {item.content}
       </MarkdownView>
       <nav className="flex justify-between mt-10">
-        {prev && (
-          <button className="btn" onClick={() => nav.push(`/${prev.name}`)}>
+        {prev ? (
+          <button
+            className="btn"
+            onClick={() => [nav.push(`/${prev.name}`), scrollToTop()]}
+          >
             {`← ${prev.title}`}
           </button>
+        ) : (
+          <span />
         )}
-        {next && (
-          <button className="btn" onClick={() => nav.push(`/${next.name}`)}>
+        {next ? (
+          <button
+            className="btn"
+            onClick={() => [nav.push(`/${next.name}`), scrollToTop()]}
+          >
             {`${next.title} →`}
           </button>
+        ) : (
+          <span />
         )}
       </nav>
     </article>
