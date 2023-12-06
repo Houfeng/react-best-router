@@ -8,12 +8,15 @@
 
 在一个周末，我尝试写了这个更简单易用的路由包，专注于 React 应用的路由处理，我给这个包命名为 **react-best-router**，并简称为 **RBR**。
 
-RBR 体积很小，Minify **4.6kb**，Gzip **2kb**。RBR 的 API 也很简洁只有 **4** 个核心 API。
+RBR 体积很小，Minify **<5kb**，GZip **~2kb**。RBR 的 API 也很简洁只有 **4** 个核心 API。
 
-[![github](https://img.shields.io/badge/Github-RBR%20Repo-blue)](https://github.com/houfeng/react-best-router)
-[![npm](https://img.shields.io/npm/l/react-best-router.svg)](LICENSE.md)
-[![NPM Version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
-[![npm](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
+[![github](https://img.shields.io/badge/Repo-Github-blue)](https://github.com/houfeng/react-best-router)
+[![npm](https://img.shields.io/npm/l/react-best-router.svg)](https://github.com/houfeng/react-best-router)
+[![npm version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
+[![npm download](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
+[![minify](https://img.shields.io/badge/Minify-5kb-green)](https://github.com/houfeng/react-best-router)
+[![minify](https://img.shields.io/badge/GZip-2kb-green)](https://github.com/houfeng/react-best-router)
+[![unit](https://img.shields.io/badge/Tests-87%-green)](https://github.com/houfeng/react-best-router)
 
 ## 2. 安装
 
