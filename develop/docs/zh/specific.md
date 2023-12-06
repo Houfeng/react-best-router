@@ -39,8 +39,26 @@ function YourApp(){
 
 ## 2. 默认路由
 
-如上节讲述，RBR 总是完整匹配、也不会按顺序逐一匹配，所以 RBR 并没有默认路由的概念，
-但可通过 **修饰符** 声明**可选路径**方式实现默认路由的效果。
+如上节讲述，RBR 总是完整匹配、也不会按顺序逐一匹配，所以 RBR 并没有默认路由的概念。
+可通过**直接配置 / 要路由到的目标**，可放到任意位置，而无需要依赖顺序且必须在最后配置通配路由。
+
+```tsx
+function App(){
+  return (
+    <Router driver={driver}>
+      <Route pattern="/a"><PageA></Route>
+      <Route pattern="/b"><PageB></Route>
+      {/* 
+        可显式且准确的配置 / 路由到哪个页面，
+        可以是 PageA/PageB/PageC 或其他 Page
+      */}
+      <Route pattern="/"><PageC></Route>
+    </Router>
+  );
+}
+```
+
+还可通过 **修饰符** 声明**可选路径**方式实现默认路由的效果。
 
 ```tsx
 function App(){
@@ -51,7 +69,7 @@ function App(){
         在访问 / 或 /a 时，都将会渲染 PageA 
       */}
       <Route pattern="/(a)?"><PageA></Route>
-      <Route pattern="/b"><PageA></Route>
+      <Route pattern="/b"><PageB></Route>
       <Route pattern="/c"><PageA></Route>
     </Router>
   );
@@ -63,8 +81,7 @@ function App(){
 有时可能需要在路由没有匹配时，显示为指定的内容，比如一个 NotFound 页面。
 由于 RBR 不会逐一按顺序匹配，也便无法在最后位置配置一个通配路由作为 NotFound 页面。
 
-但 RBR 提供了 Route 的 Fallback 机制，可更直观的支持类似的需求，
-Fallback 可用于 Router 或 Route。
+但 RBR 提供了 Route 的 fallback 机制可更支持类似的需求，fallback 可用于 Router 或 Route。
 
 ```tsx
 function App(){

@@ -8,7 +8,7 @@
 
 在一个周末，我尝试写了这个更简单易用的路由包，专注于 React 应用的路由处理，我给这个包命名为 **react-best-router**，并简称为 **RBR**。
 
-RBR 体积很小，Minify **~5kb**，GZip **~2kb**。Ta 的 API 也很简洁只有 **4** 组核心 API，包括（ Router、Driver、Route、Navigator ）。
+RBR 体积很小，Minify **5kb**，GZip **2kb**。Ta 的 API 也很简洁只有 **4** 组核心 API，包括（ Router、Driver、Route、Navigator ）。
 
 [![github](https://img.shields.io/badge/Repo-Github-blue)](https://github.com/houfeng/react-best-router)
 [![npm](https://img.shields.io/npm/l/react-best-router.svg)](https://github.com/houfeng/react-best-router)
