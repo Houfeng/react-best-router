@@ -4,7 +4,7 @@
   ],
   "compilerOptions": {
     "baseUrl": "./",
-    "outDir": "./docs/",
+    "outDir": "../docs/",
     "declarationDir": "./types/develop/",
     "sourceMap": true,
     "types": [

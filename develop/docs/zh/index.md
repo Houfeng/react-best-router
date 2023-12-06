@@ -53,7 +53,6 @@ function YourApp() {
 以本地开发服务 *http://localhost:8080* 为例，现在就可浏览器中访问到 **index** 页面了，
 也可以通过 *http://localhost:8080/posts* 访问 **Posts** 页面，**RBR** 已经在工作了。
   
-
 接下来，我们为这个示例增加一个「导航菜单」，我们通过 **useNavigator**  Hook 可以获得
 「Router navigator 实例」，用它在不同页面间导航。
 

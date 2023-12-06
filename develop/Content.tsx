@@ -3,17 +3,7 @@ import MarkdownView from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { Highlight, themes } from "prism-react-renderer";
 import { useNavigator } from "../src";
-import index_zh from "./docs/zh/index.md?raw";
-import api_zh from "./docs/zh/api.md?raw";
-import pattern_zh from "./docs/zh/pattern.md?raw";
-import examples_zh from "./docs/zh/examples.md?raw";
-
-const contents = {
-  index: index_zh,
-  api: api_zh,
-  pattern: pattern_zh,
-  examples: examples_zh,
-};
+import { contents } from "./docs";
 
 function renderCodeBlock(code: string, language?: string) {
   return (
@@ -38,8 +28,12 @@ function renderCodeBlock(code: string, language?: string) {
 }
 
 export function Content() {
-  const nav = useNavigator<{ name: keyof typeof contents }>();
-  const content = contents[nav.params.name || "index"];
+  const nav = useNavigator<{ name: string }>();
+  const item =
+    contents.find((it) => it.name === nav.params.name) || contents[0];
+  const index = contents.indexOf(item);
+  const prev = contents[index - 1];
+  const next = contents[index + 1];
   return (
     <article className="prose p-6 w-screen">
       <MarkdownView
@@ -71,8 +65,20 @@ export function Content() {
           },
         }}
       >
-        {content}
+        {item.content}
       </MarkdownView>
+      <nav className="flex justify-between mt-10">
+        {prev && (
+          <button className="btn" onClick={() => nav.push(`/${prev.name}`)}>
+            {`← ${prev.title}`}
+          </button>
+        )}
+        {next && (
+          <button className="btn" onClick={() => nav.push(`/${next.name}`)}>
+            {`${next.title} →`}
+          </button>
+        )}
+      </nav>
     </article>
   );
 }

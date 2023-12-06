@@ -121,34 +121,7 @@ function YourComponent(){
 ❌ /bar
 ```
 
-## 5. RBR 路由特点
-
-Route 的 pattern 总是完整匹配，并没有 exact 之类的选项，在整个组件树中与当前 URL 匹配的
-路由组件都会被渲染，**平级的 Route 出现的位置并不会影响路由的匹配**，而只影响组件的渲染位置，
-你不必为了匹配而花心思想应该放在哪，**需要显示在哪儿就放在哪儿**。
-
-```tsx
-function YourApp(){
-  return (
-    <Router driver={deriver}>
-      ...
-      <header>
-        <Route pattern="/(.*)"><NavBar/></Route>
-      </header>
-      <main>
-        <Route pattern="/(.*)"><SideBar/></Route>
-        <Route pattern="/posts/:id"><Content/></Route>
-      </main>
-      ...
-    </Router>
-  )
-}
-```
-
-在上述的示例中，当访问 **/** 时，NavBar 和 SideBar 都将渲染，而 Content 不会渲染。
-当访问 **/posts/1** 时 NavBar、SideBar、Content 都会被渲染。
-
-## 6. 嵌套路由
+## 5. 嵌套路由
 
 通常父路由为「前缀匹配」时，才有「添加子路由」的意义，因为，如果父路由是严格匹配，虽然也能添加子路由，但是子路由并没有极会被匹配到。
 
@@ -204,4 +177,3 @@ function Content() {
 👉 子路由，如果 pattern 为：/posts/:id
     那么，子路由的完整 pattern 为：/foo/:bar/abc/posts/:id
 ```
-
