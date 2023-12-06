@@ -1,24 +1,50 @@
-import { Fragment, ReactNode, createElement, useMemo } from "react";
-import { RouteProps } from "./RouteProps";
-import { RouterMatcher, createRouterMatcher } from "./RouterMatcher";
+import {
+  Children,
+  FC,
+  Fragment,
+  ReactNode,
+  createElement,
+  useMemo,
+} from "react";
+import {
+  RouterMatcher,
+  RouterPattern,
+  createRouterMatcher,
+  useParentMatcher,
+} from "./RouterMatcher";
+import { useRouterContext } from "./RouterContext";
+
+type SideType = FC<{ pattern: RouterPattern }>;
 
 export type RouteFallbackProps = {
-  pathname: string;
-  parentMatcher: RouterMatcher;
-  targets: RouteProps[];
+  side: [SideType, ReactNode];
   children: ReactNode;
 };
 
-export function RouteFallback(props: RouteFallbackProps) {
-  const { pathname, parentMatcher, targets, children } = props;
-  const matchers = useMemo<RouterMatcher[]>(
-    () =>
-      targets?.map((it) => {
-        const { pattern, prefix } = it;
-        return createRouterMatcher(pattern, prefix, parentMatcher);
-      }),
-    [targets.map((it) => `${it.pattern}::${it.prefix}`), parentMatcher],
+function takeSidePatterns(type: SideType, elements: ReactNode) {
+  const items = Children.toArray(elements).filter(
+    (it: any) => !!it && it?.type !== Fragment,
   );
-  if (!matchers.some((it) => it.match(pathname).state)) return <Fragment />;
-  return children;
+  const validItems = items.filter((it: any) => it?.type === type);
+  return items.length === validItems.length
+    ? validItems.map((it: any) => it.props?.pattern)
+    : [];
+}
+
+export function RouteFallback(props: RouteFallbackProps) {
+  const { side, children } = props;
+  const patterns = takeSidePatterns(...side);
+  const {
+    state: { pathname },
+  } = useRouterContext();
+  const parentMatcher = useParentMatcher();
+  const matchers = useMemo<RouterMatcher[]>(
+    () => patterns.map((it) => createRouterMatcher(it, "", parentMatcher)),
+    [patterns.join(":"), pathname, parentMatcher],
+  );
+  return !matchers[0] || matchers.some((it) => it.match(pathname).state) ? (
+    <Fragment />
+  ) : (
+    children
+  );
 }

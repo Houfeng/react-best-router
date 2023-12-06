@@ -2874,23 +2874,20 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-function takeFallbackProps(elements) {
-    return react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(elements)
-        .map((it) => it.type === Route && it.props)
-        .filter((it) => !!it);
-}
 function Route(props) {
     const { pattern, prefix, navigator, render, children, fallback } = props;
     const { state } = (0,_RouterContext__WEBPACK_IMPORTED_MODULE_1__.useRouterContext)();
     const parentMatcher = (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.useParentMatcher)();
     const matcher = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.createRouterMatcher)(pattern, prefix, parentMatcher), [pattern, prefix, parentMatcher]);
     if (!matcher.match(state.pathname).state)
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+        return fallback || (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
     const elements = render ? render(children) : children;
     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.MatcherContext.Provider, { value: matcher },
         navigator && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
         elements,
-        fallback && ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouteFallback__WEBPACK_IMPORTED_MODULE_4__.RouteFallback, { pathname: state.pathname, parentMatcher: parentMatcher, targets: takeFallbackProps(elements) }, fallback))));
+        fallback && ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouteFallback__WEBPACK_IMPORTED_MODULE_4__.RouteFallback, { side: [Route, elements] },
+            " ",
+            fallback))));
 }
 
 
@@ -2909,17 +2906,24 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.2.0/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _RouterMatcher__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./RouterMatcher */ "./src/core/RouterMatcher.ts");
+/* harmony import */ var _RouterContext__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./RouterContext */ "./src/core/RouterContext.ts");
 
 
+
+function takeSidePatterns(type, elements) {
+    const items = react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(elements).filter((it) => !!it && (it === null || it === void 0 ? void 0 : it.type) !== react__WEBPACK_IMPORTED_MODULE_0__.Fragment);
+    const validItems = items.filter((it) => (it === null || it === void 0 ? void 0 : it.type) === type);
+    return items.length === validItems.length
+        ? validItems.map((it) => { var _a; return (_a = it.props) === null || _a === void 0 ? void 0 : _a.pattern; })
+        : [];
+}
 function RouteFallback(props) {
-    const { pathname, parentMatcher, targets, children } = props;
-    const matchers = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => targets === null || targets === void 0 ? void 0 : targets.map((it) => {
-        const { pattern, prefix } = it;
-        return (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_1__.createRouterMatcher)(pattern, prefix, parentMatcher);
-    }), [targets.map((it) => `${it.pattern}::${it.prefix}`), parentMatcher]);
-    if (!matchers.some((it) => it.match(pathname).state))
-        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
-    return children;
+    const { side, children } = props;
+    const patterns = takeSidePatterns(...side);
+    const { state: { pathname }, } = (0,_RouterContext__WEBPACK_IMPORTED_MODULE_2__.useRouterContext)();
+    const parentMatcher = (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_1__.useParentMatcher)();
+    const matchers = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => patterns.map((it) => (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_1__.createRouterMatcher)(it, "", parentMatcher)), [patterns.join(":"), pathname, parentMatcher]);
+    return !matchers[0] || matchers.some((it) => it.match(pathname).state) ? ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null)) : (children);
 }
 
 

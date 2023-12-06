@@ -1,8 +1,7 @@
 import { createElement, useState, useMemo, useLayoutEffect } from "react";
 import { RouterDriver } from "./RouterDriver";
 import { RouterContext, RouterContextValue } from "./RouterContext";
-import { Route } from "./Route";
-import { RouteProps } from "./RouteProps";
+import { Route, RouteProps } from "./Route";
 
 export type RouterProps = {
   base?: string;

@@ -5,6 +5,7 @@ import { terser } from 'rollup-plugin-terser';
 import { toCamelCase } from 'ntils';
 import typescript from 'rollup-plugin-typescript2';
 import commonjs from 'rollup-plugin-commonjs';
+import gzipPlugin from 'rollup-plugin-gzip'
 
 const externals = {
   'react': 'React',
@@ -44,6 +45,7 @@ const createConf = ({
         }
       }),
       min && terser(),
+      min && gzipPlugin(),
       cleanup({ comments: 'none' }),
       typescript({
         useTsconfigDeclarationDir: true,

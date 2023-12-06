@@ -1,20 +1,23 @@
-import { createElement, useMemo, Fragment, ReactNode, Children } from "react";
+import { createElement, useMemo, Fragment, ReactNode } from "react";
 import { useRouterContext } from "./RouterContext";
 import {
   MatcherContext,
   RouterMatcher,
+  RouterPattern,
   createRouterMatcher,
   useParentMatcher,
 } from "./RouterMatcher";
-import { NavigatorForwarder } from "./RouterNavigator";
+import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
 import { RouteFallback } from "./RouteFallback";
-import { RouteProps } from "./RouteProps";
 
-function takeFallbackProps(elements: ReactNode) {
-  return Children.toArray(elements)
-    .map((it: any) => it.type === Route && it.props)
-    .filter((it) => !!it);
-}
+export type RouteProps = {
+  pattern: RouterPattern;
+  children?: ReactNode;
+  render?: (children: ReactNode) => ReactNode;
+  prefix?: RouterPattern;
+  navigator?: RouterNavigatorRef<any>;
+  fallback?: ReactNode;
+};
 
 export function Route(props: RouteProps) {
   const { pattern, prefix, navigator, render, children, fallback } = props;
@@ -26,7 +29,7 @@ export function Route(props: RouteProps) {
     [pattern, prefix, parentMatcher],
   );
   // match current pathname
-  if (!matcher.match(state.pathname).state) return <Fragment />;
+  if (!matcher.match(state.pathname).state) return fallback || <Fragment />;
   // normalize children
   const elements = render ? render(children) : children;
   return (
@@ -34,13 +37,7 @@ export function Route(props: RouteProps) {
       {navigator && <NavigatorForwarder ref={navigator} />}
       {elements}
       {fallback && (
-        <RouteFallback
-          pathname={state.pathname}
-          parentMatcher={parentMatcher}
-          targets={takeFallbackProps(elements)}
-        >
-          {fallback}
-        </RouteFallback>
+        <RouteFallback side={[Route, elements]}> {fallback}</RouteFallback>
       )}
     </MatcherContext.Provider>
   );
