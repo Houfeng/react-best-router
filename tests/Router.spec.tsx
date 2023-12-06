@@ -13,7 +13,7 @@ function TestApp({ onReady }: { onReady: () => void }) {
   const driver = useMemoryDriver();
   useEffect(() => onReady(), [onReady]);
   return (
-    <Router driver={driver} navigator={nav}>
+    <Router driver={driver} navigator={nav} fallback={<span>f</span>}>
       <Route pattern="/a">
         <span>a</span>
       </Route>
@@ -29,14 +29,13 @@ describe("Router", () => {
   const root = createRoot(mountNode);
 
   beforeEach(() => {
-    mountNode.innerHTML = "";
     return new Promise<void>((resolve) => {
       root.render(<TestApp onReady={resolve} />);
     });
   });
 
   it("render", async () => {
-    strictEqual(mountNode.textContent?.trim(), "");
+    strictEqual(mountNode.textContent?.trim(), "f");
   });
 
   it("push & back & forward", async () => {
@@ -58,5 +57,11 @@ describe("Router", () => {
     nav.current?.replace("../b");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "b");
+  });
+
+  it("fallback", async () => {
+    nav.current?.push("/none");
+    await sleep(100);
+    strictEqual(mountNode.textContent?.trim(), "f");
   });
 });

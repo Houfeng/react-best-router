@@ -2875,7 +2875,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Route(props) {
-    const { pattern, prefix, navigator, render, children, fallback } = props;
+    const { pattern = "/(.*)", prefix, navigator } = props;
+    const { render, children, fallback } = props;
     const { state } = (0,_RouterContext__WEBPACK_IMPORTED_MODULE_1__.useRouterContext)();
     const parentMatcher = (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.useParentMatcher)();
     const matcher = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_RouterMatcher__WEBPACK_IMPORTED_MODULE_2__.createRouterMatcher)(pattern, prefix, parentMatcher), [pattern, prefix, parentMatcher]);
@@ -2947,12 +2948,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function Router(props) {
-    const { driver, base = "/", navigator, children, render } = props;
+    const { driver, base = "/", navigator, children, render, fallback } = props;
     const [state, setState] = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)(() => driver.current());
     const context = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => ({ base, state, driver }), [base, state, driver]);
     (0,react__WEBPACK_IMPORTED_MODULE_0__.useLayoutEffect)(() => driver.subscribe((state) => setState(state)), [driver, state]);
     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterContext__WEBPACK_IMPORTED_MODULE_1__.RouterContext.Provider, { value: context },
-        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Route__WEBPACK_IMPORTED_MODULE_2__.Route, { pattern: `${base}/(.*)`, prefix: base, render: render, navigator: navigator }, children)));
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_Route__WEBPACK_IMPORTED_MODULE_2__.Route, { pattern: `${base}/(.*)`, prefix: base, render: render, navigator: navigator, fallback: fallback }, children)));
 }
 
 

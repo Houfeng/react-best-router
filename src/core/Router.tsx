@@ -9,7 +9,7 @@ export type RouterProps = {
 } & Omit<RouteProps, "pattern" | "prefix">;
 
 export function Router(props: RouterProps) {
-  const { driver, base = "/", navigator, children, render } = props;
+  const { driver, base = "/", navigator, children, render, fallback } = props;
   // initial state
   const [state, setState] = useState(() => driver.current());
   // create context
@@ -29,6 +29,7 @@ export function Router(props: RouterProps) {
         prefix={base}
         render={render}
         navigator={navigator}
+        fallback={fallback}
       >
         {children}
       </Route>

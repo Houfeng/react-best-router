@@ -11,16 +11,24 @@ import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
 import { RouteFallback } from "./RouteFallback";
 
 export type RouteProps = {
-  pattern: RouterPattern;
   children?: ReactNode;
   render?: (children: ReactNode) => ReactNode;
   prefix?: RouterPattern;
   navigator?: RouterNavigatorRef<any>;
-  fallback?: ReactNode;
-};
+} & (
+  | {
+      pattern: RouterPattern;
+      fallback?: ReactNode;
+    }
+  | {
+      pattern?: RouterPattern;
+      fallback: ReactNode;
+    }
+);
 
 export function Route(props: RouteProps) {
-  const { pattern, prefix, navigator, render, children, fallback } = props;
+  const { pattern = "/(.*)", prefix, navigator } = props;
+  const { render, children, fallback } = props;
   const { state } = useRouterContext();
   const parentMatcher = useParentMatcher();
   // create matcher
