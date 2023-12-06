@@ -1,6 +1,6 @@
-import { RouterPattern } from "./RouterMatcher";
+import { RoutePattern } from "./RouteMatcher";
 
-export function patternToPrefix(pattern: RouterPattern) {
+export function patternToPrefix(pattern: RoutePattern) {
   const expr = /[.*()[\]:]/;
   const segments = pattern.split("/");
   const lastIndex = segments
@@ -67,7 +67,7 @@ export type MatchResult<P extends object> = {
   params: P | undefined;
 };
 
-export type MathFunction<P extends object> = (
+export type MatchFunction<P extends object> = (
   pathname: string,
 ) => MatchResult<P>;
 

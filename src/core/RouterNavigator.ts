@@ -10,7 +10,7 @@ import {
 } from "react";
 import { useRouterContext } from "./RouterContext";
 import { normalizePath, resolvePath } from "./RouterUtil";
-import { useParentMatcher } from "./RouterMatcher";
+import { useParentMatcher } from "./RouteMatcher";
 
 type RouterNavigator<P extends object> = {
   pathname: string;

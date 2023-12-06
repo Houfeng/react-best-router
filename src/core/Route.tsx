@@ -2,26 +2,26 @@ import { createElement, useMemo, Fragment, ReactNode } from "react";
 import { useRouterContext } from "./RouterContext";
 import {
   MatcherContext,
-  RouterMatcher,
-  RouterPattern,
-  createRouterMatcher,
+  RouteMatcher,
+  RoutePattern,
+  createMatcher,
   useParentMatcher,
-} from "./RouterMatcher";
+} from "./RouteMatcher";
 import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
 import { RouteFallback } from "./RouteFallback";
 
 export type RouteProps = {
   children?: ReactNode;
   render?: (children: ReactNode) => ReactNode;
-  prefix?: RouterPattern;
+  prefix?: RoutePattern;
   navigator?: RouterNavigatorRef<any>;
 } & (
   | {
-      pattern: RouterPattern;
+      pattern: RoutePattern;
       fallback?: ReactNode;
     }
   | {
-      pattern?: RouterPattern;
+      pattern?: RoutePattern;
       fallback: ReactNode;
     }
 );
@@ -32,8 +32,8 @@ export function Route(props: RouteProps) {
   const { state } = useRouterContext();
   const parentMatcher = useParentMatcher();
   // create matcher
-  const matcher = useMemo<RouterMatcher>(
-    () => createRouterMatcher(pattern, prefix, parentMatcher),
+  const matcher = useMemo<RouteMatcher>(
+    () => createMatcher(pattern, prefix, parentMatcher),
     [pattern, prefix, parentMatcher],
   );
   // match current pathname

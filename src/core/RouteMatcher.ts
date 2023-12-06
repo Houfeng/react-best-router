@@ -1,25 +1,25 @@
 import { createContext, useContext } from "react";
 import {
   MatchResult,
-  MathFunction,
+  MatchFunction,
   normalizePath,
   patternToMatch,
   patternToPrefix,
 } from "./RouterUtil";
 
-export type RouterPattern = string & {};
+export type RoutePattern = string & {};
 
-export type RouterMatcher<P extends object = object> = {
-  pattern: RouterPattern;
-  prefix: RouterPattern;
-  match: MathFunction<P>;
+export type RouteMatcher<P extends object = object> = {
+  pattern: RoutePattern;
+  prefix: RoutePattern;
+  match: MatchFunction<P>;
   result?: MatchResult<P>;
-  parent?: RouterMatcher;
+  parent?: RouteMatcher;
 };
 
-function getMatcherFullPrefix(matcher: RouterMatcher | undefined) {
-  let current: RouterMatcher | undefined = matcher;
-  let fullPrefix: RouterPattern = "";
+function getMatcherFullPrefix(matcher: RouteMatcher | undefined) {
+  let current: RouteMatcher | undefined = matcher;
+  let fullPrefix: RoutePattern = "";
   while (current) {
     fullPrefix = `${current.prefix}/${fullPrefix}`;
     current = current.parent;
@@ -35,15 +35,15 @@ function normalizePattern(pattern: string) {
   );
 }
 
-export function createRouterMatcher(
-  pattern: RouterPattern,
-  prefix?: RouterPattern,
-  parent?: RouterMatcher,
-): RouterMatcher {
+export function createMatcher(
+  pattern: RoutePattern,
+  prefix?: RoutePattern,
+  parent?: RouteMatcher,
+): RouteMatcher {
   prefix = prefix || patternToPrefix(pattern);
   const fullPattern = `/${getMatcherFullPrefix(parent)}/${pattern}`;
   const match = patternToMatch(normalizePattern(fullPattern));
-  const matcher: RouterMatcher = { parent, pattern, prefix, match };
+  const matcher: RouteMatcher = { parent, pattern, prefix, match };
   matcher.match = (pathname: string) => {
     matcher.result = match(pathname);
     return matcher.result;
@@ -51,7 +51,8 @@ export function createRouterMatcher(
   return matcher;
 }
 
-export const MatcherContext = createContext<RouterMatcher>(null!);
+export const MatcherContext = createContext<RouteMatcher>(null!);
+
 export function useParentMatcher() {
   return useContext(MatcherContext);
 }
