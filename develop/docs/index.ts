@@ -12,18 +12,18 @@ export const contents = [
   },
   {
     name: "api",
-    title: "🗼 仅有 4 个 API",
+    title: "🗼 仅有 4 组 API",
     content: api_zh,
   },
   {
-    name: "specific",
+    name: "pattern",
     title: "🚏 详解路径匹配",
-    content: specific_zh,
+    content: pattern_zh,
   },
   {
-    name: "pattern",
+    name: "specific",
     title: "🧬 RBR 路由特性",
-    content: pattern_zh,
+    content: specific_zh,
   },
   {
     name: "examples",

@@ -52,8 +52,13 @@ function patternToRegExp(pattern: string) {
     table.push([key, value]);
     return key;
   });
+  text = text
+    .replace(/\?/g, "\\?")
+    .replace(/\*/g, "\\*")
+    .replace(/\+/g, "\\+")
+    .replace(/\./g, "\\.")
+    .replace(/\//g, "\\/");
   table.forEach(([key, value]) => (text = text.replace(key, value)));
-  text = text.replace(/\//g, "\\/");
   try {
     return new RegExp(`^${text}$`, "i");
   } catch {

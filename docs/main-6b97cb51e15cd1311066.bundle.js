@@ -876,10 +876,6 @@ html {
 }
 @media (hover:hover) {
 
-  .link-hover:hover {
-    text-decoration-line: underline;
-  }
-
   .label a:hover {
     --tw-text-opacity: 1;
     color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
@@ -1278,13 +1274,6 @@ html {
   border-start-end-radius: inherit;
   border-end-end-radius: inherit;
 }
-.link {
-  cursor: pointer;
-  text-decoration-line: underline;
-}
-.link-hover {
-  text-decoration-line: none;
-}
 .menu {
   display: flex;
   flex-direction: column;
@@ -1544,14 +1533,6 @@ html {
   .input[disabled]::placeholder {
   color: var(--fallback-bc,oklch(var(--bc)/var(--tw-placeholder-opacity)));
   --tw-placeholder-opacity: 0.2;
-}
-.link:focus {
-  outline: 2px solid transparent;
-  outline-offset: 2px;
-}
-.link:focus-visible {
-  outline: 2px solid currentColor;
-  outline-offset: 2px;
 }
 :where(.menu li:empty) {
   --tw-bg-opacity: 1;
@@ -2325,6 +2306,9 @@ html {
   margin-top: 2px;
   margin-bottom: 2px;
 }
+.mt-10 {
+  margin-top: 2.5rem;
+}
 .inline-block {
   display: inline-block;
 }
@@ -2385,6 +2369,9 @@ html {
 .justify-center {
   justify-content: center;
 }
+.justify-between {
+  justify-content: space-between;
+}
 .gap-4 {
   gap: 1rem;
 }
@@ -2401,9 +2388,6 @@ html {
 }
 .bg-opacity-75 {
   --tw-bg-opacity: 0.75;
-}
-.fill-current {
-  fill: currentColor;
 }
 .stroke-current {
   stroke: currentColor;
@@ -2591,37 +2575,31 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.2.0/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var react_markdown__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react-markdown */ "./node_modules/.pnpm/react-markdown@9.0.1_@types+react@18.2.39_react@18.2.0/node_modules/react-markdown/lib/index.js");
-/* harmony import */ var remark_gfm__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! remark-gfm */ "./node_modules/.pnpm/remark-gfm@4.0.0/node_modules/remark-gfm/lib/index.js");
+/* harmony import */ var react_markdown__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-markdown */ "./node_modules/.pnpm/react-markdown@9.0.1_@types+react@18.2.39_react@18.2.0/node_modules/react-markdown/lib/index.js");
+/* harmony import */ var remark_gfm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! remark-gfm */ "./node_modules/.pnpm/remark-gfm@4.0.0/node_modules/remark-gfm/lib/index.js");
 /* harmony import */ var prism_react_renderer__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prism-react-renderer */ "./node_modules/.pnpm/prism-react-renderer@2.3.0_react@18.2.0/node_modules/prism-react-renderer/dist/index.mjs");
 /* harmony import */ var _src__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../src */ "./src/index.ts");
-/* harmony import */ var _docs_zh_index_md_raw__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./docs/zh/index.md?raw */ "./develop/docs/zh/index.md?raw");
-/* harmony import */ var _docs_zh_api_md_raw__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./docs/zh/api.md?raw */ "./develop/docs/zh/api.md?raw");
-/* harmony import */ var _docs_zh_pattern_md_raw__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./docs/zh/pattern.md?raw */ "./develop/docs/zh/pattern.md?raw");
-/* harmony import */ var _docs_zh_examples_md_raw__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./docs/zh/examples.md?raw */ "./develop/docs/zh/examples.md?raw");
+/* harmony import */ var _docs__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./docs */ "./develop/docs/index.ts");
 
 
 
 
 
 
-
-
-
-const contents = {
-    index: _docs_zh_index_md_raw__WEBPACK_IMPORTED_MODULE_3__,
-    api: _docs_zh_api_md_raw__WEBPACK_IMPORTED_MODULE_4__,
-    pattern: _docs_zh_pattern_md_raw__WEBPACK_IMPORTED_MODULE_5__,
-    examples: _docs_zh_examples_md_raw__WEBPACK_IMPORTED_MODULE_6__,
-};
+function scrollToTop() {
+    setTimeout(() => (document.documentElement.scrollTop = 0), 0);
+}
 function renderCodeBlock(code, language) {
     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(prism_react_renderer__WEBPACK_IMPORTED_MODULE_1__.Highlight, { theme: prism_react_renderer__WEBPACK_IMPORTED_MODULE_1__.themes.nightOwl, code: code, language: language || "bash" }, ({ tokens, getLineProps, getTokenProps }) => ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, tokens.map((line, i) => ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", Object.assign({ key: i }, getLineProps({ line }), { className: "code inline" }), line.map((token, key) => ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", Object.assign({ key: key }, getTokenProps({ token }))))))))))));
 }
 function Content() {
     const nav = (0,_src__WEBPACK_IMPORTED_MODULE_2__.useNavigator)();
-    const content = contents[nav.params.name || "index"];
+    const item = _docs__WEBPACK_IMPORTED_MODULE_3__.contents.find((it) => it.name === nav.params.name) || _docs__WEBPACK_IMPORTED_MODULE_3__.contents[0];
+    const index = _docs__WEBPACK_IMPORTED_MODULE_3__.contents.indexOf(item);
+    const prev = _docs__WEBPACK_IMPORTED_MODULE_3__.contents[index - 1];
+    const next = _docs__WEBPACK_IMPORTED_MODULE_3__.contents[index + 1];
     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("article", { className: "prose p-6 w-screen" },
-        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_markdown__WEBPACK_IMPORTED_MODULE_7__.Markdown, { remarkPlugins: [remark_gfm__WEBPACK_IMPORTED_MODULE_8__["default"]], components: {
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react_markdown__WEBPACK_IMPORTED_MODULE_4__.Markdown, { remarkPlugins: [remark_gfm__WEBPACK_IMPORTED_MODULE_5__["default"]], components: {
                 pre(props) {
                     const { className = "", children } = props;
                     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("pre", { className: `[&>.code]:block ${className} font-mono` }, children));
@@ -2636,7 +2614,10 @@ function Content() {
                     const { children, className = "" } = props;
                     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", { className: `font-serif ${className} [&>a>img]:inline [&>a>img]:m-0` }, children));
                 },
-            } }, content)));
+            } }, item.content),
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("nav", { className: "flex justify-between mt-10" },
+            prev ? ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", { className: "btn", onClick: () => [nav.push(`/${prev.name}`), scrollToTop()] }, `← ${prev.title}`)) : ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null)),
+            next ? ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("button", { className: "btn", onClick: () => [nav.push(`/${next.name}`), scrollToTop()] }, `${next.title} →`)) : ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("span", null)))));
 }
 
 
@@ -2690,16 +2671,7 @@ __webpack_require__.r(__webpack_exports__);
 function Footer() {
     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("footer", { className: "footer footer-center p-10 bg-base-100 text-base-content" },
         (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("nav", null,
-            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "grid grid-flow-col gap-4" },
-                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null,
-                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", className: "fill-current" },
-                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", { d: "M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" }))),
-                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null,
-                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", className: "fill-current" },
-                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", { d: "M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z" }))),
-                (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", null,
-                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", { xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24", className: "fill-current" },
-                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", { d: "M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z" }))))),
+            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "grid grid-flow-col gap-4" })),
         (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("aside", null,
             (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("p", null, "Copyleft \u00A9 2023 - RBR - Powered by Houfeng"))));
 }
@@ -2792,20 +2764,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.2.0/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src */ "./src/index.ts");
+/* harmony import */ var _docs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./docs */ "./develop/docs/index.ts");
 
 
+
+function scrollToTop() {
+    setTimeout(() => (document.documentElement.scrollTop = 0), 0);
+}
 function SideBar() {
     const nav = (0,_src__WEBPACK_IMPORTED_MODULE_1__.useNavigator)();
-    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", { onClick: () => { var _a; return (_a = document.getElementById("drawer-switch")) === null || _a === void 0 ? void 0 : _a.click(); }, className: "menu p-3 w-60 bg-base-200 bg-opacity-75 glass h-full pt-16 text-base-content" },
-        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
-            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => nav.push("/index") }, "\uD83D\uDE80 \u5FEB\u901F\u4E0A\u624B RBR")),
-        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
-            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => nav.push("/api") }, "\uD83D\uDDFC \u4EC5\u6709 4 \u4E2A API")),
-        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
-            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => nav.push("/pattern") }, "\uD83D\uDE8F \u8BE6\u89E3\u8DEF\u5F84\u5339\u914D")),
-        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
-            (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => nav.push("/examples") }, "\uD83D\uDCA1 \u5E38\u89C1\u7528\u6CD5\u793A\u4F8B"))));
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", { onClick: () => { var _a; return (_a = document.getElementById("drawer-switch")) === null || _a === void 0 ? void 0 : _a.click(); }, className: "menu p-3 w-60 bg-base-200 bg-opacity-75 glass h-full pt-16 text-base-content" }, _docs__WEBPACK_IMPORTED_MODULE_2__.contents.map((it) => ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
+        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => [nav.push(`/${it.name}`), scrollToTop()] }, it.title))))));
 }
+
+
+/***/ }),
+
+/***/ "./develop/docs/index.ts":
+/*!*******************************!*\
+  !*** ./develop/docs/index.ts ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   contents: () => (/* binding */ contents)
+/* harmony export */ });
+/* harmony import */ var _zh_index_md_raw__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./zh/index.md?raw */ "./develop/docs/zh/index.md?raw");
+/* harmony import */ var _zh_api_md_raw__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./zh/api.md?raw */ "./develop/docs/zh/api.md?raw");
+/* harmony import */ var _zh_specific_md_raw__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./zh/specific.md?raw */ "./develop/docs/zh/specific.md?raw");
+/* harmony import */ var _zh_pattern_md_raw__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./zh/pattern.md?raw */ "./develop/docs/zh/pattern.md?raw");
+/* harmony import */ var _zh_examples_md_raw__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./zh/examples.md?raw */ "./develop/docs/zh/examples.md?raw");
+
+
+
+
+
+const contents = [
+    {
+        name: "index",
+        title: "🚀 快速上手 RBR",
+        content: _zh_index_md_raw__WEBPACK_IMPORTED_MODULE_0__,
+    },
+    {
+        name: "api",
+        title: "🗼 仅有 4 组 API",
+        content: _zh_api_md_raw__WEBPACK_IMPORTED_MODULE_1__,
+    },
+    {
+        name: "pattern",
+        title: "🚏 详解路径匹配",
+        content: _zh_pattern_md_raw__WEBPACK_IMPORTED_MODULE_3__,
+    },
+    {
+        name: "specific",
+        title: "🧬 RBR 路由特性",
+        content: _zh_specific_md_raw__WEBPACK_IMPORTED_MODULE_2__,
+    },
+    {
+        name: "examples",
+        title: "💡 常见用法示例",
+        content: _zh_examples_md_raw__WEBPACK_IMPORTED_MODULE_4__,
+    },
+];
 
 
 /***/ }),
@@ -3173,8 +3194,13 @@ function patternToRegExp(pattern) {
         table.push([key, value]);
         return key;
     });
+    text = text
+        .replace(/\?/g, "\\?")
+        .replace(/\*/g, "\\*")
+        .replace(/\+/g, "\\+")
+        .replace(/\./g, "\\.")
+        .replace(/\//g, "\\/");
     table.forEach(([key, value]) => (text = text.replace(key, value)));
-    text = text.replace(/\//g, "\\/");
     try {
         return new RegExp(`^${text}$`, "i");
     }
@@ -3436,7 +3462,7 @@ module.exports = __webpack_require__.p + "cdc7d66d78675cf58dc3.ttf";
   \************************************/
 /***/ ((module) => {
 
-module.exports = "# 仅有 4 个 API\n\nRBR 专注于解决「React 应用中的路由处理」这一个问题，\n它是一个极简的路由库，共有 **4 个核心 API**。\n\n## 1. Router\n\nRouter 以一个 React 组件的形式提供，通常一个应用只需要一个 Router 作为容器在最外层，\n当然，根据你的需求也可以使用多个 Router。\n\n```tsx\ntype RouterProps = {\n  // 指定 Router 的路径前缀，默认值为 `/`，\n  // 当应用运行在一个子路径下时，这非常有用。\n  base?: string;\n\n  // 为当前 Router 指定驱动类型\n  driver: RouterDriver;\n\n  // 这是一个 Ref，当你需要 Router 组件子树外访问 navigator 时，它非常有用\n  navigator?: RouterNavigatorRef<any>;\n\n  // 可以是任意合法的 ReactNode，在任意深度的层级中都可使用 route\n  children?: ReactNode;\n};\n```\n\nRouter 使用示例\n\n```tsx\nfunction YourApp() {\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver} navigator={navRef}>\n      <Route pattern=\"/\"><Index/></Route>\n      <Route pattern=\"/posts\"><Posts/></Route>\n    </Router>\n  );\n}\n```\n\n## 2. Route\n\nRoute 是在用 RBR 时被使有最多的 API 之一，所有具体的路由都使用它来定义，Route 以 React 组件\n的形式提供。\n\n```tsx\ntype RouteProps = {\n  // 路由的「路径匹配模式」\n  pattern: RouterPattern;\n\n  // 传递给子路由的「前缀匹配模式」，默认由 pattern 自动计算，但也可手动指定\n  prefix?: RouterPattern;\n\n  // 这是一个 Ref，当你需要 Route 组件子树外访问 navigator 时，它非常有用\n  navigator?: RouterNavigatorRef<any>;\n\n  // 可以是任意合法的 ReactNode，在任意深度的层级中都可添加子 route\n  children?: ReactNode;\n};\n```\n\nRoute 使用示例\n\n```tsx\n// 通过 pattern 定义 path 的匹配模式（在《详解路径匹配》中有详细说明）\n<Route pattern=\"/foo/:bar\">\n  {/* 可直接通过 children 来指定渲染的目标组件 */}\n  <Content />\n  {/* 也可在 children 中直接指定子路由 */}\n  <Route pattern=\"/:child_bar\">...</Route>\n</Route>\n```\n\n## 3. Navigator\n\nNavigator 是在用 RBR 时被使有最多的 API 之二，通过它在各页面之导航，\nNavigator 以 React Hooks 和 factory function 的形式提供。\n\n```tsx\ntype RouterNavigator<P extends object> = {\n  // 应用当前的 pathname\n  pathname: string;\n  // 路由参数\n  params: MatchResult<P>[\"params\"];\n  // 跳转到指定的路径\n  push: (path: string) => void;\n  // 返回上一个路径\n  back: () => void;\n  // 当前返回后，还可前进到下一个路径\n  forward: () => void;\n  // 返回或前进指定的步数，<0 为返回，>0 为前进\n  go: (step: number) => void;\n  // 替换当前路径，不影响历史记录\n  replace: (path: string) => void;\n};\n```\n\nNavigator 使用示例\n\n```tsx\n// 使用方式一\nfunction YourComponent() {\n  // 通过 useNavigator 获取最近的 router/route 对应的 navigator 对象\n  const nav = useNavigator();\n  return (\n    <button onClick={()=>nav.push(`/foo/${nav.params.bar}`)}>\n      Click me\n    </button>\n  );\n}\n\n// 使用方式二\nfunction YourApp() {\n  const navRef = useNavigatorRef();\n  return (\n    <Router driver={driver} navigator={navRef}>\n      {...}\n    </Router>\n  );\n}\n\n// 使用方式三\nconst navRef = createNavigatorRef();\nfunction YourApp() {\n  return (\n    <Router driver={driver} navigator={navRef}>\n      {...}\n    </Router>\n  );\n}\n```\n\n## 4. Driver\n\n在不同的场景下，需要有不同的 Driver 来和运行环境关联并区动整个 Router 运行，\n比如，在浏览器中通常和 URL 关联，也可能仅和 Hash 关联，也可能仅是运行于内存中的逻辑。\n\n### BrowserDriver\n\n基于浏览器 History API 的驱动，主流的浏览器都已支持，大多数 Web 应用都可以使用它\n\n```ts\n// 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook\nconst driver = useBrowserDriver();\n\n// 使用方法二，当在组件外部创建 driver 时，请使用如下的方法\nconst driver = createBrowserDriver();\n```\n\n### HashDriver\n\n在一些旧浏览器，或者你的服务器程序无法面向前端启用 History fallback 时，可以用 HashDriver\n> 启用 History fallback，指的是配置服务端路由 /your_app_path/* 指向你的前端页面\n\n```ts\n// 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook\nconst driver = useHashDriver();\n\n// 使用方法二，当在组件外部创建 driver 时，请使用如下的方法\nconst driver = createHashDriver();\n```\n\n### MemoryDriver\n\n当在非浏览器环境使用 RBR 时，或不想在 URL 中反映你的页面路径，可以使用 MemoryDriver\n\n```ts\n// 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook\nconst driver = useMemoryDriver(/* 可选选项 */);\n\n// 使用方法二，当在组件外部创建 driver 时，请使用如下的方法\nconst driver = createMemoryDriver(/* 可选选项 */);\n\n// 选项类型定义如下，选项的默认值为 { pathname: \"/\" }\ntype MemoryDriverInitialState {\n  // 因为内存 Driver 并没有现有的路径可关联，需要通过初始状态的 pathname 指定\n  pathname: string; \n}\n```\n";
+module.exports = "# 仅有 4 组 API\n\nRBR 专注于解决「React 应用中的路由处理」这一个问题，\n它是一个极简的路由库，共有 **4 组核心 API**，包括（ Router、Driver、Route、Navigator ）。\n\n## 1. Router\n\nRouter 以一个 React 组件的形式提供，通常一个应用只需要一个 Router 作为容器在最外层，\n当然，根据你的需求也可以使用多个 Router。\n\n```tsx\ntype RouterProps = {\n  // 指定 Router 的路径前缀，默认值为 `/`，\n  // 当应用运行在一个子路径下时，这非常有用。\n  base?: string;\n\n  // 为当前 Router 指定驱动类型\n  driver: RouterDriver;\n\n  // 这是一个 Ref，当你需要 Router 组件子树外访问 navigator 时，它非常有用\n  navigator?: RouterNavigatorRef<any>;\n\n  // 可以是任意合法的 ReactNode，在任意深度的层级中都可使用 route\n  children?: ReactNode;\n};\n```\n\nRouter 使用示例\n\n```tsx\nfunction YourApp() {\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver} navigator={navRef}>\n      <Route pattern=\"/\"><Index/></Route>\n      <Route pattern=\"/posts\"><Posts/></Route>\n    </Router>\n  );\n}\n```\n\n## 2. Route\n\nRoute 是在用 RBR 时被使有最多的 API 之一，所有具体的路由都使用它来定义，Route 以 React 组件\n的形式提供。\n\n```tsx\ntype RouteProps = {\n  // 路由的「路径匹配模式」\n  pattern: RouterPattern;\n\n  // 传递给子路由的「前缀匹配模式」，默认由 pattern 自动计算，但也可手动指定\n  prefix?: RouterPattern;\n\n  // 这是一个 Ref，当你需要 Route 组件子树外访问 navigator 时，它非常有用\n  navigator?: RouterNavigatorRef<any>;\n\n  // 可以是任意合法的 ReactNode，在任意深度的层级中都可添加子 route\n  children?: ReactNode;\n};\n```\n\nRoute 使用示例\n\n```tsx\n// 通过 pattern 定义 path 的匹配模式（在《详解路径匹配》中有详细说明）\n<Route pattern=\"/foo/:bar\">\n  {/* 可直接通过 children 来指定渲染的目标组件 */}\n  <Content />\n  {/* 也可在 children 中直接指定子路由 */}\n  <Route pattern=\"/:child_bar\">...</Route>\n</Route>\n```\n\n## 3. Navigator\n\nNavigator 是在用 RBR 时被使有最多的 API 之二，通过它在各页面之导航，\nNavigator 以 React Hooks 和 factory function 的形式提供。\n\n```tsx\ntype RouterNavigator<P extends object> = {\n  // 应用当前的 pathname\n  pathname: string;\n  // 路由参数\n  params: MatchResult<P>[\"params\"];\n  // 跳转到指定的路径\n  push: (path: string) => void;\n  // 返回上一个路径\n  back: () => void;\n  // 当前返回后，还可前进到下一个路径\n  forward: () => void;\n  // 返回或前进指定的步数，<0 为返回，>0 为前进\n  go: (step: number) => void;\n  // 替换当前路径，不影响历史记录\n  replace: (path: string) => void;\n};\n```\n\nNavigator 使用示例\n\n```tsx\n// 使用方式一\nfunction YourComponent() {\n  // 通过 useNavigator 获取最近的 router/route 对应的 navigator 对象\n  const nav = useNavigator();\n  return (\n    <button onClick={()=>nav.push(`/foo/${nav.params.bar}`)}>\n      Click me\n    </button>\n  );\n}\n\n// 使用方式二\nfunction YourApp() {\n  const navRef = useNavigatorRef();\n  return (\n    <Router driver={driver} navigator={navRef}>\n      {...}\n    </Router>\n  );\n}\n\n// 使用方式三\nconst navRef = createNavigatorRef();\nfunction YourApp() {\n  return (\n    <Router driver={driver} navigator={navRef}>\n      {...}\n    </Router>\n  );\n}\n```\n\n## 4. Driver\n\n在不同的场景下，需要有不同的 Driver 来和运行环境关联并区动整个 Router 运行，\n比如，在浏览器中通常和 URL 关联，也可能仅和 Hash 关联，也可能仅是运行于内存中的逻辑。\n\n### BrowserDriver\n\n基于浏览器 History API 的驱动，主流的浏览器都已支持，大多数 Web 应用都可以使用它\n\n```ts\n// 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook\nconst driver = useBrowserDriver();\n\n// 使用方法二，当在组件外部创建 driver 时，请使用如下的方法\nconst driver = createBrowserDriver();\n```\n\n### HashDriver\n\n在一些旧浏览器，或者你的服务器程序无法面向前端启用 History fallback 时，可以用 HashDriver\n> 启用 History fallback，指的是配置服务端路由 /your_app_path/* 指向你的前端页面\n\n```ts\n// 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook\nconst driver = useHashDriver();\n\n// 使用方法二，当在组件外部创建 driver 时，请使用如下的方法\nconst driver = createHashDriver();\n```\n\n### MemoryDriver\n\n当在非浏览器环境使用 RBR 时，或不想在 URL 中反映你的页面路径，可以使用 MemoryDriver\n\n```ts\n// 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook\nconst driver = useMemoryDriver(/* 可选选项 */);\n\n// 使用方法二，当在组件外部创建 driver 时，请使用如下的方法\nconst driver = createMemoryDriver(/* 可选选项 */);\n\n// 选项类型定义如下，选项的默认值为 { pathname: \"/\" }\ntype MemoryDriverInitialState {\n  // 因为内存 Driver 并没有现有的路径可关联，需要通过初始状态的 pathname 指定\n  pathname: string; \n}\n```\n";
 
 /***/ }),
 
@@ -3456,7 +3482,7 @@ module.exports = "# 常见用法示例\n\n```bash\nTODO://\n```\n";
   \**************************************/
 /***/ ((module) => {
 
-module.exports = "# 快速上手 RBR\n\n## 1. 简述\n\n在稍大些的 React 应用中，通常需要使用 Router 处理页面间的关系，以及在页面之间导航。\n你在用其他 Router 库吗？是否遇到过不太好用的地方？比如，定义嵌套和动态路由时比较麻烦或有问题、\n或者 API 不够简洁、或者包含了一些和路由无关的内容、或者不同版本间常常不兼容...\n\n在一个周末，我尝试写了这个更简单易用的路由包，专注于 React 应用的路由处理，我给这个包命名为 **react-best-router**，并简称为 **RBR**。\n\nRBR 体积很小，Minify **4.6kb**，Gzip **2kb**。RBR 的 API 也很简洁只有 **4** 个核心 API。\n\n[![github](https://img.shields.io/badge/Github-RBR%20Repo-blue)](https://github.com/houfeng/react-best-router)\n[![npm](https://img.shields.io/npm/l/react-best-router.svg)](LICENSE.md)\n[![NPM Version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n[![npm](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n\n## 2. 安装\n\n```zsh\n# NPM Package\n$ npm install react-best-router \n```\n\n```html\n<!-- CDN -->\n<script \nsrc=\"https://cdn.jsdelivr.net/npm/react-best-router@0.2.0/dist/react-best-router-iife.min.js\">\n</script>\n```\n\n## 3. 使用\n\n```tsx\nimport { Router, useBrowserDriver } from \"react-best-router\";\n\n// 示例应用入口组件\nfunction YourApp() {\n  // 需要指定一个 driver （先不用太关心它，后续的文档中会介绍什么是 driver）\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <Route pattern=\"/\"><Index/></Route>\n      <Route pattern=\"/posts\"><Posts/></Route>\n    </Router>\n  );\n}\n```\n\n以本地开发服务 *http://localhost:8080* 为例，现在就可浏览器中访问到 **index** 页面了，\n也可以通过 *http://localhost:8080/posts* 访问 **Posts** 页面，**RBR** 已经在工作了。\n  \n\n接下来，我们为这个示例增加一个「导航菜单」，我们通过 **useNavigator**  Hook 可以获得\n「Router navigator 实例」，用它在不同页面间导航。\n\n```tsx\nimport { \n  Router, \n  useBrowserDriver, \n  useNavigator \n} from \"react-best-router\";\n\n// 导航菜单组件\nfunction NavMenus(){\n  const nav = useNavigator();\n  return (\n    <ul>\n      <li><a onClick={nav.push('/index')}>Index</a></li>\n      <li><a onClick={nav.push('/posts')}>Posts</a></li>\n    </ul>\n  );\n}\n\n// 示例应用入口组件\nfunction YourApp() {\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <NavMenus/>\n      <main>\n        <Route pattern=\"/\"><Index/></Route>\n        <Route pattern=\"/posts\"><Posts/></Route>\n      </main>\n    </Router>\n  );\n}\n```\n\n现在，你已经学会 RBR 的基本使用了，后边还将会介绍一些其他内容，但同样都是非常简单的。";
+module.exports = "# 快速上手 RBR\n\n## 1. 简述\n\n在稍大些的 React 应用中，通常需要使用 Router 处理页面间的关系，以及在页面之间导航。\n你在用其他 Router 库吗？是否遇到过不太好用的地方？比如，定义嵌套和动态路由时比较麻烦或有问题、\n或者 API 不够简洁、或者包含了一些和路由无关的内容、或者不同版本间常常不兼容...\n\n在一个周末，我尝试写了这个更简单易用的路由包，专注于 React 应用的路由处理，我给这个包命名为 **react-best-router**，并简称为 **RBR**。\n\nRBR 体积很小，Minify **~5kb**，GZip **~2kb**。Ta 的 API 也很简洁只有 **4** 组核心 API，包括（ Router、Driver、Route、Navigator ）。\n\n[![github](https://img.shields.io/badge/Repo-Github-blue)](https://github.com/houfeng/react-best-router)\n[![npm](https://img.shields.io/npm/l/react-best-router.svg)](https://github.com/houfeng/react-best-router)\n[![npm version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n[![npm download](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n[![minify](https://img.shields.io/badge/Minify-5kb-green)](https://github.com/houfeng/react-best-router)\n[![minify](https://img.shields.io/badge/GZip-2kb-green)](https://github.com/houfeng/react-best-router)\n[![unit](https://img.shields.io/badge/Tests-87%-green)](https://github.com/houfeng/react-best-router)\n\n## 2. 安装\n\n```zsh\n# NPM Package\n$ npm install react-best-router \n```\n\n```html\n<!-- CDN -->\n<script \nsrc=\"https://cdn.jsdelivr.net/npm/react-best-router@0.2.0/dist/react-best-router-iife.min.js\">\n</script>\n```\n\n## 3. 使用\n\n```tsx\nimport { Router, useBrowserDriver } from \"react-best-router\";\n\n// 示例应用入口组件\nfunction YourApp() {\n  // 需要指定一个 driver （先不用太关心它，后续的文档中会介绍什么是 driver）\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <Route pattern=\"/\"><Index/></Route>\n      <Route pattern=\"/posts\"><Posts/></Route>\n    </Router>\n  );\n}\n```\n\n以本地开发服务 *http://localhost:8080* 为例，现在就可浏览器中访问到 **index** 页面了，\n也可以通过 *http://localhost:8080/posts* 访问 **Posts** 页面，**RBR** 已经在工作了。\n  \n接下来，我们为这个示例增加一个「导航菜单」，我们通过 **useNavigator**  Hook 可以获得\n「Router navigator 实例」，用它在不同页面间导航。\n\n```tsx\nimport { \n  Router, \n  useBrowserDriver, \n  useNavigator \n} from \"react-best-router\";\n\n// 导航菜单组件\nfunction NavMenus(){\n  const nav = useNavigator();\n  return (\n    <ul>\n      <li><a onClick={nav.push('/index')}>Index</a></li>\n      <li><a onClick={nav.push('/posts')}>Posts</a></li>\n    </ul>\n  );\n}\n\n// 示例应用入口组件\nfunction YourApp() {\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <NavMenus/>\n      <main>\n        <Route pattern=\"/\"><Index/></Route>\n        <Route pattern=\"/posts\"><Posts/></Route>\n      </main>\n    </Router>\n  );\n}\n```\n\n现在，你已经学会 RBR 的基本使用了，后边还将会介绍一些其他内容，但同样都是非常简单的。";
 
 /***/ }),
 
@@ -3466,7 +3492,17 @@ module.exports = "# 快速上手 RBR\n\n## 1. 简述\n\n在稍大些的 React �
   \****************************************/
 /***/ ((module) => {
 
-module.exports = "# 详解路径匹配\n\n## 1. 具名参数\n\n```zsh\n# 定义有一个「由二层路径组成的 pattern」\n# 第一层 foo 是确定值，第二层 :bar 是变量\n\n👉 /foo/:bar\n\n# 上述 pattern 需两层且以 /foo/... 开头才能匹配，以示例说明\n\n✅ /foo/123\n✅ /foo/abc \n❌ /foo\n❌ /foo/123/abc\n```\n\n```zsh\n# 定义有一个「由二层路径组成的 pattern」\n# 第一层 :foo 是变量，第二层 bar 是确定值\n\n👉 /:foo/bar\n\n# 上述 pattern 需两层且以 .../bar 结尾才能匹配，以示例说明\n\n✅ /abc/bar\n✅ /123/bar\n❌ /foo\n❌ /foo/123\n❌ /bar\n```\n\n如上边的两个示例，路由 pattern 总是完整匹配，变量部分可被任意合法的字符填充，同时，可在代码中\n通过 navigator 的 params 拿到参数的具体值，如下\n\n```tsx\nfunction YourComponent(){\n  const nav = useNavigator();\n  return <span>{nav.params.bar}</span>\n} \n```\n\n## 2. 参数约束\n\n```zsh\n# 定义有一个「由二层路径组成的 pattern」\n# 第一层 foo 是确定值，第二层 :bar 是变量，同时约束 :bar 为数字\n\n👉 /foo/:bar(\\d+)\n\n# 两层以 /foo/... 开头且以数字结束才能匹配，以示例说明\n\n✅ /foo/123\n❌ /foo/abc \n❌ /foo\n❌ /abc/123\n```\n\n参数约束写在变量名后的的小括号中，语法为「正则表达式」。\n\n## 3. 参数修饰符\n\n问号（?），可选参数修饰符（0 或 1 次）\n\n```zsh\n👉 /foo/:bar?\n\n✅ /foo/123\n✅ /foo/abc \n✅ /foo\n❌ /foo/bar/123\n❌ /abc/123\n```\n\n星号（*），0 或 n 次修饰符\n\n```zsh\n👉 /foo/:bar*\n\n✅ /foo/123\n✅ /foo/abc \n✅ /foo\n✅ /foo/abc/123\n❌ /abc/123\n```\n\n加号（+），1 或 n 次修饰符\n\n```zsh\n👉 /foo/:bar+\n\n✅ /foo/123\n✅ /foo/abc \n❌ /foo\n✅ /foo/abc/123\n❌ /abc/123\n```\n\n## 4. 匿名参数\n\n可只声明参数约束，但不为参数命名，此时参数名将会以参数出现的次序为名（也就是 index）\n\n```zsh\n# 定义了一个「仅匹配数字」的匿名参数，因为只有一个参数,自动命名为 0\n👉 /foo/(\\d+)\n\n✅ /foo/123\n❌ /foo/abc \n❌ /foot/abc/123\n❌ /bar\n```\n\n```zsh\n# 定义了一个「匹配所有字符」的参数，因为只有一个参数,自动命名为 0\n👉 /foo/(.*)\n\n✅ /foo/123\n✅ /foo/abc \n✅ /foot/abc/123\n❌ /bar\n```\n\n## 5. RBR 路由特点\n\nRoute 的 pattern 总是完整匹配，并没有 exact 之类的选项，在整个组件树中与当前 URL 匹配的\n路由组件都会被渲染，**平级的 Route 出现的位置并不会影响路由的匹配**，而只影响组件的渲染位置，\n你不必为了匹配而花心思想应该放在哪，**需要显示在哪儿就放在哪儿**。\n\n```tsx\nfunction YourApp(){\n  return (\n    <Router driver={deriver}>\n      ...\n      <header>\n        <Route pattern=\"/(.*)\"><NavBar/></Route>\n      </header>\n      <main>\n        <Route pattern=\"/(.*)\"><SideBar/></Route>\n        <Route pattern=\"/posts/:id\"><Content/></Route>\n      </main>\n      ...\n    </Router>\n  )\n}\n```\n\n在上述的示例中，当访问 **/** 时，NavBar 和 SideBar 都将渲染，而 Content 不会渲染。\n当访问 **/posts/1** 时 NavBar、SideBar、Content 都会被渲染。\n\n## 6. 嵌套路由\n\n通常父路由为「前缀匹配」时，才有「添加子路由」的意义，因为，如果父路由是严格匹配，虽然也能添加子路由，但是子路由并没有极会被匹配到。\n\n下方是父子级嵌套路由的示例，这个示例比较简单，只有两层路径\n\n```tsx\n<Route pattern=\"/foo/:bar\">\n  ...\n  {/* 也可在 children 中直接批定子路由 */}\n  <Route pattern=\"/:child_bar\">\n  ...\n   {/* 可直接通过 children 来指定渲染的目标组件 */}\n   {/* Content 组件定义在 Content.tsx 中 */}\n  <Content />  \n</Route>\n```\n\n除了在 Route 的直接 children 中添加子路由，也可在**任意层级**的子组件中添加子路由\n\n```tsx\n// Content.tsx，也可在子组件中添加 Route\nfunction Content() {\n  return (\n    <div>\n    ...\n     <Route pattern=\"/:child_bar\">...</Route>\n    ...\n    </div>\n  );\n}\n```\n\n**怎么确定子路由的完整 pattern**？\n\n> 由「父路由 pattern 最长的确切部分作为前缀」，加上「子路由自身的 pattern」， 最终组合成子路由的「完整 pattern」。\n\n以上文示例中定义的 pattern 为示例\n\n```zsh\n👉 父路由，如果 pattern 为 /foo/:bar\n    那么，最长的确切部分为 /foo/\n\n👉 子路由，如果 pattern 为：/:child_bar\n    那么，子路由的完整 pattern 为：/foo/:child_bar\n```\n\n一个有多个变量，更复杂一些的示例\n\n```zsh\n👉 父路由，如果 pattern 为 /foo/:bar/abc/(.*)\n    那么，最长的确切部分为 /foo/:bar/abc/\n\n👉 子路由，如果 pattern 为：/posts/:id\n    那么，子路由的完整 pattern 为：/foo/:bar/abc/posts/:id\n```\n\n";
+module.exports = "# 详解路径匹配\n\n## 1. 具名参数\n\n```zsh\n# 定义有一个「由二层路径组成的 pattern」\n# 第一层 foo 是确定值，第二层 :bar 是变量\n\n👉 /foo/:bar\n\n# 上述 pattern 需两层且以 /foo/... 开头才能匹配，以示例说明\n\n✅ /foo/123\n✅ /foo/abc \n❌ /foo\n❌ /foo/123/abc\n```\n\n```zsh\n# 定义有一个「由二层路径组成的 pattern」\n# 第一层 :foo 是变量，第二层 bar 是确定值\n\n👉 /:foo/bar\n\n# 上述 pattern 需两层且以 .../bar 结尾才能匹配，以示例说明\n\n✅ /abc/bar\n✅ /123/bar\n❌ /foo\n❌ /foo/123\n❌ /bar\n```\n\n如上边的两个示例，路由 pattern 总是完整匹配，变量部分可被任意合法的字符填充，同时，可在代码中\n通过 navigator 的 params 拿到参数的具体值，如下\n\n```tsx\nfunction YourComponent(){\n  const nav = useNavigator();\n  return <span>{nav.params.bar}</span>\n} \n```\n\n## 2. 参数约束\n\n```zsh\n# 定义有一个「由二层路径组成的 pattern」\n# 第一层 foo 是确定值，第二层 :bar 是变量，同时约束 :bar 为数字\n\n👉 /foo/:bar(\\d+)\n\n# 两层以 /foo/... 开头且以数字结束才能匹配，以示例说明\n\n✅ /foo/123\n❌ /foo/abc \n❌ /foo\n❌ /abc/123\n```\n\n参数约束写在变量名后的的小括号中，语法为「正则表达式」。\n\n## 3. 参数修饰符\n\n问号（?），可选参数修饰符（0 或 1 次）\n\n```zsh\n👉 /foo/:bar?\n\n✅ /foo/123\n✅ /foo/abc \n✅ /foo\n❌ /foo/bar/123\n❌ /abc/123\n```\n\n星号（*），0 或 n 次修饰符\n\n```zsh\n👉 /foo/:bar*\n\n✅ /foo/123\n✅ /foo/abc \n✅ /foo\n✅ /foo/abc/123\n❌ /abc/123\n```\n\n加号（+），1 或 n 次修饰符\n\n```zsh\n👉 /foo/:bar+\n\n✅ /foo/123\n✅ /foo/abc \n❌ /foo\n✅ /foo/abc/123\n❌ /abc/123\n```\n\n## 4. 匿名参数\n\n可只声明参数约束，但不为参数命名，此时参数名将会以参数出现的次序为名（也就是 index）\n\n```zsh\n# 定义了一个「仅匹配数字」的匿名参数，因为只有一个参数,自动命名为 0\n👉 /foo/(\\d+)\n\n✅ /foo/123\n❌ /foo/abc \n❌ /foot/abc/123\n❌ /bar\n```\n\n```zsh\n# 定义了一个「匹配所有字符」的参数，因为只有一个参数,自动命名为 0\n👉 /foo/(.*)\n\n✅ /foo/123\n✅ /foo/abc \n✅ /foot/abc/123\n❌ /bar\n```\n";
+
+/***/ }),
+
+/***/ "./develop/docs/zh/specific.md?raw":
+/*!*****************************************!*\
+  !*** ./develop/docs/zh/specific.md?raw ***!
+  \*****************************************/
+/***/ ((module) => {
+
+module.exports = "# RBR 路由特性\n\n## 1. 特性概述\n\nRBR 本质上是「根据 patten 控制 React 应用组件树中的某个节点是否渲染」, Ta 是组件树的一部分，\n可放在任意位置、任意嵌套、可被异步载入。\nReact 应用固有的特性，在 RBR 中都是不必特殊处理、也没有专门 API，就像普通 React 组件一样的被支持。\n\nRoute 的 pattern 总是完整匹配，**没有 exact 选项，也没不会按 Route 出现的顺序匹配**，\n在整个组件树中与当前 URL 匹配的路由组件都会被渲染，\n**平级的 Route 出现的位置并不会影响路由的匹配**，而只影响组件的渲染位置，\n你不必为了匹配而花心思想应该放在哪，**需要显示在哪儿就放在哪儿**。\n\n你将可以很方便的组织应用的页面布局，无论集中在一起或是分散在不同位置不同层级的组件中\n\n```tsx\nfunction YourApp(){\n  return (\n    <Router driver={deriver}>\n      ...\n      <header>\n        {/* 下方的 pattern 匹配所有路径 */}\n        <Route pattern=\"/(.*)\"><NavBar/></Route>\n      </header>\n      <main>\n        {/* 下方的 pattern 匹配所有路径 */}\n        <Route pattern=\"/(.*)\"><SideBar/></Route>\n        {/* 下方的 pattern 匹配 posts 指定的 id */}\n        <Route pattern=\"/posts/:id\"><Content/></Route>\n      </main>\n      ...\n    </Router>\n  )\n}\n```\n\n在上述的示例中，当访问 **/** 时，NavBar 和 SideBar 都将渲染，而 Content 不会渲染。\n当访问 **/posts/1** 时 NavBar、SideBar、Content 都会被渲染。\n\n## 2. 默认路由\n\n如上节讲述，RBR 总是完整匹配、也不会按顺序逐一匹配，所以 RBR 并没有默认路由的概念，\n但可通过 **修饰符** 声明**可选路径**方式实现默认路由的效果。\n\n```tsx\nfunction App(){\n  return (\n    <Router driver={driver}>\n      {/* \n        下方的 pattern 将 a 声明为了可选，可匹配 /a 和 /\n        在访问 / 或 /a 时，都将会渲染 PageA \n      */}\n      <Route pattern=\"/(a)?\"><PageA></Route>\n      <Route pattern=\"/b\"><PageA></Route>\n      <Route pattern=\"/c\"><PageA></Route>\n    </Router>\n  );\n}\n```\n\n## 3. 兜底渲染\n\n有时可能需要在路由没有匹配时，显示为指定的内容，比如一个 NotFound 页面。\n由于 RBR 不会逐一按顺序匹配，也便无法在最后位置配置一个通配路由作为 NotFound 页面。\n\n但 RBR 提供了 Route 的 Fallback 机制，可更直观的支持类似的需求，\nFallback 可用于 Router 或 Route。\n\n```tsx\nfunction App(){\n  return (\n    <Router driver={driver}>\n      {/* \n        在指定 fallback 时，可省略 route 的 pattern（有需要时也可声明）\n        在 Route 自身及所有直接子级 Route 都无法匹配当前 url 时，将渲染 fallback\n      */}\n      <Route fallback={<div>Not Found</div>}>\n        <Route pattern=\"/b\"><PageA></Route>\n        <Route pattern=\"/c\"><PageA></Route>\n      </Route>\n    </Router>\n  );\n}\n\n```\n\n一个 Route 或 Router 指定了 fallback 后，**当其自身及所有直接子级 Route 都无法匹配时，将渲染 fallback 内容**。所以，除了可实现 NotFound 页，也可用 fallback 的方式实现默认路由。\n\n## 4. 嵌套路由\n\n通常父路由为「前缀匹配」时，才有「添加子路由」的意义，因为，如果父路由是严格匹配，虽然也能添加子路由，但是子路由并没有极会被匹配到。\n\n下方是父子级嵌套路由的示例，这个示例比较简单，只有两层路径\n\n```tsx\n<Route pattern=\"/foo/:bar\">\n  ...\n  {/* 也可在 children 中直接批定子路由 */}\n  <Route pattern=\"/:child_bar\">\n  ...\n   {/* 可直接通过 children 来指定渲染的目标组件 */}\n   {/* Content 组件定义在 Content.tsx 中 */}\n  <Content />  \n</Route>\n```\n\n除了在 Route 的直接 children 中添加子路由，也可在**任意层级**的子组件中添加子路由。\n\n```tsx\n// Content.tsx，也可在子组件中添加 Route\nfunction Content() {\n  return (\n    <div>\n    ...\n     <Route pattern=\"/:child_bar\">...</Route>\n    ...\n    </div>\n  );\n}\n```\n\n**怎么确定子路由的完整 pattern**？\n\n> 由「父路由 pattern 最长的确切部分作为前缀」，加上「子路由自身的 pattern」， 最终组合成子路由的「完整 pattern」。\n\n以上文示例中定义的 pattern 为示例\n\n```zsh\n👉 父路由，如果 pattern 为 /foo/:bar\n    那么，最长的确切部分为 /foo/\n\n👉 子路由，如果 pattern 为：/:child_bar\n    那么，子路由的完整 pattern 为：/foo/:child_bar\n```\n\n一个有多个变量，更复杂一些的示例\n\n```zsh\n👉 父路由，如果 pattern 为 /foo/:bar/abc/(.*)\n    那么，最长的确切部分为 /foo/:bar/abc/\n\n👉 子路由，如果 pattern 为：/posts/:id\n    那么，子路由的完整 pattern 为：/foo/:bar/abc/posts/:id\n```\n";
 
 /***/ })
 

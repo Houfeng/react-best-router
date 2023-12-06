@@ -1,7 +1,7 @@
-# 仅有 4 个 API
+# 仅有 4 组 API
 
 RBR 专注于解决「React 应用中的路由处理」这一个问题，
-它是一个极简的路由库，共有 **4 个核心 API**。
+它是一个极简的路由库，共有 **4 组核心 API**，包括（ Router、Driver、Route、Navigator ）。
 
 ## 1. Router
 
