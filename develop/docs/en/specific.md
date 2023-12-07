@@ -1,4 +1,4 @@
-# RBR Router Features
+# RBR Features
 
 ## 1. Feature Overview
 
