@@ -30,4 +30,5 @@ export function getLocalLanguage(): string {
 
 export function setLocalLanguage(name: string) {
   localStorage.setItem(languageKey, JSON.stringify(name));
+  location.href = location.href;
 }

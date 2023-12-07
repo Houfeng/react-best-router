@@ -1,6 +1,6 @@
 import { createElement } from "react";
 import { useNavigator } from "../src";
-import { setLocalTheme } from "./LocalStore";
+import { setLocalLanguage, setLocalTheme } from "./LocalStore";
 
 export function Header() {
   const nav = useNavigator();
@@ -59,6 +59,32 @@ export function Header() {
             onClick={() => (document.activeElement as HTMLElement)?.blur?.()}
             className="dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52"
           >
+            <li className="disabled pointer-events-none p-0 my-1 h-[auto]">
+              <div className="divider m-0 p-0 ml-[-6px]">Language</div>
+            </li>
+            <li className="my-[2px]">
+              <input
+                type="radio"
+                name="language-dropdown"
+                className="btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
+                aria-label="English"
+                value="en"
+                onClick={() => setLocalLanguage("en")}
+              />
+            </li>
+            <li className="my-[2px]">
+              <input
+                type="radio"
+                name="language-dropdown"
+                className="btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
+                aria-label="简体中文"
+                value="zh"
+                onClick={() => setLocalLanguage("zh")}
+              />
+            </li>
+            <li className="disabled pointer-events-none p-0 my-1 h-[auto]">
+              <div className="divider m-0 p-0 ml-[-6px]">Theme</div>
+            </li>
             <li className="my-[2px]">
               <input
                 type="radio"
