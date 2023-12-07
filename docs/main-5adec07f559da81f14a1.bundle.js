@@ -2780,6 +2780,57 @@ function SideBar() {
 
 /***/ }),
 
+/***/ "./develop/docs/en/index.ts":
+/*!**********************************!*\
+  !*** ./develop/docs/en/index.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   contents_en: () => (/* binding */ contents_en)
+/* harmony export */ });
+/* harmony import */ var _index_md_raw__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.md?raw */ "./develop/docs/en/index.md?raw");
+/* harmony import */ var _api_md_raw__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api.md?raw */ "./develop/docs/en/api.md?raw");
+/* harmony import */ var _specific_md_raw__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./specific.md?raw */ "./develop/docs/en/specific.md?raw");
+/* harmony import */ var _pattern_md_raw__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pattern.md?raw */ "./develop/docs/en/pattern.md?raw");
+/* harmony import */ var _examples_md_raw__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./examples.md?raw */ "./develop/docs/en/examples.md?raw");
+
+
+
+
+
+const contents_en = [
+    {
+        name: "index",
+        title: "🚀 Get Started with RBR",
+        content: _index_md_raw__WEBPACK_IMPORTED_MODULE_0__,
+    },
+    {
+        name: "api",
+        title: "🗼 Only 4 Sets of APIs",
+        content: _api_md_raw__WEBPACK_IMPORTED_MODULE_1__,
+    },
+    {
+        name: "pattern",
+        title: "🚏 Path Matching",
+        content: _pattern_md_raw__WEBPACK_IMPORTED_MODULE_3__,
+    },
+    {
+        name: "specific",
+        title: "🧬 RBR Features",
+        content: _specific_md_raw__WEBPACK_IMPORTED_MODULE_2__,
+    },
+    {
+        name: "examples",
+        title: "💡 Common Examples",
+        content: _examples_md_raw__WEBPACK_IMPORTED_MODULE_4__,
+    },
+];
+
+
+/***/ }),
+
 /***/ "./develop/docs/index.ts":
 /*!*******************************!*\
   !*** ./develop/docs/index.ts ***!
@@ -2790,41 +2841,60 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   contents: () => (/* binding */ contents)
 /* harmony export */ });
-/* harmony import */ var _zh_index_md_raw__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./zh/index.md?raw */ "./develop/docs/zh/index.md?raw");
-/* harmony import */ var _zh_api_md_raw__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./zh/api.md?raw */ "./develop/docs/zh/api.md?raw");
-/* harmony import */ var _zh_specific_md_raw__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./zh/specific.md?raw */ "./develop/docs/zh/specific.md?raw");
-/* harmony import */ var _zh_pattern_md_raw__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./zh/pattern.md?raw */ "./develop/docs/zh/pattern.md?raw");
-/* harmony import */ var _zh_examples_md_raw__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./zh/examples.md?raw */ "./develop/docs/zh/examples.md?raw");
+/* harmony import */ var _zh__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./zh */ "./develop/docs/zh/index.ts");
+/* harmony import */ var _en__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./en */ "./develop/docs/en/index.ts");
+
+
+const contents = _zh__WEBPACK_IMPORTED_MODULE_0__.contents_zh || _en__WEBPACK_IMPORTED_MODULE_1__.contents_en;
+
+
+/***/ }),
+
+/***/ "./develop/docs/zh/index.ts":
+/*!**********************************!*\
+  !*** ./develop/docs/zh/index.ts ***!
+  \**********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   contents_zh: () => (/* binding */ contents_zh)
+/* harmony export */ });
+/* harmony import */ var _index_md_raw__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./index.md?raw */ "./develop/docs/zh/index.md?raw");
+/* harmony import */ var _api_md_raw__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./api.md?raw */ "./develop/docs/zh/api.md?raw");
+/* harmony import */ var _specific_md_raw__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./specific.md?raw */ "./develop/docs/zh/specific.md?raw");
+/* harmony import */ var _pattern_md_raw__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./pattern.md?raw */ "./develop/docs/zh/pattern.md?raw");
+/* harmony import */ var _examples_md_raw__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./examples.md?raw */ "./develop/docs/zh/examples.md?raw");
 
 
 
 
 
-const contents = [
+const contents_zh = [
     {
         name: "index",
         title: "🚀 快速上手 RBR",
-        content: _zh_index_md_raw__WEBPACK_IMPORTED_MODULE_0__,
+        content: _index_md_raw__WEBPACK_IMPORTED_MODULE_0__,
     },
     {
         name: "api",
         title: "🗼 仅有 4 组 API",
-        content: _zh_api_md_raw__WEBPACK_IMPORTED_MODULE_1__,
+        content: _api_md_raw__WEBPACK_IMPORTED_MODULE_1__,
     },
     {
         name: "pattern",
         title: "🚏 详解路径匹配",
-        content: _zh_pattern_md_raw__WEBPACK_IMPORTED_MODULE_3__,
+        content: _pattern_md_raw__WEBPACK_IMPORTED_MODULE_3__,
     },
     {
         name: "specific",
         title: "🧬 RBR 路由特性",
-        content: _zh_specific_md_raw__WEBPACK_IMPORTED_MODULE_2__,
+        content: _specific_md_raw__WEBPACK_IMPORTED_MODULE_2__,
     },
     {
         name: "examples",
         title: "💡 常见用法示例",
-        content: _zh_examples_md_raw__WEBPACK_IMPORTED_MODULE_4__,
+        content: _examples_md_raw__WEBPACK_IMPORTED_MODULE_4__,
     },
 ];
 
@@ -3455,6 +3525,56 @@ __webpack_require__.r(__webpack_exports__);
 /***/ ((module, __unused_webpack_exports, __webpack_require__) => {
 
 module.exports = __webpack_require__.p + "cdc7d66d78675cf58dc3.ttf";
+
+/***/ }),
+
+/***/ "./develop/docs/en/api.md?raw":
+/*!************************************!*\
+  !*** ./develop/docs/en/api.md?raw ***!
+  \************************************/
+/***/ ((module) => {
+
+module.exports = "# Only 4 Sets of APIs\n\nRBR focuses on solving the issue of \"route handling in React applications.\" \nIt is an extremely minimalist routing library, consisting of **4 core APIs**,\nincluding (Router, Driver, Route, Navigator).\n\n## 1. Router\n\nRouter is provided as a React component, and typically, \nan application needs only one Router as a container at the outermost level. Of course,\nmultiple Routers can be used based on requirements.\n\n```tsx\ntype RouterProps = {\n  // Specify the path prefix for the Router, default value is `/`.\n  // Useful when the application runs under a subpath.\n  base?: string;\n\n  // Specify the driver type for the current Router.\n  driver: RouterDriver;\n\n  // This is a Ref, useful when the navigator needs to be accessed outside \n  // the Router component subtree.\n  navigator?: RouterNavigatorRef<any>;\n\n  // Can be any valid ReactNode, can be used at any depth to define routes.\n  children?: ReactNode;\n};\n```\n\nRouter Usage Example\n\n```tsx\nfunction YourApp() {\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver} navigator={navRef}>\n      <Route pattern=\"/\"><Index/></Route>\n      <Route pattern=\"/posts\"><Posts/></Route>\n    </Router>\n  );\n}\n```\n\n## 2. Route\n\nRoute is one of the most used APIs when using RBR. \nIt is used to define all specific routes, provided in the form of a React component.\n\n```tsx\ntype RouteProps = {\n  // Route's \"path matching pattern.\"\n  pattern: RouterPattern;\n\n  // \"Prefix matching pattern\" passed to child routes, automatically calculated based on pattern by default but can be manually specified.\n  prefix?: RouterPattern;\n\n  // This is a Ref, useful when the navigator needs to be accessed outside the Route component subtree.\n  navigator?: RouterNavigatorRef<any>;\n\n  // Can be any valid ReactNode, allowing child routes to be added at any depth.\n  children?: ReactNode;\n};\n```\n\nRoute Usage Example\n\n```tsx\n// Define the path matching pattern through pattern (detailed explanation in \"Path Matching Explained\").\n<Route pattern=\"/foo/:bar\">\n  {/* Directly specify the target component to render through children */}\n  <Content />\n  {/* Alternatively, directly specify child routes within children */}\n  <Route pattern=\"/:child_bar\">...</Route>\n</Route>\n```\n\n## 3. Navigator\n\nNavigator is the second most used API when using RBR, allowing navigation between pages. Navigator is provided in the form of React Hooks and a factory function.\n\n```tsx\ntype RouterNavigator<P extends object> = {\n  // Current application pathname.\n  pathname: string;\n  // Route parameters.\n  params: MatchResult<P>[\"params\"];\n  // Navigate to the specified path.\n  push: (path: string) => void;\n  // Go back to the previous path.\n  back: () => void;\n  // After going back, it's possible to move forward to the next path.\n  forward: () => void;\n  // Go back or forward by a specified number of steps, <0 for back, >0 for forward.\n  go: (step: number) => void;\n  // Replace the current path without affecting the navigation history.\n  replace: (path: string) => void;\n};\n```\n\nNavigator Usage Examples\n\n```tsx\n// Usage Method 1\nfunction YourComponent() {\n  // Use useNavigator to get the navigator object corresponding to the nearest router/route.\n  const nav = useNavigator();\n  return (\n    <button onClick={()=>nav.push(`/foo/${nav.params.bar}`)}>\n      Click me\n    </button>\n  );\n}\n\n// Usage Method 2\nfunction YourApp() {\n  const navRef = useNavigatorRef();\n  return (\n    <Router driver={driver} navigator={navRef}>\n      {...}\n    </Router>\n  );\n}\n\n// Usage Method 3\nconst navRef = createNavigatorRef();\nfunction YourApp() {\n  return (\n    <Router driver={driver} navigator={navRef}>\n      {...}\n    </Router>\n  );\n}\n```\n\n## 4. Driver\n\nIn different scenarios, different Drivers are needed to associate with the runtime environment and control the entire Router operation. For example, in the browser, it's usually associated with the URL, or it might only be associated with the hash, or it could be a logical operation running only in memory.\n\n### BrowserDriver\n\nA driver based on the browser's History API, supported by most mainstream browsers, suitable for most web applications.\n\n```ts\n// Usage Method 1, when creating a driver within a component, use this hook.\nconst driver = useBrowserDriver();\n\n// Usage Method 2, when creating a driver outside a component, use the following method.\nconst driver = createBrowserDriver();\n```\n\n### HashDriver\n\nFor older browsers or when a server program cannot enable History fallback for the frontend.\n> Enabling History fallback refers to configuring the server-side route /your_app_path/* to point to the corresponding frontend page.\n\n```ts\n// Usage Method 1, when creating a driver within a component, use this hook.\nconst driver = useHashDriver();\n\n// Usage Method 2, when creating a driver outside a component, use the following method.\nconst driver = createHashDriver();\n```\n\n### MemoryDriver\n\nWhen using RBR in a non-browser environment or when you don't want to reflect page paths in the URL, you can use MemoryDriver.\n\n```ts\n// Usage Method 1, when creating a driver within a component, use this hook.\nconst driver = useMemoryDriver(/* Optional options */);\n\n// Usage Method 2, when creating a driver outside a component, use the following method.\nconst driver = createMemoryDriver(/* Optional options */);\n\n// Option type definition, default value for options is { pathname: \"/\" }\ntype MemoryDriverInitialState {\n  // Since the Memory Driver doesn't have an existing path to associate with, the initial state's pathname needs to be specified.\n  pathname: string; \n}\n```\n";
+
+/***/ }),
+
+/***/ "./develop/docs/en/examples.md?raw":
+/*!*****************************************!*\
+  !*** ./develop/docs/en/examples.md?raw ***!
+  \*****************************************/
+/***/ ((module) => {
+
+module.exports = "# Common Usage Examples\n\n```bash\nTODO://\n```\n";
+
+/***/ }),
+
+/***/ "./develop/docs/en/index.md?raw":
+/*!**************************************!*\
+  !*** ./develop/docs/en/index.md?raw ***!
+  \**************************************/
+/***/ ((module) => {
+
+module.exports = "# Get Started with RBR\n\n## 1. Overview\n\nIn a slightly larger React application, it's common to use a router to handle relationships between pages and navigation between them. Have you ever encountered difficulties with other router libraries? For instance, defining nested and dynamic routes might be cumbersome or problematic, or the API might not be concise. It could also include unrelated content, or compatibility issues might arise between different versions...\n\nOne weekend, I decided to create a simpler and more user-friendly routing package, focusing on handling routes in React applications. I named this package react-best-router and abbreviated it as RBR.\n\nRBR has a small footprint, with a minified size of **5kb** and a GZip size of **2kb**. Its API is also concise, consisting of only **4** core groups of APIs, including (Router, Driver, Route, Navigator).\n\n[![github](https://img.shields.io/badge/Repo-Github-blue)](https://github.com/houfeng/react-best-router)\n[![npm](https://img.shields.io/npm/l/react-best-router.svg)](https://github.com/houfeng/react-best-router)\n[![npm version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n[![npm download](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n[![minify](https://img.shields.io/badge/Minify-5kb-green)](https://github.com/houfeng/react-best-router)\n[![minify](https://img.shields.io/badge/GZip-2kb-green)](https://github.com/houfeng/react-best-router)\n[![unit](https://img.shields.io/badge/Tests-87%25-green)](https://github.com/houfeng/react-best-router)\n\n## 2. 安装\n\nOption 1: NPM Package\n\n```zsh\n# NPM Package\n$ npm install react-best-router \n```\n\nOption 2: Using CDN, pay attention to the version number\n\n```html\n<!-- CDN -->\n<script \nsrc=\"https://cdn.jsdelivr.net/npm/react-best-router@latest/dist/react-best-router-iife.min.js\">\n</script>\n```\n\n## 3. Usage\n\n```tsx\nimport { Router, useBrowserDriver } from \"react-best-router\";\n\n// Example application entry component\nfunction YourApp() {\n  // Specify a driver (don't worry too much about it now, the documentation will explain what a driver is in the following sections)\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <Route pattern=\"/\"><Index/></Route>\n      <Route pattern=\"/posts\"><Posts/></Route>\n    </Router>\n  );\n}\n```\n\nTaking the example of a local development server at http://localhost:8080, you can now access the index page in the browser and also visit the Posts page through http://localhost:8080/posts. RBR is already at work.\n\nNext, let's add a \"navigation menu\" to this example. We can use the useNavigator hook to get the \"Router navigator instance\" and use it for navigation between different pages.\n\n```tsx\nimport { \n  Router, \n  useBrowserDriver, \n  useNavigator \n} from \"react-best-router\";\n\n// Navigation menu component\nfunction NavMenus(){\n  const nav = useNavigator();\n  return (\n    <ul>\n      <li><a onClick={nav.push('/index')}>Index</a></li>\n      <li><a onClick={nav.push('/posts')}>Posts</a></li>\n    </ul>\n  );\n}\n\n// Example application entry component\nfunction YourApp() {\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <NavMenus/>\n      <main>\n        <Route pattern=\"/\"><Index/></Route>\n        <Route pattern=\"/posts\"><Posts/></Route>\n      </main>\n    </Router>\n  );\n}\n```\n\nNow, you have a basic understanding of how to use RBR. Later on, we will introduce some other features, but they are equally simple.\n";
+
+/***/ }),
+
+/***/ "./develop/docs/en/pattern.md?raw":
+/*!****************************************!*\
+  !*** ./develop/docs/en/pattern.md?raw ***!
+  \****************************************/
+/***/ ((module) => {
+
+module.exports = "# Path Matching\n\n## 1. Named Parameters\n\n```zsh\n# Define a \"pattern consisting of two layers of paths\"\n# The first layer, foo, is a fixed value, and the second layer, :bar, is a variable\n\n👉 /foo/:bar\n\n# The above pattern requires two layers and must start with /foo/... to match, as illustrated in the examples:\n\n✅ /foo/123\n✅ /foo/abc \n❌ /foo\n❌ /foo/123/abc\n```\n\n```zsh\n# Define a \"pattern consisting of two layers of paths\"\n# The first layer, :foo, is a variable, and the second layer, bar, is a fixed value\n\n👉 /:foo/bar\n\n# The above pattern requires two layers and must end with .../bar to match, as illustrated in the examples:\n\n✅ /abc/bar\n✅ /123/bar\n❌ /foo\n❌ /foo/123\n❌ /bar\n```\n\nIn the above examples, route patterns always match completely. The variable part can be filled with any valid characters. Additionally, in the code, you can access the specific values of parameters through the navigator's params, as shown below:\n\n```tsx\nfunction YourComponent(){\n  const nav = useNavigator();\n  return <span>{nav.params.bar}</span>\n} \n```\n\n## 2. Parameter Constraints\n\n```zsh\n# Define a \"pattern consisting of two layers of paths\"\n# The first layer, foo, is a fixed value, and the second layer, :bar, is a variable, with the constraint that :bar must be a number\n\n👉 /foo/:bar(\\d+)\n\n# It can match only if two layers start with /foo/... and end with a number, as illustrated in the examples:\n\n✅ /foo/123\n❌ /foo/abc \n❌ /foo\n❌ /abc/123\n```\n\nParameter constraints are written in parentheses after the variable name, and the syntax is a \"regular expression.\"\n\n## 3. Parameter Modifiers\n\nQuestion mark (?), optional parameter modifier (0 or 1 occurrence)\n\n```zsh\n👉 /foo/:bar?\n\n✅ /foo/123\n✅ /foo/abc \n✅ /foo\n❌ /foo/bar/123\n❌ /abc/123\n```\n\nAsterisk (*), 0 or n occurrences modifier\n\n```zsh\n👉 /foo/:bar*\n\n✅ /foo/123\n✅ /foo/abc \n✅ /foo\n✅ /foo/abc/123\n❌ /abc/123\n```\n\nPlus sign (+), 1 or n occurrences modifier\n\n```zsh\n👉 /foo/:bar+\n\n✅ /foo/123\n✅ /foo/abc \n❌ /foo\n✅ /foo/abc/123\n❌ /abc/123\n```\n\n## 4. Anonymous Parameters\n\nYou can declare parameter constraints without naming the parameters. In this case, the parameter names will be automatically assigned based on the order of appearance (index).\n\n```zsh\n# Define an anonymous parameter that \"only matches numbers\" because there is only one parameter, it is automatically named 0\n👉 /foo/(\\d+)\n\n✅ /foo/123\n❌ /foo/abc \n❌ /foot/abc/123\n❌ /bar\n```\n\n```zsh\n# Define a parameter that \"matches all characters\" because there is only one parameter, it is automatically named 0\n👉 /foo/(.*)\n\n✅ /foo/123\n✅ /foo/abc \n✅ /foot/abc/123\n❌ /bar\n```\n";
+
+/***/ }),
+
+/***/ "./develop/docs/en/specific.md?raw":
+/*!*****************************************!*\
+  !*** ./develop/docs/en/specific.md?raw ***!
+  \*****************************************/
+/***/ ((module) => {
+
+module.exports = "# RBR Router Features\n\n## 1. Feature Overview\n\nRBR essentially controls whether a specific node in the React application component tree is rendered based on the pattern. It is a part of the component tree, can be placed anywhere, nested arbitrarily, and can be loaded asynchronously. The inherent features of a React application are supported in RBR without special handling or dedicated APIs, just like ordinary React components.\n\nThe Route pattern always matches completely, there is no exact option, and routes are not matched in the order they appear. All route components that match the current URL in the entire component tree will be rendered. The positions of the routes at the same level do not affect the route matching but only affect the rendering position of the components. You don't have to think about where to place it just for matching; put it where it needs to be displayed.\n\nYou can easily organize the layout of the application, whether centralized or dispersed in different positions and different levels of components.\n\n```tsx\nfunction YourApp(){\n  return (\n    <Router driver={deriver}>\n      ...\n      <header>\n        {/* The pattern below matches all paths */}\n        <Route pattern=\"/(.*)\"><NavBar/></Route>\n      </header>\n      <main>\n        {/* The pattern below matches all paths */}\n        <Route pattern=\"/(.*)\"><SideBar/></Route>\n        {/* The pattern below matches the id specified in posts */}\n        <Route pattern=\"/posts/:id\"><Content/></Route>\n      </main>\n      ...\n    </Router>\n  )\n}\n```\n\nIn the above example, when visiting /, NavBar and SideBar will both be rendered, and Content will not be rendered. When visiting /posts/1, NavBar, SideBar, and Content will all be rendered.\n\n## 2. Default Route\n\nAs mentioned in the previous section, RBR always matches completely and does not match one by one in order. Therefore, RBR does not have the concept of a default route. You can directly configure the route target of /, and it can be placed anywhere without relying on order or needing to configure a wildcard route last.\n\n```tsx\nfunction App(){\n  return (\n    <Router driver={driver}>\n      {/* \n        Explicitly and accurately configure which page the / route goes to,\n        can be PageA/PageB/PageC or other Pages\n      */}\n      <Route pattern=\"/\"><PageA></Route>\n      <Route pattern=\"/b\"><PageB></Route>\n      <Route pattern=\"/b\"><PageC></Route>\n    </Router>\n  );\n}\n```\n\nYou can also achieve the effect of a default route by declaring optional paths using modifiers.\n\n```tsx\nfunction App(){\n  return (\n    <Router driver={driver}>\n      {/* \n        The pattern below declares 'a' as optional, matching /a and /\n        When accessing / or /a, PageA will be rendered \n      */}\n      <Route pattern=\"/(a)?\"><PageA></Route>\n      <Route pattern=\"/b\"><PageB></Route>\n      <Route pattern=\"/c\"><PageA></Route>\n    </Router>\n  );\n}\n```\n\n## 3. Fallback Rendering\n\nSometimes, it may be necessary to display specific content when no route matches, such as a NotFound page. Since RBR does not match one by one in order, it is not possible to configure a wildcard route as a NotFound page at the last position.\n\nHowever, RBR provides a fallback mechanism for both Router and Route, which can support similar requirements. Fallback can be used for Router or Route.\n\n```tsx\nfunction App(){\n  return (\n    <Router driver={driver}>\n      {/* \n        When specifying fallback, you can omit the pattern of the route (you can declare it when needed)\n        When neither Route itself nor all directly child Route can match the current URL, the fallback will be rendered\n      */}\n      <Route fallback={<div>Not Found</div>}>\n        <Route pattern=\"/b\"><PageA></Route>\n        <Route pattern=\"/c\"><PageA></Route>\n      </Route>\n    </Router>\n  );\n}\n```\n\nOnce a Route or Router specifies a fallback, when neither itself nor all directly child Route can match the current URL, the fallback content will be rendered. So, besides implementing a NotFound page, you can also use the fallback approach to achieve a default route.\n\n## 4. Nested Routes\n\nUsually, it only makes sense to add \"child routes\" when the parent route is a \"prefix match\" because if the parent route is a strict match, although child routes can be added, they will not be matched.\n\nHere is an example of nested parent-child routes with only two layers of paths:\n\n```tsx\n<Route pattern=\"/foo/:bar\">\n  ...\n  {/* Child routes can also be specified directly in children */}\n  <Route pattern=\"/:child_bar\">\n  ...\n   {/* You can directly specify the target component to be rendered through children */}\n   {/* The Content component is defined in Content.tsx */}\n  <Content />  \n</Route>\n```\n\nIn addition to adding child routes directly in the direct children of the Route, child routes can also be added in any level of child components.\n\n```tsx\n// Content.tsx, child routes can also be added in child components\nfunction Content() {\n  return (\n    <div>\n    ...\n     <Route pattern=\"/:child_bar\">...</Route>\n    ...\n    </div>\n  );\n}\n```\n\n**How to determine the complete pattern of the child route?**\n\n> The \"exact part of the parent route pattern with the longest length as the prefix\" is combined with the \"pattern of the child route itself\" to form the \"complete pattern\" of the child route.\n\nIn the example pattern defined above:\n\n```zsh\n👉 Parent route, if the pattern is /foo/:bar\n    Then, the longest exact part is /foo/\n\n👉 Child route, if the pattern is /:child_bar\n    Then, the complete pattern of the child route is: /foo/:child_bar\n```\n\nA more complex example with multiple variables:\n\n```zsh\n👉 Parent route, if the pattern is /foo/:bar/abc/(.*)\n    Then, the longest exact part is /foo/:bar/abc/\n\n👉 Child route, if the pattern is /posts/:id\n    Then, the complete pattern of the child route is: /foo/:bar/abc/posts/:id\n```\n";
 
 /***/ }),
 
