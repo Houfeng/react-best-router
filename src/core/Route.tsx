@@ -37,15 +37,15 @@ export function Route(props: RouteProps) {
     [pattern, prefix, parentMatcher],
   );
   // match current pathname
-  if (!matcher.match(state.pathname).state) return fallback || <Fragment />;
+  const matched = matcher.match(state.pathname).state;
   // normalize children
   const elements = render ? render(children) : children;
   return (
     <MatcherContext.Provider value={matcher}>
       {navigator && <NavigatorForwarder ref={navigator} />}
-      {elements}
-      {fallback && (
-        <RouteFallback side={[Route, elements]}> {fallback}</RouteFallback>
+      {matched ? elements : fallback}
+      {matched && fallback && (
+        <RouteFallback side={[Route, elements]}>{fallback}</RouteFallback>
       )}
     </MatcherContext.Provider>
   );

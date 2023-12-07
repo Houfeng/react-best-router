@@ -2901,15 +2901,12 @@ function Route(props) {
     const { state } = (0,_RouterContext__WEBPACK_IMPORTED_MODULE_1__.useRouterContext)();
     const parentMatcher = (0,_RouteMatcher__WEBPACK_IMPORTED_MODULE_2__.useParentMatcher)();
     const matcher = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_RouteMatcher__WEBPACK_IMPORTED_MODULE_2__.createMatcher)(pattern, prefix, parentMatcher), [pattern, prefix, parentMatcher]);
-    if (!matcher.match(state.pathname).state)
-        return fallback || (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
+    const matched = matcher.match(state.pathname).state;
     const elements = render ? render(children) : children;
     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouteMatcher__WEBPACK_IMPORTED_MODULE_2__.MatcherContext.Provider, { value: matcher },
         navigator && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
-        elements,
-        fallback && ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouteFallback__WEBPACK_IMPORTED_MODULE_4__.RouteFallback, { side: [Route, elements] },
-            " ",
-            fallback))));
+        matched ? elements : fallback,
+        matched && fallback && ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouteFallback__WEBPACK_IMPORTED_MODULE_4__.RouteFallback, { side: [Route, elements] }, fallback))));
 }
 
 
