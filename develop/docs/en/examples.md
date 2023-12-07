@@ -1,4 +1,4 @@
-# Common Usage Examples
+# Common Examples
 
 ```bash
 TODO://

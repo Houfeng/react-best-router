@@ -7,12 +7,12 @@ import examples_zh from "./examples.md?raw";
 export const contents_en = [
   {
     name: "index",
-    title: "🚀 Get Started with RBR",
+    title: "🚀 Get Started",
     content: index_zh,
   },
   {
     name: "api",
-    title: "🗼 Only 4 Sets of APIs",
+    title: "🗼 Only 4 APIs",
     content: api_zh,
   },
   {

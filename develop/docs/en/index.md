@@ -1,4 +1,4 @@
-# Get Started with RBR
+# Get Started
 
 ## 1. Overview
 

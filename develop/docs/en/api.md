@@ -1,4 +1,4 @@
-# Only 4 Sets of APIs
+# Only 4 APIs
 
 RBR focuses on solving the issue of "route handling in React applications." 
 It is an extremely minimalist routing library, consisting of **4 core APIs**,

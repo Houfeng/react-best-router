@@ -4,6 +4,7 @@ import remarkGfm from "remark-gfm";
 import { Highlight, themes } from "prism-react-renderer";
 import { useNavigator } from "../src";
 import { contents } from "./docs";
+import { getLocalLanguage } from "./LocalStore";
 
 function scrollToTop() {
   setTimeout(() => (document.documentElement.scrollTop = 0), 0);
@@ -61,7 +62,9 @@ export function Content() {
             const { children, className = "" } = props;
             return (
               <p
-                className={`font-serif ${className} [&>a>img]:inline [&>a>img]:m-0`}
+                className={`${
+                  getLocalLanguage() === "zh" ? "font-serif" : ""
+                } ${className} [&>a>img]:inline [&>a>img]:m-0`}
               >
                 {children}
               </p>
@@ -71,13 +74,13 @@ export function Content() {
       >
         {item.content}
       </MarkdownView>
-      <nav className="flex justify-between mt-10">
+      <nav className="mt-10 flex justify-between">
         {prev ? (
           <button
             className="btn"
             onClick={() => [nav.push(`/${prev.name}`), scrollToTop()]}
           >
-            {`← ${prev.title}`}
+            ←
           </button>
         ) : (
           <span />
