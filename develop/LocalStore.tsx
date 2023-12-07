@@ -1,7 +1,7 @@
 const themeKey = "rbr://theme";
 const defaultTheme = "night";
 
-export function getLocalTheme() {
+export function getLocalTheme(): string {
   try {
     return JSON.parse(
       localStorage.getItem(themeKey) || JSON.stringify(defaultTheme),
@@ -16,9 +16,9 @@ export function setLocalTheme(name: string) {
 }
 
 const languageKey = "rbr://language";
-const defaultLanguage = "en";
+const defaultLanguage = navigator.language.includes("zh") ? "zh" : "en";
 
-export function getLocalLanguage() {
+export function getLocalLanguage(): string {
   try {
     return JSON.parse(
       localStorage.getItem(languageKey) || JSON.stringify(defaultLanguage),
