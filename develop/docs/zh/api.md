@@ -1,34 +1,31 @@
-# Only 4 Sets of APIs
+# 仅有 4 组 API
 
-RBR focuses on solving the issue of "route handling in React applications." 
-It is an extremely minimalist routing library, consisting of **4 core APIs**,
-including (Router, Driver, Route, Navigator).
+RBR 专注于解决「React 应用中的路由处理」这一个问题，
+它是一个极简的路由库，共有 **4 组核心 API**，包括（ Router、Driver、Route、Navigator ）。
 
 ## 1. Router
 
-Router is provided as a React component, and typically, 
-an application needs only one Router as a container at the outermost level. Of course,
-multiple Routers can be used based on requirements.
+Router 以一个 React 组件的形式提供，通常一个应用只需要一个 Router 作为容器在最外层，
+当然，根据需求也可以使用多个 Router。
 
 ```tsx
 type RouterProps = {
-  // Specify the path prefix for the Router, default value is `/`.
-  // Useful when the application runs under a subpath.
+  // 指定 Router 的路径前缀，默认值为 `/`，
+  // 当应用运行在一个子路径下时，这非常有用。
   base?: string;
 
-  // Specify the driver type for the current Router.
+  // 为当前 Router 指定驱动类型
   driver: RouterDriver;
 
-  // This is a Ref, useful when the navigator needs to be accessed outside 
-  // the Router component subtree.
+  // 这是一个 Ref，当需要 Router 组件子树外访问 navigator 时，它非常有用
   navigator?: RouterNavigatorRef<any>;
 
-  // Can be any valid ReactNode, can be used at any depth to define routes.
+  // 可以是任意合法的 ReactNode，在任意深度的层级中都可使用 route
   children?: ReactNode;
 };
 ```
 
-Router Usage Example
+Router 使用示例
 
 ```tsx
 function YourApp() {
@@ -44,66 +41,67 @@ function YourApp() {
 
 ## 2. Route
 
-Route is one of the most used APIs when using RBR. 
-It is used to define all specific routes, provided in the form of a React component.
+Route 是在用 RBR 时被使有最多的 API 之一，所有具体的路由都使用它来定义，Route 以 React 组件
+的形式提供。
 
 ```tsx
 type RouteProps = {
-  // Route's "path matching pattern."
+  // 路由的「路径匹配模式」
   pattern: RouterPattern;
 
-  // "Prefix matching pattern" passed to child routes, automatically calculated based on pattern by default but can be manually specified.
+  // 传递给子路由的「前缀匹配模式」，默认由 pattern 自动计算，但也可手动指定
   prefix?: RouterPattern;
 
-  // This is a Ref, useful when the navigator needs to be accessed outside the Route component subtree.
+  // 这是一个 Ref，当需要 Route 组件子树外访问 navigator 时，它非常有用
   navigator?: RouterNavigatorRef<any>;
 
-  // Can be any valid ReactNode, allowing child routes to be added at any depth.
+  // 可以是任意合法的 ReactNode，在任意深度的层级中都可添加子 route
   children?: ReactNode;
 };
 ```
 
-Route Usage Example
+Route 使用示例
 
 ```tsx
-// Define the path matching pattern through pattern (detailed explanation in "Path Matching Explained").
+// 通过 pattern 定义 path 的匹配模式（在《详解路径匹配》中有详细说明）
 <Route pattern="/foo/:bar">
-  {/* Directly specify the target component to render through children */}
+  {/* 可直接通过 children 来指定渲染的目标组件 */}
   <Content />
-  {/* Alternatively, directly specify child routes within children */}
+  {/* 也可在 children 中直接指定子路由 */}
   <Route pattern="/:child_bar">...</Route>
 </Route>
 ```
 
 ## 3. Navigator
 
-Navigator is the second most used API when using RBR, allowing navigation between pages. Navigator is provided in the form of React Hooks and a factory function.
+Navigator 是在用 RBR 时被使有最多的 API 之二，通过它在各页面之导航，
+Navigator 以 React Hooks 和 factory function 的形式提供。
 
 ```tsx
 type RouterNavigator<P extends object> = {
-  // Current application pathname.
+  // 应用当前的 pathname
   pathname: string;
-  // Route parameters.
+  // 路由参数
   params: MatchResult<P>["params"];
-  // Navigate to the specified path.
+  // 跳转到指定的路径
   push: (path: string) => void;
-  // Go back to the previous path.
+  // 返回上一个路径
   back: () => void;
-  // After going back, it's possible to move forward to the next path.
+  // 当前返回后，还可前进到下一个路径
   forward: () => void;
-  // Go back or forward by a specified number of steps, <0 for back, >0 for forward.
+  // 返回或前进指定的步数，<0 为返回，>0 为前进
   go: (step: number) => void;
-  // Replace the current path without affecting the navigation history.
+  // 替换当前路径，不影响历史记录
   replace: (path: string) => void;
 };
 ```
 
-Navigator Usage Examples
+Navigator 使用示例
 
 ```tsx
-// Usage Method 1
+// 使用方式一
 function YourComponent() {
-  // Use useNavigator to get the navigator object corresponding to the nearest router/route.
+  // 通过 useNavigator 获取最近的 router/route 对应的 navigator 对象
   const nav = useNavigator();
   return (
     <button onClick={()=>nav.push(`/foo/${nav.params.bar}`)}>
@@ -112,7 +110,7 @@ function YourComponent() {
   );
 }
 
-// Usage Method 2
+// 使用方式二
 function YourApp() {
   const navRef = useNavigatorRef();
   return (
@@ -122,7 +120,7 @@ function YourApp() {
   );
 }
 
-// Usage Method 3
+// 使用方式三
 const navRef = createNavigatorRef();
 function YourApp() {
   return (
@@ -135,47 +133,48 @@ function YourApp() {
 
 ## 4. Driver
 
-In different scenarios, different Drivers are needed to associate with the runtime environment and control the entire Router operation. For example, in the browser, it's usually associated with the URL, or it might only be associated with the hash, or it could be a logical operation running only in memory.
+在不同的场景下，需要有不同的 Driver 来和运行环境关联并区动整个 Router 运行，
+比如，在浏览器中通常和 URL 关联，也可能仅和 Hash 关联，也可能仅是运行于内存中的逻辑。
 
 ### BrowserDriver
 
-A driver based on the browser's History API, supported by most mainstream browsers, suitable for most web applications.
+基于浏览器 History API 的驱动，主流的浏览器都已支持，大多数 Web 应用都可以使用它
 
 ```ts
-// Usage Method 1, when creating a driver within a component, use this hook.
+// 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook
 const driver = useBrowserDriver();
 
-// Usage Method 2, when creating a driver outside a component, use the following method.
+// 使用方法二，当在组件外部创建 driver 时，请使用如下的方法
 const driver = createBrowserDriver();
 ```
 
 ### HashDriver
 
-For older browsers or when a server program cannot enable History fallback for the frontend.
-> Enabling History fallback refers to configuring the server-side route /your_app_path/* to point to the corresponding frontend page.
+在一些旧浏览器，或者服务器程序无法面向前端启用 History fallback 时，可以用 HashDriver
+> 启用 History fallback，指的是配置服务端路由 /your_app_path/* 指向相应的前端页面
 
 ```ts
-// Usage Method 1, when creating a driver within a component, use this hook.
+// 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook
 const driver = useHashDriver();
 
-// Usage Method 2, when creating a driver outside a component, use the following method.
+// 使用方法二，当在组件外部创建 driver 时，请使用如下的方法
 const driver = createHashDriver();
 ```
 
 ### MemoryDriver
 
-When using RBR in a non-browser environment or when you don't want to reflect page paths in the URL, you can use MemoryDriver.
+当在非浏览器环境使用 RBR 时，或不想在 URL 中反映页面路径，可以使用 MemoryDriver
 
 ```ts
-// Usage Method 1, when creating a driver within a component, use this hook.
-const driver = useMemoryDriver(/* Optional options */);
+// 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook
+const driver = useMemoryDriver(/* 可选选项 */);
 
-// Usage Method 2, when creating a driver outside a component, use the following method.
-const driver = createMemoryDriver(/* Optional options */);
+// 使用方法二，当在组件外部创建 driver 时，请使用如下的方法
+const driver = createMemoryDriver(/* 可选选项 */);
 
-// Option type definition, default value for options is { pathname: "/" }
+// 选项类型定义如下，选项的默认值为 { pathname: "/" }
 type MemoryDriverInitialState {
-  // Since the Memory Driver doesn't have an existing path to associate with, the initial state's pathname needs to be specified.
+  // 因为内存 Driver 并没有现有的路径可关联，需要通过初始状态的 pathname 指定
   pathname: string; 
 }
 ```
