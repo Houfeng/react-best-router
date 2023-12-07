@@ -16,7 +16,7 @@ RBR 体积很小，Minify **5kb**，GZip **2kb**。Ta 的 API 也很简洁只有
 [![npm download](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
 [![minify](https://img.shields.io/badge/Minify-5kb-green)](https://github.com/houfeng/react-best-router)
 [![minify](https://img.shields.io/badge/GZip-2kb-green)](https://github.com/houfeng/react-best-router)
-[![unit](https://img.shields.io/badge/Tests-87%-green)](https://github.com/houfeng/react-best-router)
+[![unit](https://img.shields.io/badge/Tests-87%25-green)](https://github.com/houfeng/react-best-router)
 
 ## 2. 安装
 
