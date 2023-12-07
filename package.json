@@ -1,6 +1,6 @@
 {
   "name": "react-best-router",
-  "version": "0.2.8",
+  "version": "0.2.9",
   "description": "",
   "main": "./dist/react-best-router-cjs.js",
   "module": "./dist/react-best-router-es.js",
@@ -25,7 +25,16 @@
     "react-better-router",
     "rbr"
   ],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Houfeng/react-best-router.git"
+  },
+  "homepage": "https://rbr.houfeng.net",
+  "author": {
+    "name": "Houfeng",
+    "email": "houzhanfeng@gmail.com",
+    "url": "http://blog.houfeng.net"
+  },
   "license": "MIT",
   "peerDependencies": {
     "react": "^18.2.0",
