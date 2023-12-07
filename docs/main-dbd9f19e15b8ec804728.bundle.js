@@ -2933,10 +2933,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function takeSidePatterns(type, elements) {
-    const items = react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(elements).filter((it) => !!it && (it === null || it === void 0 ? void 0 : it.type) !== react__WEBPACK_IMPORTED_MODULE_0__.Fragment);
-    const validItems = items.filter((it) => it.type === type);
-    return items.length === validItems.length
-        ? validItems.map((it) => { var _a; return (_a = it.props) === null || _a === void 0 ? void 0 : _a.pattern; })
+    const validItems = react__WEBPACK_IMPORTED_MODULE_0__.Children.toArray(elements).filter((it) => !!it);
+    const routeItems = validItems.filter((it) => it.type === type);
+    return validItems.length === routeItems.length
+        ? routeItems.map((it) => { var _a; return (_a = it.props) === null || _a === void 0 ? void 0 : _a.pattern; })
         : [];
 }
 function RouteFallback(props) {

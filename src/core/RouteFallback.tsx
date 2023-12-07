@@ -14,20 +14,18 @@ import {
 } from "./RouteMatcher";
 import { useRouterContext } from "./RouterContext";
 
-type SideType = FC<{ pattern: RoutePattern }>;
+type RouteLike = FC<{ pattern: RoutePattern }>;
 
 export type RouteFallbackProps = {
-  side: [SideType, ReactNode];
+  side: [RouteLike, ReactNode];
   children: ReactNode;
 };
 
-function takeSidePatterns(type: SideType, elements: ReactNode) {
-  const items = Children.toArray(elements).filter(
-    (it: any) => !!it && it?.type !== Fragment,
-  );
-  const validItems = items.filter((it: any) => it.type === type);
-  return items.length === validItems.length
-    ? validItems.map((it: any) => it.props?.pattern)
+function takeSidePatterns(type: RouteLike, elements: ReactNode) {
+  const validItems = Children.toArray(elements).filter((it) => !!it);
+  const routeItems = validItems.filter((it: any) => it.type === type);
+  return validItems.length === routeItems.length
+    ? routeItems.map((it: any) => it.props?.pattern)
     : [];
 }
 
