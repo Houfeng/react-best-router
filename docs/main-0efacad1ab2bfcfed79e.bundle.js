@@ -965,6 +965,25 @@ html {
   border-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-border-opacity)));
   --tw-border-opacity: 0.2;
 }
+.divider {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  align-self: stretch;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  height: 1rem;
+  white-space: nowrap;
+}
+.divider:before,
+  .divider:after {
+  height: 0.125rem;
+  width: 100%;
+  flex-grow: 1;
+  --tw-content: '';
+  content: var(--tw-content);
+  background-color: var(--fallback-bc,oklch(var(--bc)/0.1));
+}
 .drawer {
   position: relative;
   display: grid;
@@ -1121,6 +1140,16 @@ html {
   .dropdown.dropdown-hover:hover .dropdown-content {
     visibility: visible;
     opacity: 1;
+  }
+
+  .btm-nav > *.disabled:hover,
+      .btm-nav > *[disabled]:hover {
+    pointer-events: none;
+    --tw-border-opacity: 0;
+    background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
+    --tw-bg-opacity: 0.1;
+    color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+    --tw-text-opacity: 0.2;
   }
 
   .btn:hover {
@@ -1346,6 +1375,15 @@ html {
   border-color: var(--fallback-bc,oklch(var(--bc)/var(--tw-border-opacity)));
   --tw-border-opacity: 0.2;
 }
+.btm-nav > *.disabled,
+    .btm-nav > *[disabled] {
+  pointer-events: none;
+  --tw-border-opacity: 0;
+  background-color: var(--fallback-n,oklch(var(--n)/var(--tw-bg-opacity)));
+  --tw-bg-opacity: 0.1;
+  color: var(--fallback-bc,oklch(var(--bc)/var(--tw-text-opacity)));
+  --tw-text-opacity: 0.2;
+}
 .btm-nav > * .label {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1482,6 +1520,9 @@ html {
   100% {
     background-position-y: 0;
   }
+}
+.divider:not(:empty) {
+  gap: 1rem;
 }
 .drawer-toggle:checked ~ .drawer-side > .drawer-overlay {
   background-color: #0006;
@@ -2290,6 +2331,9 @@ html {
 .prose :where(.prose > :last-child):not(:where([class~="not-prose"],[class~="not-prose"] *)) {
   margin-bottom: 0;
 }
+.pointer-events-none {
+  pointer-events: none;
+}
 .sticky {
   position: sticky;
 }
@@ -2302,9 +2346,19 @@ html {
 .z-\\[1\\] {
   z-index: 1;
 }
+.m-0 {
+  margin: 0px;
+}
+.my-1 {
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+}
 .my-\\[2px\\] {
   margin-top: 2px;
   margin-bottom: 2px;
+}
+.ml-\\[-6px\\] {
+  margin-left: -6px;
 }
 .mt-10 {
   margin-top: 2.5rem;
@@ -2329,6 +2383,9 @@ html {
 }
 .h-5 {
   height: 1.25rem;
+}
+.h-\\[auto\\] {
+  height: auto;
 }
 .h-full {
   height: 100%;
@@ -2391,6 +2448,9 @@ html {
 }
 .stroke-current {
   stroke: currentColor;
+}
+.p-0 {
+  padding: 0px;
 }
 .p-10 {
   padding: 2.5rem;
@@ -2692,6 +2752,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/.pnpm/react@18.2.0/node_modules/react/index.js");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _src__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../src */ "./src/index.ts");
+/* harmony import */ var _LocalStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LocalStore */ "./develop/LocalStore.tsx");
+
 
 
 function Header() {
@@ -2709,14 +2771,22 @@ function Header() {
                     (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("svg", { xmlns: "http://www.w3.org/2000/svg", fill: "none", viewBox: "0 0 24 24", className: "inline-block w-5 h-5 stroke-current" },
                         (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("path", { strokeLinecap: "round", strokeLinejoin: "round", strokeWidth: "2", d: "M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z" }))),
                 (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", { onClick: () => { var _a, _b; return (_b = (_a = document.activeElement) === null || _a === void 0 ? void 0 : _a.blur) === null || _b === void 0 ? void 0 : _b.call(_a); }, className: "dropdown-content z-[1] menu p-2 shadow-lg bg-base-200 rounded-box w-52" },
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "disabled pointer-events-none p-0 my-1 h-[auto]" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "divider m-0 p-0 ml-[-6px]" }, "Language")),
                     (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
-                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Dark", value: "night" })),
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "language-dropdown", className: "btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "English", value: "en", onClick: () => (0,_LocalStore__WEBPACK_IMPORTED_MODULE_2__.setLocalLanguage)("en") })),
                     (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
-                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Light", value: "winter" })),
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "language-dropdown", className: "btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "\u7B80\u4F53\u4E2D\u6587", value: "zh", onClick: () => (0,_LocalStore__WEBPACK_IMPORTED_MODULE_2__.setLocalLanguage)("zh") })),
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "disabled pointer-events-none p-0 my-1 h-[auto]" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("div", { className: "divider m-0 p-0 ml-[-6px]" }, "Theme")),
                     (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
-                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Coffee", value: "coffee" })),
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Dark", value: "night", onClick: () => (0,_LocalStore__WEBPACK_IMPORTED_MODULE_2__.setLocalTheme)("night") })),
                     (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
-                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Retro", value: "retro" })))))));
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Light", value: "winter", onClick: () => (0,_LocalStore__WEBPACK_IMPORTED_MODULE_2__.setLocalTheme)("winter") })),
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Coffee", value: "coffee", onClick: () => (0,_LocalStore__WEBPACK_IMPORTED_MODULE_2__.setLocalTheme)("coffee") })),
+                    (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "my-[2px]" },
+                        (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("input", { type: "radio", name: "theme-dropdown", className: "theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3", "aria-label": "Retro", value: "retro", onClick: () => (0,_LocalStore__WEBPACK_IMPORTED_MODULE_2__.setLocalTheme)("retro") })))))));
 }
 
 
@@ -2751,6 +2821,50 @@ function Layout({ children, sideBar, header, footer }) {
 
 /***/ }),
 
+/***/ "./develop/LocalStore.tsx":
+/*!********************************!*\
+  !*** ./develop/LocalStore.tsx ***!
+  \********************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getLocalLanguage: () => (/* binding */ getLocalLanguage),
+/* harmony export */   getLocalTheme: () => (/* binding */ getLocalTheme),
+/* harmony export */   setLocalLanguage: () => (/* binding */ setLocalLanguage),
+/* harmony export */   setLocalTheme: () => (/* binding */ setLocalTheme)
+/* harmony export */ });
+const themeKey = "rbr://theme";
+const defaultTheme = "night";
+function getLocalTheme() {
+    try {
+        return JSON.parse(localStorage.getItem(themeKey) || JSON.stringify(defaultTheme));
+    }
+    catch (_a) {
+        return defaultTheme;
+    }
+}
+function setLocalTheme(name) {
+    localStorage.setItem(themeKey, JSON.stringify(name));
+}
+const languageKey = "rbr://language";
+const defaultLanguage = navigator.language.includes("zh") ? "zh" : "en";
+function getLocalLanguage() {
+    try {
+        return JSON.parse(localStorage.getItem(languageKey) || JSON.stringify(defaultLanguage));
+    }
+    catch (_a) {
+        return defaultLanguage;
+    }
+}
+function setLocalLanguage(name) {
+    localStorage.setItem(languageKey, JSON.stringify(name));
+    location.reload();
+}
+
+
+/***/ }),
+
 /***/ "./develop/SideBar.tsx":
 /*!*****************************!*\
   !*** ./develop/SideBar.tsx ***!
@@ -2773,7 +2887,7 @@ function scrollToTop() {
 }
 function SideBar() {
     const nav = (0,_src__WEBPACK_IMPORTED_MODULE_1__.useNavigator)();
-    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", { onClick: () => { var _a; return (_a = document.getElementById("drawer-switch")) === null || _a === void 0 ? void 0 : _a.click(); }, className: "menu p-3 w-60 bg-base-200 bg-opacity-75 glass h-full pt-16 text-base-content" }, _docs__WEBPACK_IMPORTED_MODULE_2__.contents.map((it) => ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { className: "text-sm" },
+    return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("ul", { onClick: () => { var _a; return (_a = document.getElementById("drawer-switch")) === null || _a === void 0 ? void 0 : _a.click(); }, className: "menu p-3 w-60 bg-base-200 bg-opacity-75 glass h-full pt-16 text-base-content" }, _docs__WEBPACK_IMPORTED_MODULE_2__.contents.map((it) => ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("li", { key: it.name, className: "text-sm" },
         (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)("a", { className: "p-3", onClick: () => [nav.push(`/${it.name}`), scrollToTop()] }, it.title))))));
 }
 
@@ -2843,9 +2957,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _zh__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./zh */ "./develop/docs/zh/index.ts");
 /* harmony import */ var _en__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./en */ "./develop/docs/en/index.ts");
+/* harmony import */ var _LocalStore__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../LocalStore */ "./develop/LocalStore.tsx");
 
 
-const contents = _zh__WEBPACK_IMPORTED_MODULE_0__.contents_zh || _en__WEBPACK_IMPORTED_MODULE_1__.contents_en;
+
+const contents = (0,_LocalStore__WEBPACK_IMPORTED_MODULE_2__.getLocalLanguage)() === "zh" ? _zh__WEBPACK_IMPORTED_MODULE_0__.contents_zh : _en__WEBPACK_IMPORTED_MODULE_1__.contents_en;
 
 
 /***/ }),
@@ -2919,6 +3035,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _Footer__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./Footer */ "./develop/Footer.tsx");
 /* harmony import */ var _Content__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./Content */ "./develop/Content.tsx");
 /* harmony import */ var _Examples__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./Examples */ "./develop/Examples.tsx");
+/* harmony import */ var _LocalStore__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./LocalStore */ "./develop/LocalStore.tsx");
 
 
 
@@ -2929,6 +3046,8 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
+
+document.documentElement.setAttribute("data-theme", (0,_LocalStore__WEBPACK_IMPORTED_MODULE_10__.getLocalTheme)());
 function RBRDocsAPP() {
     const driver = (0,_src__WEBPACK_IMPORTED_MODULE_3__.useHashDriver)();
     return ((0,react__WEBPACK_IMPORTED_MODULE_1__.createElement)(_src__WEBPACK_IMPORTED_MODULE_3__.Router, { driver: driver },
@@ -3554,7 +3673,7 @@ module.exports = "# Common Usage Examples\n\n```bash\nTODO://\n```\n";
   \**************************************/
 /***/ ((module) => {
 
-module.exports = "# Get Started with RBR\n\n## 1. Overview\n\nIn a slightly larger React application, it's common to use a router to handle relationships between pages and navigation between them. Have you ever encountered difficulties with other router libraries? For instance, defining nested and dynamic routes might be cumbersome or problematic, or the API might not be concise. It could also include unrelated content, or compatibility issues might arise between different versions...\n\nOne weekend, I decided to create a simpler and more user-friendly routing package, focusing on handling routes in React applications. I named this package react-best-router and abbreviated it as RBR.\n\nRBR has a small footprint, with a minified size of **5kb** and a GZip size of **2kb**. Its API is also concise, consisting of only **4** core groups of APIs, including (Router, Driver, Route, Navigator).\n\n[![github](https://img.shields.io/badge/Repo-Github-blue)](https://github.com/houfeng/react-best-router)\n[![npm](https://img.shields.io/npm/l/react-best-router.svg)](https://github.com/houfeng/react-best-router)\n[![npm version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n[![npm download](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n[![minify](https://img.shields.io/badge/Minify-5kb-green)](https://github.com/houfeng/react-best-router)\n[![minify](https://img.shields.io/badge/GZip-2kb-green)](https://github.com/houfeng/react-best-router)\n[![unit](https://img.shields.io/badge/Tests-87%25-green)](https://github.com/houfeng/react-best-router)\n\n## 2. 安装\n\nOption 1: NPM Package\n\n```zsh\n# NPM Package\n$ npm install react-best-router \n```\n\nOption 2: Using CDN, pay attention to the version number\n\n```html\n<!-- CDN -->\n<script \nsrc=\"https://cdn.jsdelivr.net/npm/react-best-router@latest/dist/react-best-router-iife.min.js\">\n</script>\n```\n\n## 3. Usage\n\n```tsx\nimport { Router, useBrowserDriver } from \"react-best-router\";\n\n// Example application entry component\nfunction YourApp() {\n  // Specify a driver (don't worry too much about it now, the documentation will explain what a driver is in the following sections)\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <Route pattern=\"/\"><Index/></Route>\n      <Route pattern=\"/posts\"><Posts/></Route>\n    </Router>\n  );\n}\n```\n\nTaking the example of a local development server at http://localhost:8080, you can now access the index page in the browser and also visit the Posts page through http://localhost:8080/posts. RBR is already at work.\n\nNext, let's add a \"navigation menu\" to this example. We can use the useNavigator hook to get the \"Router navigator instance\" and use it for navigation between different pages.\n\n```tsx\nimport { \n  Router, \n  useBrowserDriver, \n  useNavigator \n} from \"react-best-router\";\n\n// Navigation menu component\nfunction NavMenus(){\n  const nav = useNavigator();\n  return (\n    <ul>\n      <li><a onClick={nav.push('/index')}>Index</a></li>\n      <li><a onClick={nav.push('/posts')}>Posts</a></li>\n    </ul>\n  );\n}\n\n// Example application entry component\nfunction YourApp() {\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <NavMenus/>\n      <main>\n        <Route pattern=\"/\"><Index/></Route>\n        <Route pattern=\"/posts\"><Posts/></Route>\n      </main>\n    </Router>\n  );\n}\n```\n\nNow, you have a basic understanding of how to use RBR. Later on, we will introduce some other features, but they are equally simple.\n";
+module.exports = "# Get Started with RBR\n\n## 1. Overview\n\nIn a slightly larger React application, it's common to use a router to handle relationships between pages and navigation between them. Have you ever encountered difficulties with other router libraries? For instance, defining nested and dynamic routes might be cumbersome or problematic, or the API might not be concise. It could also include unrelated content, or compatibility issues might arise between different versions...\n\nOne weekend, I decided to create a simpler and more user-friendly routing package, focusing on handling routes in React applications. I named this package react-best-router and abbreviated it as RBR.\n\nRBR has a small footprint, with a minified size of **5kb** and a GZip size of **2kb**. Its API is also concise, consisting of only **4** core groups of APIs, including (Router, Driver, Route, Navigator).\n\n[![github](https://img.shields.io/badge/Repo-Github-blue)](https://github.com/houfeng/react-best-router)\n[![npm](https://img.shields.io/npm/l/react-best-router.svg)](https://github.com/houfeng/react-best-router)\n[![npm version](https://img.shields.io/npm/v/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n[![npm download](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)\n[![minify](https://img.shields.io/badge/Minify-5kb-green)](https://github.com/houfeng/react-best-router)\n[![minify](https://img.shields.io/badge/GZip-2kb-green)](https://github.com/houfeng/react-best-router)\n[![unit](https://img.shields.io/badge/Tests-87%25-green)](https://github.com/houfeng/react-best-router)\n\n## 2. Installation\n\nOption 1: NPM Package\n\n```zsh\n# NPM Package\n$ npm install react-best-router \n```\n\nOption 2: Using CDN, pay attention to the version number\n\n```html\n<!-- CDN -->\n<script \nsrc=\"https://cdn.jsdelivr.net/npm/react-best-router@latest/dist/react-best-router-iife.min.js\">\n</script>\n```\n\n## 3. Usage\n\n```tsx\nimport { Router, useBrowserDriver } from \"react-best-router\";\n\n// Example application entry component\nfunction YourApp() {\n  // Specify a driver (don't worry too much about it now, the documentation will explain what a driver is in the following sections)\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <Route pattern=\"/\"><Index/></Route>\n      <Route pattern=\"/posts\"><Posts/></Route>\n    </Router>\n  );\n}\n```\n\nTaking the example of a local development server at http://localhost:8080, you can now access the index page in the browser and also visit the Posts page through http://localhost:8080/posts. RBR is already at work.\n\nNext, let's add a \"navigation menu\" to this example. We can use the useNavigator hook to get the \"Router navigator instance\" and use it for navigation between different pages.\n\n```tsx\nimport { \n  Router, \n  useBrowserDriver, \n  useNavigator \n} from \"react-best-router\";\n\n// Navigation menu component\nfunction NavMenus(){\n  const nav = useNavigator();\n  return (\n    <ul>\n      <li><a onClick={nav.push('/index')}>Index</a></li>\n      <li><a onClick={nav.push('/posts')}>Posts</a></li>\n    </ul>\n  );\n}\n\n// Example application entry component\nfunction YourApp() {\n  const driver = useBrowserDriver(); \n  return (\n    <Router driver={driver}>\n      <NavMenus/>\n      <main>\n        <Route pattern=\"/\"><Index/></Route>\n        <Route pattern=\"/posts\"><Posts/></Route>\n      </main>\n    </Router>\n  );\n}\n```\n\nNow, you have a basic understanding of how to use RBR. Later on, we will introduce some other features, but they are equally simple.\n";
 
 /***/ }),
 

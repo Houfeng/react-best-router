@@ -2,6 +2,7 @@ import { createElement } from "react";
 import { useNavigator } from "../src";
 import { setLocalLanguage, setLocalTheme } from "./LocalStore";
 
+//eslint-disable-next-line max-lines-per-function
 export function Header() {
   const nav = useNavigator();
   return (
