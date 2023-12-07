@@ -2837,7 +2837,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   setLocalTheme: () => (/* binding */ setLocalTheme)
 /* harmony export */ });
 const themeKey = "rbr://theme";
-const defaultTheme = "night";
+const defaultTheme = "retro";
 function getLocalTheme() {
     try {
         return JSON.parse(localStorage.getItem(themeKey) || JSON.stringify(defaultTheme));
@@ -2885,7 +2885,7 @@ __webpack_require__.r(__webpack_exports__);
 
 
 function scrollToTop() {
-    setTimeout(() => (document.documentElement.scrollTop = 0), 0);
+    document.documentElement.scrollTop = 0;
 }
 function SideBar() {
     const nav = (0,_src__WEBPACK_IMPORTED_MODULE_1__.useNavigator)();
@@ -2939,7 +2939,7 @@ const contents_en = [
     },
     {
         name: "examples",
-        title: "💡 Common Examples",
+        title: "💡 Examples",
         content: _examples_md_raw__WEBPACK_IMPORTED_MODULE_4__,
     },
 ];
@@ -3665,7 +3665,7 @@ module.exports = "# Only 4 APIs\n\nRBR focuses on solving the issue of \"route h
   \*****************************************/
 /***/ ((module) => {
 
-module.exports = "# Common Examples\n\n```bash\nTODO://\n```\n";
+module.exports = "# Examples\n\n```bash\nTODO://\n```\n";
 
 /***/ }),
 

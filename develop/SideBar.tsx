@@ -3,7 +3,7 @@ import { useNavigator } from "../src";
 import { contents } from "./docs";
 
 function scrollToTop() {
-  setTimeout(() => (document.documentElement.scrollTop = 0), 0);
+  document.documentElement.scrollTop = 0;
 }
 
 export function SideBar() {

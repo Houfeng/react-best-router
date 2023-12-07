@@ -27,7 +27,7 @@ export const contents_en = [
   },
   {
     name: "examples",
-    title: "💡 Common Examples",
+    title: "💡 Examples",
     content: examples_zh,
   },
 ];

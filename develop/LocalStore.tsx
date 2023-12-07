@@ -1,5 +1,5 @@
 const themeKey = "rbr://theme";
-const defaultTheme = "night";
+const defaultTheme = "retro";
 
 export function getLocalTheme(): string {
   try {
