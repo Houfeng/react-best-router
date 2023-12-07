@@ -40,25 +40,25 @@ function YourApp(){
 ## 2. 默认路由
 
 如上节讲述，RBR 总是完整匹配、也不会按顺序逐一匹配，所以 RBR 并没有默认路由的概念。
-可通过**直接配置 / 要路由到的目标**，可放到任意位置，而无需要依赖顺序且必须在最后配置通配路由。
+可通过 **直接配置 / 的路由目标**，可放到任意位置，无需依赖顺序、无需最后配置通配路由。
 
 ```tsx
 function App(){
   return (
     <Router driver={driver}>
-      <Route pattern="/a"><PageA></Route>
-      <Route pattern="/b"><PageB></Route>
       {/* 
         可显式且准确的配置 / 路由到哪个页面，
         可以是 PageA/PageB/PageC 或其他 Page
       */}
-      <Route pattern="/"><PageC></Route>
+      <Route pattern="/"><PageA></Route>
+      <Route pattern="/b"><PageB></Route>
+      <Route pattern="/b"><PageC></Route>
     </Router>
   );
 }
 ```
 
-还可通过 **修饰符** 声明**可选路径**方式实现默认路由的效果。
+还可以通过 **修饰符** 声明 **可选路径** 的方式实现默认路由的效果。
 
 ```tsx
 function App(){
