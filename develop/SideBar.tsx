@@ -14,7 +14,7 @@ export function SideBar() {
       className="menu p-3 w-60 bg-base-200 bg-opacity-75 glass h-full pt-16 text-base-content"
     >
       {contents.map((it) => (
-        <li className="text-sm">
+        <li key={it.name} className="text-sm">
           <a
             className="p-3"
             onClick={() => [nav.push(`/${it.name}`), scrollToTop()]}

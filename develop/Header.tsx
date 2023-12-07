@@ -1,5 +1,6 @@
 import { createElement } from "react";
 import { useNavigator } from "../src";
+import { setLocalTheme } from "./LocalStore";
 
 export function Header() {
   const nav = useNavigator();
@@ -65,6 +66,7 @@ export function Header() {
                 className="theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
                 aria-label="Dark"
                 value="night"
+                onClick={() => setLocalTheme("night")}
               />
             </li>
             <li className="my-[2px]">
@@ -74,6 +76,7 @@ export function Header() {
                 className="theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
                 aria-label="Light"
                 value="winter"
+                onClick={() => setLocalTheme("winter")}
               />
             </li>
             <li className="my-[2px]">
@@ -83,6 +86,7 @@ export function Header() {
                 className="theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
                 aria-label="Coffee"
                 value="coffee"
+                onClick={() => setLocalTheme("coffee")}
               />
             </li>
             <li className="my-[2px]">
@@ -92,6 +96,7 @@ export function Header() {
                 className="theme-controller btn btn-sm btn-block btn-ghost justify-start h-10 py-3"
                 aria-label="Retro"
                 value="retro"
+                onClick={() => setLocalTheme("retro")}
               />
             </li>
           </ul>

@@ -8,6 +8,9 @@ import { Header } from "./Header";
 import { Footer } from "./Footer";
 import { Content } from "./Content";
 import { Examples } from "./Examples";
+import { getLocalTheme } from "./LocalStore";
+
+document.documentElement.setAttribute("data-theme", getLocalTheme());
 
 function RBRDocsAPP() {
   const driver = useHashDriver();
