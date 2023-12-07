@@ -62,8 +62,7 @@ function patternToRegExp(pattern: string) {
   try {
     return new RegExp(`^${text}$`, "i");
   } catch {
-    // eslint-disable-next-line
-    console.error("Invalid pattern:", pattern);
+    throw `Invalid pattern: ${pattern}`;
   }
 }
 

@@ -38,6 +38,7 @@ export function Route(props: RouteProps) {
   );
   // match current pathname
   const matched = matcher.match(state.pathname).state;
+  if (!matched && !fallback) return <Fragment />;
   // normalize children
   const elements = render ? render(children) : children;
   return (

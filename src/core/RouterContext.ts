@@ -9,6 +9,8 @@ export type RouterContextValue = {
 };
 
 export const RouterContext = createContext<RouterContextValue>(null!);
-export function useRouterContext() {
-  return useContext(RouterContext);
+export function useRouterContext(): RouterContextValue {
+  const value = useContext(RouterContext);
+  if (!value) throw "Invalid call outside of Router";
+  return value;
 }

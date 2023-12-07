@@ -53,6 +53,6 @@ export function createMatcher(
 
 export const MatcherContext = createContext<RouteMatcher>(null!);
 
-export function useParentMatcher() {
+export function useParentMatcher(): RouteMatcher | undefined {
   return useContext(MatcherContext);
 }

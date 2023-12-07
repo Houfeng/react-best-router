@@ -2902,6 +2902,8 @@ function Route(props) {
     const parentMatcher = (0,_RouteMatcher__WEBPACK_IMPORTED_MODULE_2__.useParentMatcher)();
     const matcher = (0,react__WEBPACK_IMPORTED_MODULE_0__.useMemo)(() => (0,_RouteMatcher__WEBPACK_IMPORTED_MODULE_2__.createMatcher)(pattern, prefix, parentMatcher), [pattern, prefix, parentMatcher]);
     const matched = matcher.match(state.pathname).state;
+    if (!matched && !fallback)
+        return (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(react__WEBPACK_IMPORTED_MODULE_0__.Fragment, null);
     const elements = render ? render(children) : children;
     return ((0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouteMatcher__WEBPACK_IMPORTED_MODULE_2__.MatcherContext.Provider, { value: matcher },
         navigator && (0,react__WEBPACK_IMPORTED_MODULE_0__.createElement)(_RouterNavigator__WEBPACK_IMPORTED_MODULE_3__.NavigatorForwarder, { ref: navigator }),
@@ -3043,7 +3045,10 @@ __webpack_require__.r(__webpack_exports__);
 
 const RouterContext = (0,react__WEBPACK_IMPORTED_MODULE_0__.createContext)(null);
 function useRouterContext() {
-    return (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(RouterContext);
+    const value = (0,react__WEBPACK_IMPORTED_MODULE_0__.useContext)(RouterContext);
+    if (!value)
+        throw "Invalid call outside of Router";
+    return value;
 }
 
 
@@ -3101,7 +3106,7 @@ function useNavigator() {
         const forward = () => driver.forward();
         const go = (step) => driver.go(step);
         const pathname = toScopedPath(base, state.pathname);
-        const { params = {} } = Object.assign({}, matcher.result);
+        const { params = {} } = Object.assign({}, matcher === null || matcher === void 0 ? void 0 : matcher.result);
         return { pathname, params, push, back, forward, go, replace };
     }, [state, matcher, driver]);
 }
@@ -3202,7 +3207,7 @@ function patternToRegExp(pattern) {
         return new RegExp(`^${text}$`, "i");
     }
     catch (_a) {
-        console.error("Invalid pattern:", pattern);
+        throw `Invalid pattern: ${pattern}`;
     }
 }
 function patternToMatch(pattern) {
