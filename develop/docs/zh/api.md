@@ -6,7 +6,7 @@ RBR 专注于解决「React 应用中的路由处理」这一个问题，
 ## 1. Router
 
 Router 以一个 React 组件的形式提供，通常一个应用只需要一个 Router 作为容器在最外层，
-当然，根据你的需求也可以使用多个 Router。
+当然，根据需求也可以使用多个 Router。
 
 ```tsx
 type RouterProps = {
@@ -17,7 +17,7 @@ type RouterProps = {
   // 为当前 Router 指定驱动类型
   driver: RouterDriver;
 
-  // 这是一个 Ref，当你需要 Router 组件子树外访问 navigator 时，它非常有用
+  // 这是一个 Ref，当需要 Router 组件子树外访问 navigator 时，它非常有用
   navigator?: RouterNavigatorRef<any>;
 
   // 可以是任意合法的 ReactNode，在任意深度的层级中都可使用 route
@@ -52,7 +52,7 @@ type RouteProps = {
   // 传递给子路由的「前缀匹配模式」，默认由 pattern 自动计算，但也可手动指定
   prefix?: RouterPattern;
 
-  // 这是一个 Ref，当你需要 Route 组件子树外访问 navigator 时，它非常有用
+  // 这是一个 Ref，当需要 Route 组件子树外访问 navigator 时，它非常有用
   navigator?: RouterNavigatorRef<any>;
 
   // 可以是任意合法的 ReactNode，在任意深度的层级中都可添加子 route
@@ -150,8 +150,8 @@ const driver = createBrowserDriver();
 
 ### HashDriver
 
-在一些旧浏览器，或者你的服务器程序无法面向前端启用 History fallback 时，可以用 HashDriver
-> 启用 History fallback，指的是配置服务端路由 /your_app_path/* 指向你的前端页面
+在一些旧浏览器，或者服务器程序无法面向前端启用 History fallback 时，可以用 HashDriver
+> 启用 History fallback，指的是配置服务端路由 /your_app_path/* 指向相应的前端页面
 
 ```ts
 // 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook
@@ -163,7 +163,7 @@ const driver = createHashDriver();
 
 ### MemoryDriver
 
-当在非浏览器环境使用 RBR 时，或不想在 URL 中反映你的页面路径，可以使用 MemoryDriver
+当在非浏览器环境使用 RBR 时，或不想在 URL 中反映页面路径，可以使用 MemoryDriver
 
 ```ts
 // 使用方法一，当在一个组件中创建 driver 时，请使用这个 Hook
