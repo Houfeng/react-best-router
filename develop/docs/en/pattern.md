@@ -1,4 +1,4 @@
-# Explaining Path Matching
+# Path Matching
 
 ## 1. Named Parameters
 
