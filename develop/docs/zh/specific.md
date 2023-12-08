@@ -52,7 +52,7 @@ function App(){
       */}
       <Route pattern="/"><PageA></Route>
       <Route pattern="/b"><PageB></Route>
-      <Route pattern="/b"><PageC></Route>
+      <Route pattern="/c"><PageC></Route>
     </Router>
   );
 }
@@ -70,7 +70,7 @@ function App(){
       */}
       <Route pattern="/(a)?"><PageA></Route>
       <Route pattern="/b"><PageB></Route>
-      <Route pattern="/c"><PageA></Route>
+      <Route pattern="/c"><PageC></Route>
     </Router>
   );
 }
@@ -92,8 +92,8 @@ function App(){
         在 Route 自身及所有直接子级 Route 都无法匹配当前 url 时，将渲染 fallback
       */}
       <Route fallback={<div>Not Found</div>}>
-        <Route pattern="/b"><PageA></Route>
-        <Route pattern="/c"><PageA></Route>
+        <Route pattern="/b"><PageB></Route>
+        <Route pattern="/c"><PageC></Route>
       </Route>
     </Router>
   );
