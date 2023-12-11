@@ -81,10 +81,12 @@ Navigator is the second most used API when using RBR, allowing navigation betwee
 
 ```tsx
 type RouterNavigator<P extends object> = {
-  // Current application pathname.
-  pathname: string;
+  // Current application path, eg: /foo/bar?foo=bar
+  path: string;
   // Route parameters.
-  params: MatchResult<P>["params"];
+  params: P;
+  // query parameters 
+  query: URLSearchParams;
   // Navigate to the specified path.
   push: (path: string) => void;
   // Go back to the previous path.

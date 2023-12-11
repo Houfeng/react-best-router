@@ -1,15 +1,3 @@
-import { RoutePattern } from "./RouteMatcher";
-
-export function patternToPrefix(pattern: RoutePattern) {
-  const expr = /[.*()[\]:]/;
-  const segments = pattern.split("/");
-  const lastIndex = segments
-    .slice(0)
-    .reverse()
-    .findIndex((it) => !expr.test(it));
-  return (lastIndex > 0 ? segments.slice(0, -lastIndex) : segments).join("/");
-}
-
 export function normalizePath(path: string) {
   const segments = path.split("/").map((it) => (it || "").trim());
   const len = segments.length;
@@ -25,7 +13,7 @@ export function resolvePath(from: string, to: string) {
   return normalizePath(`${from}/${to}`);
 }
 
-function patternToRegExp(pattern: string) {
+export function patternToRegExp(pattern: string) {
   const table: Array<[string, string]> = [];
   let id = 0;
   let text = pattern;
@@ -64,21 +52,4 @@ function patternToRegExp(pattern: string) {
   } catch {
     throw `Invalid pattern: ${pattern}`;
   }
-}
-
-export type MatchResult<P extends object> = {
-  state: boolean;
-  params: P | undefined;
-};
-
-export type MatchFunction<P extends object> = (
-  pathname: string,
-) => MatchResult<P>;
-
-export function patternToMatch<P extends object = object>(pattern: string) {
-  const regexp = patternToRegExp(pattern);
-  return (pathname: string) => {
-    const info = regexp?.exec(pathname);
-    return { state: !!info, params: info?.groups || {} } as MatchResult<P>;
-  };
 }

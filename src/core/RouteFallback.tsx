@@ -32,15 +32,13 @@ function takeSidePatterns(type: RouteLike, elements: ReactNode) {
 export function RouteFallback(props: RouteFallbackProps) {
   const { side, children } = props;
   const patterns = takeSidePatterns(...side);
-  const {
-    state: { pathname },
-  } = useRouterContext();
+  const { state } = useRouterContext();
   const parentMatcher = useParentMatcher();
   const matchers = useMemo<RouteMatcher[]>(
     () => patterns.map((it) => createMatcher(it, "", parentMatcher)),
-    [patterns.join(":"), pathname, parentMatcher],
+    [patterns.join(":"), state.path, parentMatcher],
   );
-  return !matchers[0] || matchers.some((it) => it.match(pathname).state) ? (
+  return !matchers[0] || matchers.some((it) => it.match(state.path).state) ? (
     <Fragment />
   ) : (
     children

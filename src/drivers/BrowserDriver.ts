@@ -3,15 +3,16 @@ import { RouterDriver, RouterState } from "../core";
 
 export function createBrowserDriver(): RouterDriver {
   const current = (): RouterState => {
-    return { pathname: location.pathname };
+    const { pathname, search } = location;
+    return { path: `${pathname}${search}` };
   };
   const push = (state: RouterState) => {
-    history.pushState(state, state.pathname, state.pathname);
+    history.pushState(state, state.path, state.path);
     const event = new PopStateEvent("popstate", { state });
     window.dispatchEvent(event);
   };
   const replace = (state: RouterState) => {
-    history.replaceState(state, state.pathname, state.pathname);
+    history.replaceState(state, state.path, state.path);
     const event = new PopStateEvent("popstate", { state });
     window.dispatchEvent(event);
   };

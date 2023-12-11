@@ -13,8 +13,9 @@ import { normalizePath, resolvePath } from "./RouterUtil";
 import { useParentMatcher } from "./RouteMatcher";
 
 type RouterNavigator<P extends object> = {
-  pathname: string;
+  path: string;
   params: P;
+  query: URLSearchParams;
   push: (path: string) => void;
   back: () => void;
   forward: () => void;
@@ -28,31 +29,32 @@ function toFullPath(base: string, from: string, to: string) {
     : resolvePath(from, to);
 }
 
-function toScopedPath(base: string, pathname: string) {
-  return normalizePath(`/${pathname.slice(base.length)}`);
+function toScopedPath(base: string, path: string) {
+  return normalizePath(`/${path.slice(base.length)}`);
 }
 
 export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
   const { base, state, driver } = useRouterContext();
-  const matcher = useParentMatcher();
+  const matcher = useParentMatcher()!;
   return useMemo<RouterNavigator<any>>(() => {
-    // Go to the specified pathname
+    if (!matcher?.result) throw "Invalid call outside of Route";
+    // Go to the specified path
     const push = (to: string) =>
-      driver.push({ pathname: toFullPath(base, state.pathname, to) });
-    // Go to the specified pathname，But it doesn't affect history
+      driver.push({ path: toFullPath(base, state.path, to) });
+    // Go to the specified path it doesn't affect history
     const replace = (to: string) =>
-      driver.replace({ pathname: toFullPath(base, state.pathname, to) });
-    // Back to the prev pathname
+      driver.replace({ path: toFullPath(base, state.path, to) });
+    // Back to the prev path
     const back = () => driver.back();
-    // Forward to the next pathname
+    // Forward to the next path
     const forward = () => driver.forward();
     // Forward or backward specified number of steps
     const go = (step: number) => driver.go(step);
     // Generate some parameters
-    const pathname = toScopedPath(base, state.pathname);
-    const { params = {} } = { ...matcher?.result };
+    const path = toScopedPath(base, state.path);
+    const { params, query } = matcher.result;
     // return the instance
-    return { pathname, params, push, back, forward, go, replace };
+    return { path, params, query, push, back, forward, go, replace };
   }, [state, matcher, driver]);
 }
 

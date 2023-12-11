@@ -1,2 +1,2 @@
-export type RouterState = { pathname: string };
+export type RouterState = { path: string };
 export type RouterStateChangeHandler = (state: RouterState) => void;

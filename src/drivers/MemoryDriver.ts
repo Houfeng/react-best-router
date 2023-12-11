@@ -2,7 +2,7 @@ import { useMemo } from "react";
 import { RouterDriver, RouterStateChangeHandler, RouterState } from "../core";
 
 export function createMemoryDriver(
-  initialState: RouterState = { pathname: "/" },
+  initialState: RouterState = { path: "/" },
 ): RouterDriver {
   let handler: RouterStateChangeHandler | undefined;
   let stack: RouterState[] = [initialState];
@@ -36,6 +36,6 @@ export function createMemoryDriver(
   };
 }
 
-export function useMemoryDriver(initialState: RouterState = { pathname: "/" }) {
+export function useMemoryDriver(initialState: RouterState = { path: "/" }) {
   return useMemo(() => createMemoryDriver(initialState), [initialState]);
 }

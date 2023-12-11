@@ -79,10 +79,12 @@ Navigator 以 React Hooks 和 factory function 的形式提供。
 
 ```tsx
 type RouterNavigator<P extends object> = {
-  // 应用当前的 pathname
-  pathname: string;
+  // 应用当前的 path，eg: /foo/bar?foo=bar
+  path: string;
   // 路由参数
-  params: MatchResult<P>["params"];
+  params: P;
+  // 查询参数
+  query: URLSearchParams;
   // 跳转到指定的路径
   push: (path: string) => void;
   // 返回上一个路径

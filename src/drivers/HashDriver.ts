@@ -3,13 +3,13 @@ import { RouterDriver, RouterState } from "../core";
 
 export function createHashDriver(): RouterDriver {
   const current = (): RouterState => {
-    return { pathname: location.hash.slice(1) || "/" };
+    return { path: location.hash.slice(1) || "/" };
   };
   const push = (state: RouterState) => {
-    location.hash = state.pathname;
+    location.hash = state.path;
   };
   const replace = (state: RouterState) => {
-    location.hash = state.pathname;
+    location.hash = state.path;
   };
   const go = (step: number) => history.go(step);
   const back = () => history.back();
