@@ -131,7 +131,7 @@ describe("Pattern", () => {
 
   it("Anonymous params: get param value", async () => {
     const nav = await renderTestApp({
-      pattern: "/foo/(.*)",
+      pattern: "/foo/(.+)",
       content: "f1",
       fallback: "f0",
     });
@@ -143,7 +143,7 @@ describe("Pattern", () => {
 
   it("Anonymous params: ?", async () => {
     const nav = await renderTestApp({
-      pattern: "/foo/(.*)?",
+      pattern: "/foo/(.+)?",
       content: "f1",
       fallback: "f0",
     });
@@ -159,7 +159,7 @@ describe("Pattern", () => {
 
   it("Anonymous params: *", async () => {
     const nav = await renderTestApp({
-      pattern: "/foo/(.*)*",
+      pattern: "/foo/(.+)*",
       content: "f1",
       fallback: "f0",
     });
@@ -179,7 +179,7 @@ describe("Pattern", () => {
 
   it("Anonymous params: +", async () => {
     const nav = await renderTestApp({
-      pattern: "/foo/(.*)+",
+      pattern: "/foo/(.+)+",
       content: "f1",
       fallback: "f0",
     });
@@ -187,10 +187,10 @@ describe("Pattern", () => {
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.$1, "/abc");
-    //nav.current?.push('/foo');
-    // await sleep(100);
-    // strictEqual(mountNode.textContent?.trim(), "f0");
-    // strictEqual(nav.current?.params?.$1, undefined);
+    nav.current?.push('/foo');
+    await sleep(100);
+    strictEqual(mountNode.textContent?.trim(), "f0");
+    strictEqual(nav.current?.params?.$1, undefined);
     nav.current?.push('/foo/abc/123');
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
