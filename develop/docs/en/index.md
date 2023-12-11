@@ -14,7 +14,7 @@ RBR has a small footprint, with a minified size of **5kb** and a GZip size of **
 [![npm download](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
 [![minify](https://img.shields.io/badge/Minify-5kb-green)](https://github.com/houfeng/react-best-router)
 [![minify](https://img.shields.io/badge/GZip-2kb-green)](https://github.com/houfeng/react-best-router)
-[![unit](https://img.shields.io/badge/Tests-87%25-green)](https://github.com/houfeng/react-best-router)
+[![unit](https://img.shields.io/badge/Tests-88%25-green)](https://github.com/houfeng/react-best-router)
 
 ## 2. Installation
 

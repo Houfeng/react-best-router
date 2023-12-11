@@ -13,6 +13,6 @@ The API of RBR is also very simple, with only **4** core APIs.
 [![npm download](https://img.shields.io/npm/dt/react-best-router.svg)](https://www.npmjs.com/package/react-best-router)
 [![minify](https://img.shields.io/badge/Minify-5kb-green)](https://github.com/houfeng/react-best-router)
 [![minify](https://img.shields.io/badge/GZip-2kb-green)](https://github.com/houfeng/react-best-router)
-[![unit](https://img.shields.io/badge/Tests-87%25-green)](https://github.com/houfeng/react-best-router)
+[![unit](https://img.shields.io/badge/Tests-88%25-green)](https://github.com/houfeng/react-best-router)
 
 **RBR Docs** : [https://rbr.houfeng.net](https://rbr.houfeng.net)
