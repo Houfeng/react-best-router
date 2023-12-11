@@ -24,7 +24,7 @@ function TestApp({ onReady }: { onReady: () => void }) {
   );
 }
 
-describe("Router", () => {
+describe("Basic usage", () => {
   const mountNode = document.getElementById("root")!;
   const root = createRoot(mountNode);
 
@@ -34,11 +34,11 @@ describe("Router", () => {
     });
   });
 
-  it("render", async () => {
+  it("Router render", async () => {
     strictEqual(mountNode.textContent?.trim(), "f");
   });
 
-  it("push & back & forward", async () => {
+  it("Route push/back/forward", async () => {
     nav.current?.push("/a");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "a");
@@ -59,7 +59,7 @@ describe("Router", () => {
     strictEqual(mountNode.textContent?.trim(), "b");
   });
 
-  it("fallback", async () => {
+  it("Route fallback", async () => {
     nav.current?.push("/none");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f");

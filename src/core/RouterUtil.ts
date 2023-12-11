@@ -34,8 +34,8 @@ export function patternToRegExp(pattern: string) {
   text = text.replace(anonymous, function (_, S = "", R = "", M = "") {
     const value =
       M === "*" || M === "+"
-        ? `(?<$${index++}>${R || `(${S}[a-z0-9_-]+)`}${M})`
-        : `${S}${M}(?<$${index++}>${R || "([a-z0-9_-]+)"}${M})`;
+        ? `(?<$${++index}>${R}${M})`
+        : `${S}${M}(?<$${++index}>${R}${M})`;
     const key = `{{${id++}}}`;
     table.push([key, value]);
     return key;

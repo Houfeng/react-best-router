@@ -12,7 +12,7 @@ import { useRouterContext } from "./RouterContext";
 import { normalizePath, resolvePath } from "./RouterUtil";
 import { useParentMatcher } from "./RouteMatcher";
 
-type RouterNavigator<P extends object> = {
+export type RouterNavigator<P extends object> = {
   path: string;
   params: P;
   query: URLSearchParams;
