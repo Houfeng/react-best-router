@@ -2,7 +2,13 @@ import "./env/MockBrowser";
 import { RefObject, createElement } from "react";
 import { strictEqual } from "assert";
 import { describe, it } from "node:test";
-import { Route, Router, useMemoryDriver, createNavigatorRef, RouterNavigator } from "../src";
+import {
+  Route,
+  Router,
+  useMemoryDriver,
+  createNavigatorRef,
+  RouterNavigator,
+} from "../src";
 import { createRoot } from "react-dom/client";
 import { useEffect } from "react";
 import { sleep } from "./env/TestHelper";
@@ -15,8 +21,8 @@ type TestAppProps = {
   pattern: string;
   content?: string;
   fallback?: string;
-  navigator?: RefObject<RouterNavigator<any>>
-}
+  navigator?: RefObject<RouterNavigator<any>>;
+};
 
 function TestApp(props: TestAppProps) {
   const { onReady, pattern, content, fallback, navigator } = props;
@@ -43,15 +49,15 @@ async function renderTestApp(props: TestAppProps) {
   return nav;
 }
 
+//eslint-disable-next-line  max-lines-per-function
 describe("Pattern", () => {
-
   it("Named params: get param value", async () => {
     const nav = await renderTestApp({
       pattern: "/foo/:bar",
       content: "f1",
       fallback: "f0",
     });
-    nav.current?.push('/foo/abc');
+    nav.current?.push("/foo/abc");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.bar, "abc");
@@ -63,11 +69,11 @@ describe("Pattern", () => {
       content: "f1",
       fallback: "f0",
     });
-    nav.current?.push('/foo/abc');
+    nav.current?.push("/foo/abc");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.bar, "abc");
-    nav.current?.push('/foo');
+    nav.current?.push("/foo");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.bar, "");
@@ -79,15 +85,15 @@ describe("Pattern", () => {
       content: "f1",
       fallback: "f0",
     });
-    nav.current?.push('/foo/abc');
+    nav.current?.push("/foo/abc");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.bar, "/abc");
-    nav.current?.push('/foo');
+    nav.current?.push("/foo");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.bar, "");
-    nav.current?.push('/foo/abc/123');
+    nav.current?.push("/foo/abc/123");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.bar, "/abc/123");
@@ -99,15 +105,15 @@ describe("Pattern", () => {
       content: "f1",
       fallback: "f0",
     });
-    nav.current?.push('/foo/abc');
+    nav.current?.push("/foo/abc");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.bar, "/abc");
-    nav.current?.push('/foo');
+    nav.current?.push("/foo");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f0");
     strictEqual(nav.current?.params?.bar, undefined);
-    nav.current?.push('/foo/abc/123');
+    nav.current?.push("/foo/abc/123");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.bar, "/abc/123");
@@ -119,10 +125,10 @@ describe("Pattern", () => {
       content: "f1",
       fallback: "f0",
     });
-    nav.current?.push('/foo');
+    nav.current?.push("/foo");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f0");
-    nav.current?.push('/foo/bar/abc');
+    nav.current?.push("/foo/bar/abc");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f0");
   });
@@ -135,7 +141,7 @@ describe("Pattern", () => {
       content: "f1",
       fallback: "f0",
     });
-    nav.current?.push('/foo/abc');
+    nav.current?.push("/foo/abc");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.$1, "abc");
@@ -147,11 +153,11 @@ describe("Pattern", () => {
       content: "f1",
       fallback: "f0",
     });
-    nav.current?.push('/foo/abc');
+    nav.current?.push("/foo/abc");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.$1, "abc");
-    nav.current?.push('/foo');
+    nav.current?.push("/foo");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.$1, "");
@@ -163,15 +169,15 @@ describe("Pattern", () => {
       content: "f1",
       fallback: "f0",
     });
-    nav.current?.push('/foo/abc');
+    nav.current?.push("/foo/abc");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.$1, "/abc");
-    nav.current?.push('/foo');
+    nav.current?.push("/foo");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.$1, "");
-    nav.current?.push('/foo/abc/123');
+    nav.current?.push("/foo/abc/123");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.$1, "/abc/123");
@@ -183,18 +189,17 @@ describe("Pattern", () => {
       content: "f1",
       fallback: "f0",
     });
-    nav.current?.push('/foo/abc');
+    nav.current?.push("/foo/abc");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.$1, "/abc");
-    nav.current?.push('/foo');
+    nav.current?.push("/foo");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f0");
     strictEqual(nav.current?.params?.$1, undefined);
-    nav.current?.push('/foo/abc/123');
+    nav.current?.push("/foo/abc/123");
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f1");
     strictEqual(nav.current?.params?.$1, "/abc/123");
   });
-
 });

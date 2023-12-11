@@ -64,5 +64,4 @@ describe("Basic usage", () => {
     await sleep(100);
     strictEqual(mountNode.textContent?.trim(), "f");
   });
-
 });
