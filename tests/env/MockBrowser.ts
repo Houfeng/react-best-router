@@ -19,6 +19,9 @@ const navigator = window.navigator;
 const location = window.location;
 const history = window.history;
 
+//@ts-ignore
+delete global.navigator;
+
 Object.assign(global, {
   window,
   document,

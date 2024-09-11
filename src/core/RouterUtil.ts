@@ -14,11 +14,11 @@ export function resolvePath(from: string, to: string) {
 }
 
 export function patternToRegExp(pattern: string) {
-  // S->Separator, N->Name, R->Regexp, M->Modifier  
+  // S->Separator, N->Name, R->Regexp, M->Modifier
   const table: Array<[string, string]> = [];
   let id = 0;
   let text = pattern;
-  // named 
+  // named
   const named = /(?<S>\/)?:(?<N>[a-z0-9_]+)(?<R>\(.+?\))?(?<M>[*?+])?/gi;
   text = text.replace(named, function (_, S = "", N = "", R = "", M = "") {
     const value =

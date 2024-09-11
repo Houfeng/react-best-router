@@ -21,7 +21,7 @@ export function createBrowserDriver(): RouterDriver {
   const forward = () => history.forward();
   const subscribe: RouterDriver["subscribe"] = (handler) => {
     const popstateHandler = (event: PopStateEvent) => {
-      handler(event.state);
+      handler(event.state || current());
     };
     window.addEventListener("popstate", popstateHandler);
     return () => window.removeEventListener("popstate", popstateHandler);
