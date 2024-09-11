@@ -20,7 +20,7 @@ export type RouteMatcher<P extends object = object> = {
 };
 
 function patternToPrefix(pattern: RoutePattern) {
-  const expr = /[.*()[\]:]/;
+  const expr = /[.*()[\]?+]/;
   const segments = pattern.split("/");
   const lastIndex = segments
     .slice(0)
