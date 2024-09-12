@@ -23,10 +23,15 @@ export type RouterNavigator<P extends object> = {
   replace: (path: string) => void;
 };
 
+function toPathName(path: string) {
+  const { pathname } = new URL(path, location.origin);
+  return pathname;
+}
+
 function toFullPath(base: string, from: string, to: string) {
   return to.startsWith("/")
-    ? normalizePath(`${base}/${to}`)
-    : resolvePath(from, to);
+    ? normalizePath(`${toPathName(base)}/${to}`)
+    : resolvePath(toPathName(from), to);
 }
 
 function toScopedPath(base: string, path: string) {
