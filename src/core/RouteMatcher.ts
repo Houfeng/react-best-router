@@ -20,7 +20,7 @@ export type RouteMatcher<P extends object = object> = {
 };
 
 function patternToPrefix(pattern: RoutePattern) {
-  const expr = /[.*()[\]?+:]/;
+  const expr = /[.*()[\]?+]/;
   const segments = pattern.split("/");
   const lastIndex = segments
     .slice(0)
@@ -65,6 +65,10 @@ export function createMatcher(
   prefix?: RoutePattern,
   parent?: RouteMatcher,
 ): RouteMatcher {
+  if (parent && parent.prefix === parent.pattern) {
+    const err = `Strict route '${parent.parent}' cannot contain child routes`;
+    throw new Error(err);
+  }
   prefix = prefix || patternToPrefix(pattern);
   const fullPattern = `/${getMatcherFullPrefix(parent)}/${pattern}`;
   const match = patternToMatch(normalizePattern(fullPattern));

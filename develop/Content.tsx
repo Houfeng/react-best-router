@@ -70,6 +70,17 @@ export function Content() {
               </p>
             );
           },
+          li(props) {
+            const { children, className = "" } = props;
+            const lang = getLocalLanguage();
+            return (
+              <li
+                className={`${lang === "zh" ? "font-serif" : ""} ${className}`}
+              >
+                {children}
+              </li>
+            );
+          },
         }}
       >
         {item.content}
