@@ -1,17 +1,19 @@
 import { createContext, useContext } from "react";
 import { normalizePath, patternToRegExp } from "./RouterUtil";
 
-type MatchResult<P extends object> = {
+export type RouteParams = Record<string, unknown>;
+
+type MatchResult<P extends RouteParams> = {
   state: boolean;
   params: P;
   query: URLSearchParams;
 };
 
-type MatchFunction<P extends object> = (path: string) => MatchResult<P>;
+type MatchFunction<P extends RouteParams> = (path: string) => MatchResult<P>;
 
 export type RoutePattern = string & {};
 
-export type RouteMatcher<P extends object = object> = {
+export type RouteMatcher<P extends RouteParams = RouteParams> = {
   pattern: RoutePattern;
   prefix: RoutePattern;
   match: MatchFunction<P>;
@@ -47,7 +49,7 @@ function normalizePattern(pattern: string) {
   );
 }
 
-function patternToMatch<P extends object = object>(pattern: string) {
+function patternToMatch<P extends RouteParams = RouteParams>(pattern: string) {
   const regexp = patternToRegExp(pattern);
   return (path: string) => {
     const { pathname, searchParams } = new URL(path, location.origin);

@@ -33,7 +33,7 @@ function renderCodeBlock(code: string, language?: string) {
 }
 
 export function Content() {
-  const nav = useNavigator<{ name: string }>();
+  const nav = useNavigator<"name">();
   const item =
     contents.find((it) => it.name === nav.params.name) || contents[0];
   const index = contents.indexOf(item);

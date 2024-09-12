@@ -5,14 +5,13 @@ import {
   forwardRef,
   useImperativeHandle,
   useMemo,
-  useRef,
   RefObject,
 } from "react";
 import { useRouterContext } from "./RouterContext";
 import { normalizePath, resolvePath } from "./RouterUtil";
-import { useParentMatcher } from "./RouteMatcher";
+import { RouteParams, useParentMatcher } from "./RouteMatcher";
 
-export type RouterNavigator<P extends object> = {
+export type RouterNavigator<P extends RouteParams> = {
   path: string;
   params: P;
   query: URLSearchParams;
@@ -38,7 +37,23 @@ function toScopedPath(base: string, path: string) {
   return normalizePath(`/${path.slice(base.length)}`);
 }
 
-export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
+type PickKeyOfType<T, E> = {
+  [K in keyof T as T[K] extends E ? K : never]: T[K];
+};
+
+type ParamsParser<K extends string, R = unknown> = Record<K, (v: string) => R>;
+type ParamsParseResult<T extends ParamsParser<string>> = PickKeyOfType<
+  {
+    [K in keyof T]: ReturnType<T[K]>;
+  },
+  string | number | boolean | object | Function
+>;
+
+export function useNavigator<
+  TKey extends string = never,
+  TParser extends ParamsParser<TKey> = ParamsParser<TKey, string>,
+  TResult extends ParamsParseResult<TParser> = ParamsParseResult<TParser>,
+>(paramsParser?: TParser): Readonly<RouterNavigator<Readonly<TResult>>> {
   const { base, state, driver } = useRouterContext();
   const matcher = useParentMatcher()!;
   return useMemo<RouterNavigator<any>>(() => {
@@ -58,30 +73,51 @@ export function useNavigator<P extends object>(): Readonly<RouterNavigator<P>> {
     // Generate some parameters
     const path = toScopedPath(base, state.path);
     const { params, query } = matcher.result;
+    // Parse params
+    if (paramsParser && params) {
+      Object.entries(params).forEach(([key, value]) => {
+        const parse = (paramsParser as ParamsParser<string>)[key];
+        params[key] = parse ? parse(String(value)) : value;
+      });
+    }
     // return the instance
     return { path, params, query, push, back, forward, go, replace };
   }, [state, matcher, driver]);
 }
 
-/**
- * @internal
- */
-export const NavigatorForwarder = forwardRef<RouterNavigator<any> | undefined>(
-  function NavigatorForwarder(_, ref) {
-    const navigator = useNavigator();
-    useImperativeHandle(ref, () => navigator);
-    return createElement(Fragment);
-  },
-);
+/** @internal */
+type NavigatorForwarderProps = { navRef?: RouterNavigatorRef };
 
-export type RouterNavigatorRef<P extends object = object> = RefObject<
-  RouterNavigator<P> | undefined
->;
-
-export function useNavigatorRef<P extends object = object>() {
-  return useRef<RouterNavigator<P>>();
+/** @internal */
+export function NavigatorForwarder({ navRef }: NavigatorForwarderProps) {
+  const { parser } = navRef || {};
+  const nav = useNavigator(parser);
+  useMemo(() => navRef && (navRef.current = nav), [nav, navRef]);
+  return createElement(Fragment);
 }
 
-export function createNavigatorRef<P extends object = object>() {
-  return createRef<RouterNavigator<P>>();
+export type RouterNavigatorRef<
+  T extends RouteParams = RouteParams,
+  P extends ParamsParser<string> = ParamsParser<string>,
+> = {
+  current?: RouterNavigator<T>;
+  parser?: P;
+};
+
+export function useNavigatorRef<
+  TKey extends string = never,
+  TParser extends ParamsParser<TKey> = ParamsParser<TKey, string>,
+  TResult extends ParamsParseResult<TParser> = ParamsParseResult<TParser>,
+>(paramsParser?: TParser) {
+  return useMemo(() => {
+    return createNavigatorRef<TKey, TParser, TResult>(paramsParser);
+  }, [paramsParser]);
+}
+
+export function createNavigatorRef<
+  TKey extends string = never,
+  TParser extends ParamsParser<TKey> = ParamsParser<TKey, string>,
+  TResult extends ParamsParseResult<TParser> = ParamsParseResult<TParser>,
+>(paramsParser?: TParser): RouterNavigatorRef<TResult, TParser> {
+  return { parser: paramsParser, current: void 0 };
 }

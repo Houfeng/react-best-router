@@ -7,7 +7,7 @@ import {
   Router,
   useMemoryDriver,
   createNavigatorRef,
-  RouterNavigator,
+  RouterNavigatorRef,
 } from "../src";
 import { createRoot } from "react-dom/client";
 import { useEffect } from "react";
@@ -21,7 +21,7 @@ type TestAppProps = {
   pattern: string;
   content?: string;
   fallback?: string;
-  navigator?: RefObject<RouterNavigator<any>>;
+  navigator?: RouterNavigatorRef;
 };
 
 function TestApp(props: TestAppProps) {

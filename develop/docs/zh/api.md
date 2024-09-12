@@ -78,7 +78,7 @@ Navigator 是在用 RBR 时被使有最多的 API 之二，通过它在各页面
 Navigator 以 React Hooks 和 factory function 的形式提供。
 
 ```tsx
-type RouterNavigator<P extends object> = {
+type RouterNavigator<P extends RouteParams> = {
   // 应用当前的 path，eg: /foo/bar?foo=bar
   path: string;
   // 路由参数
@@ -131,6 +131,19 @@ function YourApp() {
     </Router>
   );
 }
+```
+
+可以声明 params 的参数类型及转换函数
+
+```
+用法一：仅声明有哪些参数
+const nav = useNavigator<"id"|'name'>();
+// nav.params.id 和 nav.params.name ，都是 string 类型
+
+//用法二：声明参数及参数类型转换
+const nav = useNavigator({id:Number,name:String});
+// nav.params.id 是 number，且已完成转换
+// nav.params.name 是 string，且已完成转换
 ```
 
 ## 4. Driver

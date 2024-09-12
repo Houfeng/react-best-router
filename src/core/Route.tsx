@@ -43,7 +43,7 @@ export function Route(props: RouteProps) {
   const elements = render ? render(children) : children;
   return (
     <MatcherContext.Provider value={matcher}>
-      {navigator && <NavigatorForwarder ref={navigator} />}
+      {navigator && <NavigatorForwarder navRef={navigator} />}
       {matched ? elements : fallback}
       {matched && fallback && (
         <RouteFallback side={[Route, elements]}>{fallback}</RouteFallback>
