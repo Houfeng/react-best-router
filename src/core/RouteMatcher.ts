@@ -68,7 +68,7 @@ export function createMatcher(
   parent?: RouteMatcher,
 ): RouteMatcher {
   if (parent && parent.prefix === parent.pattern) {
-    const err = `Strict route '${parent.parent}' cannot contain child routes`;
+    const err = `Invalid nesting '${parent.pattern} -> ${pattern}'`;
     throw new Error(err);
   }
   prefix = prefix || patternToPrefix(pattern);
