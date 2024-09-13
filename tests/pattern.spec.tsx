@@ -1,5 +1,5 @@
 import "./env/MockBrowser";
-import { RefObject, createElement } from "react";
+import { createElement } from "react";
 import { strictEqual } from "assert";
 import { describe, it } from "node:test";
 import {

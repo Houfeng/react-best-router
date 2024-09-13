@@ -67,7 +67,7 @@ Route Usage Example
 
 ```tsx
 // Define the path matching pattern through pattern (detailed explanation in "Path Matching Explained").
-<Route pattern="/foo/:bar">
+<Route pattern="/foo/:bar*">
   {/* Directly specify the target component to render through children */}
   <Content />
   {/* Alternatively, directly specify child routes within children */}

@@ -64,7 +64,7 @@ Route 使用示例
 
 ```tsx
 // 通过 pattern 定义 path 的匹配模式（在《详解路径匹配》中有详细说明）
-<Route pattern="/foo/:bar">
+<Route pattern="/foo/:bar*">
   {/* 可直接通过 children 来指定渲染的目标组件 */}
   <Content />
   {/* 也可在 children 中直接指定子路由 */}
