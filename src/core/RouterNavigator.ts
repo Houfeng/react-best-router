@@ -25,8 +25,8 @@ function toFullPath(base: string, from: string, to: string) {
     : resolvePath(toPathName(from), to);
 }
 
-function toScopedPath(base: string, path: string) {
-  return normalizePath(`/${path.slice(base.length)}`);
+function toParsedPath(base: string, path: string) {
+  return normalizePath(`/${path.slice(base.length)}`).split("?")[0];
 }
 
 type PickKeyOfType<T, E> = {
@@ -63,7 +63,7 @@ export function useNavigator<
     // Forward or backward specified number of steps
     const go = (step: number) => driver.go(step);
     // Generate some parameters
-    const path = toScopedPath(base, state.path);
+    const path = toParsedPath(base, state.path);
     const { params, query } = matcher.result;
     // Parse params
     if (paramsParser && params) {
