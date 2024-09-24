@@ -46,7 +46,7 @@ function YourComponent(){
 # Define a "pattern consisting of two layers of paths"
 # The first layer, foo, is a fixed value, and the second layer, :bar, is a variable, with the constraint that :bar must be a number
 
-👉 /foo/:bar(\d+)
+👉 /foo/:bar(\\d+)
 
 # It can match only if two layers start with /foo/... and end with a number, as illustrated in the examples:
 
@@ -102,7 +102,7 @@ You can declare parameter constraints without naming the parameters. In this cas
 
 ```zsh
 # Define an anonymous parameter that "only matches numbers" because there is only one parameter, it is automatically named 0
-👉 /foo/(\d+)
+👉 /foo/(\\d+)
 
 ✅ /foo/123
 ❌ /foo/abc 

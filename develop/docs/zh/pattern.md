@@ -52,7 +52,7 @@ function YourComponent(){
 # 定义有一个「由二层路径组成的 pattern」
 # 第一层 foo 是确定值，第二层 :bar 是变量，同时约束 :bar 为数字
 
-👉 /foo/:bar(\d+)
+👉 /foo/:bar(\\d+)
 
 # 两层以 /foo/... 开头且以数字结束才能匹配，以示例说明
 
@@ -122,7 +122,7 @@ function YourComponent(){
 
 ```zsh
 # 定义了一个「仅匹配数字」的匿名参数，因为只有一个参数,自动命名为 0
-👉 /foo/(\d+)
+👉 /foo/(\\d+)
 
 ✅ /foo/123
 ❌ /foo/abc 

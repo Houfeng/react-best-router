@@ -18,6 +18,8 @@ export function patternToRegExp(pattern: string) {
   const table: Array<[string, string]> = [];
   let id = 0;
   let text = pattern;
+  // escape
+  text = text.replace(/\\\(/, "@@#").replace(/\\\)/, "#@@");
   // named
   const named = /(?<S>\/)?:(?<N>[a-z0-9_]+)(?<R>\(.+?\))?(?<M>[*?+])?/gi;
   text = text.replace(named, function (_, S = "", N = "", R = "", M = "") {
@@ -25,7 +27,7 @@ export function patternToRegExp(pattern: string) {
       M === "*" || M === "+"
         ? `(?<${N}>${R || `(${S}[a-z0-9_-]+)`}${M})`
         : `${S}${M}(?<${N}>${R || "([a-z0-9_-]+)"}${M})`;
-    const key = `{{${id++}}}`;
+    const key = `@@${id++}@@`;
     table.push([key, value]);
     return key;
   });
@@ -37,10 +39,11 @@ export function patternToRegExp(pattern: string) {
       M === "*" || M === "+"
         ? `(?<$${++index}>${R}${M})`
         : `${S}${M}(?<$${++index}>${R}${M})`;
-    const key = `{{${id++}}}`;
+    const key = `@@${id++}@@`;
     table.push([key, value]);
     return key;
   });
+  // table
   text = text
     .replace(/\?/g, "\\?")
     .replace(/\*/g, "\\*")
@@ -48,9 +51,14 @@ export function patternToRegExp(pattern: string) {
     .replace(/\./g, "\\.")
     .replace(/\//g, "\\/");
   table.forEach(([key, value]) => (text = text.replace(key, value)));
+  // unescape
+  text = text.replace(/@@#/g, "(").replace(/#@@/g, ")");
+  // compile
   try {
     return new RegExp(`^${text}$`, "i");
   } catch {
     throw `Invalid pattern: ${pattern}`;
   }
 }
+
+Object.assign(window, { patternToRegExp });
