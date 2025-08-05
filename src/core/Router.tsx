@@ -25,7 +25,7 @@ export function Router(props: RouterProps) {
   return (
     <RouterContext.Provider value={context}>
       <Route
-        pattern={`${base}/(.*)`}
+        pattern={`${base}/(.*)?`}
         prefix={base}
         render={render}
         navigator={navigator}
