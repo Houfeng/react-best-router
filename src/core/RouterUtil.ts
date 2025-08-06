@@ -1,12 +1,15 @@
 export function normalizePath(path: string) {
   const segments = path.split("/").map((it) => (it || "").trim());
   const len = segments.length;
-  return segments
+  const normalizedPath = segments
     .reduce<string[]>((result, it, i) => {
       if (it === "." || (it === "" && i !== 0 && i !== len - 1)) return result;
       return it === ".." ? result.slice(0, -1) : [...result, it];
     }, [])
     .join("/");
+  return normalizedPath.length > 1 && normalizedPath.at(-1) === "/"
+    ? normalizedPath.slice(0, -1)
+    : normalizedPath;
 }
 
 export function resolvePath(from: string, to: string) {

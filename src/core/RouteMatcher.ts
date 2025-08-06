@@ -41,12 +41,11 @@ function getMatcherFullPrefix(matcher: RouteMatcher | undefined) {
   return fullPrefix;
 }
 
-function normalizePattern(pattern: string) {
-  return normalizePath(
-    pattern.length > 1 && pattern.at(-1) === "/"
-      ? pattern.slice(0, -1)
-      : pattern,
-  );
+function normalizePattern(normalizedPattern: string) {
+  normalizedPattern = normalizePath(normalizedPattern);
+  return normalizedPattern.length > 1 && normalizedPattern.at(-1) === "/"
+    ? normalizedPattern.slice(0, -1)
+    : normalizedPattern;
 }
 
 function patternToMatch<P extends RouteParams = RouteParams>(pattern: string) {

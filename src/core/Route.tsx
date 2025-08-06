@@ -27,7 +27,7 @@ export type RouteProps = {
 );
 
 export function Route(props: RouteProps) {
-  const { pattern = "/(.*)", prefix, navigator } = props;
+  const { pattern = "/(.*)?", prefix, navigator } = props;
   const { render, children, fallback } = props;
   const { state } = useRouterContext();
   const parentMatcher = useParentMatcher();
