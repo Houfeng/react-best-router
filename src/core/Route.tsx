@@ -33,6 +33,7 @@ export type RouteRedirectProps = {
   navigator?: RouterNavigatorRef<any>;
   children?: never;
   render?: never;
+  fallback?: never;
 };
 
 export type RouteProps = RouteNormalProps | RouteRedirectProps;
