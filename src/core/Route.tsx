@@ -9,8 +9,9 @@ import {
 } from "./RouteMatcher";
 import { NavigatorForwarder, RouterNavigatorRef } from "./RouterNavigator";
 import { RouteFallback } from "./RouteFallback";
+import { RouteRedirect } from "./RouteRedirect";
 
-export type RouteProps = {
+export type RouteNormalProps = {
   children?: ReactNode;
   render?: (children: ReactNode) => ReactNode;
   prefix?: RoutePattern;
@@ -26,9 +27,21 @@ export type RouteProps = {
     }
 );
 
+export type RouteRedirectProps = {
+  pattern?: RoutePattern;
+  redirect: string;
+  navigator?: RouterNavigatorRef<any>;
+  children?: never;
+  render?: never;
+};
+
+export type RouteProps = RouteNormalProps | RouteRedirectProps;
+
+type RouteMergedProps = RouteNormalProps & Pick<RouteRedirectProps, "redirect">;
+
 export function Route(props: RouteProps) {
-  const { pattern = "/(.*)?", prefix, navigator } = props;
-  const { render, children, fallback } = props;
+  const { pattern = "/(.*)?", prefix, navigator } = props as RouteMergedProps;
+  const { render, children, fallback, redirect } = props as RouteMergedProps;
   const { state } = useRouterContext();
   const parentMatcher = useParentMatcher();
   // create matcher
@@ -39,6 +52,8 @@ export function Route(props: RouteProps) {
   // match current path
   const matched = matcher.match(state.path).state;
   if (!matched && !fallback) return <Fragment />;
+  // if redirect
+  if (matched && redirect) return <RouteRedirect to={redirect} />;
   // normalize children
   const elements = render ? render(children) : children;
   return (

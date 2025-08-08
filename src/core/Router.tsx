@@ -1,14 +1,14 @@
 import { createElement, useState, useMemo, useLayoutEffect } from "react";
 import { RouterDriver } from "./RouterDriver";
 import { RouterContext, RouterContextValue } from "./RouterContext";
-import { Route, RouteProps } from "./Route";
+import { Route, RouteNormalProps } from "./Route";
 import { RouterState } from "./RouterState";
 import { normalizePath } from "./RouterUtil";
 
 export type RouterProps = {
   base?: string;
   driver: RouterDriver;
-} & Omit<RouteProps, "pattern" | "prefix">;
+} & Omit<RouteNormalProps, "pattern" | "prefix">;
 
 export function Router(props: RouterProps) {
   const { driver, base = "/", navigator, children, render, fallback } = props;

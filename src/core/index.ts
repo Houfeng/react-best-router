@@ -3,4 +3,3 @@ export * from "./RouterDriver";
 export * from "./RouterNavigator";
 export * from "./Route";
 export * from "./RouterState";
-export * from "./Redirect";
