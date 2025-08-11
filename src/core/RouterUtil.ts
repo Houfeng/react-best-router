@@ -63,5 +63,3 @@ export function patternToRegExp(pattern: string) {
     throw `Invalid pattern: ${pattern}`;
   }
 }
-
-Object.assign(window, { patternToRegExp });

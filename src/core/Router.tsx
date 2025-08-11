@@ -2,8 +2,7 @@ import { createElement, useState, useMemo, useLayoutEffect } from "react";
 import { RouterDriver } from "./RouterDriver";
 import { RouterContext, RouterContextValue } from "./RouterContext";
 import { Route, RouteNormalProps } from "./Route";
-import { RouterState } from "./RouterState";
-import { normalizePath } from "./RouterUtil";
+import { normalizeState, RouterState } from "./RouterState";
 
 export type RouterProps = {
   base?: string;
@@ -14,8 +13,7 @@ export function Router(props: RouterProps) {
   const { driver, base = "/", navigator, children, render, fallback } = props;
   // initial state
   const [state, setState] = useState<RouterState>(() => {
-    const current = driver.current();
-    return { ...current, path: normalizePath(current.path) };
+    return normalizeState(driver.current());
   });
   // create context
   const context = useMemo<RouterContextValue>(
@@ -24,7 +22,7 @@ export function Router(props: RouterProps) {
   );
   // bind to driver
   useLayoutEffect(
-    () => driver.subscribe((state) => setState(state)),
+    () => driver.subscribe((state) => setState(normalizeState(state))),
     [driver, state],
   );
   return (
